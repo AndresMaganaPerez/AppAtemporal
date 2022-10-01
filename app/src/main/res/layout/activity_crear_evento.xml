@@ -35,6 +35,7 @@
                     android:layout_gravity="center">
 
                     <LinearLayout
+                        android:id="@+id/layout_form"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
@@ -64,7 +65,7 @@
                             android:textColorHint="@color/white"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.511"
-                            app:layout_constraintStart_toStartOf="parent"></EditText>
+                            app:layout_constraintStart_toStartOf="parent" />
 
                         <EditText
                             android:id="@+id/Descripcion_Evento"
@@ -79,7 +80,7 @@
                             android:textColorHint="@color/white"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.511"
-                            app:layout_constraintStart_toStartOf="parent"></EditText>
+                            app:layout_constraintStart_toStartOf="parent" />
 
                         <EditText
                             android:id="@+id/Ubicacion_Evento"
@@ -94,7 +95,7 @@
                             android:textColorHint="@color/white"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.511"
-                            app:layout_constraintStart_toStartOf="parent"></EditText>
+                            app:layout_constraintStart_toStartOf="parent" />
 
                         <EditText
                             android:id="@+id/Direccion_Evento"
@@ -109,7 +110,7 @@
                             android:textColorHint="@color/white"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.511"
-                            app:layout_constraintStart_toStartOf="parent"></EditText>
+                            app:layout_constraintStart_toStartOf="parent" />
 
                         <EditText
                             android:id="@+id/Ciudad_Evento"
@@ -124,7 +125,7 @@
                             android:textColorHint="@color/white"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.511"
-                            app:layout_constraintStart_toStartOf="parent"></EditText>
+                            app:layout_constraintStart_toStartOf="parent" />
 
                         <EditText
                             android:id="@+id/Estado_Evento"
@@ -139,7 +140,7 @@
                             android:textColorHint="@color/white"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.511"
-                            app:layout_constraintStart_toStartOf="parent"></EditText>
+                            app:layout_constraintStart_toStartOf="parent" />
 
                         <EditText
                             android:id="@+id/Artista_Evento"
@@ -154,10 +155,10 @@
                             android:textColorHint="@color/white"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.511"
-                            app:layout_constraintStart_toStartOf="parent"></EditText>
+                            app:layout_constraintStart_toStartOf="parent" />
 
                         <EditText
-                            android:id="@+id/URL_Imagen_Evento"
+                            android:id="@+id/UrlImagenEvento"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="30dp"
@@ -169,7 +170,7 @@
                             android:textColorHint="@color/white"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.511"
-                            app:layout_constraintStart_toStartOf="parent"></EditText>
+                            app:layout_constraintStart_toStartOf="parent" />
 
                         <EditText
                             android:id="@+id/URL_Video_Evento"
@@ -177,7 +178,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="30dp"
                             android:layout_marginTop="28dp"
-                            android:layout_marginBottom="80dp"
                             android:backgroundTint="@color/white"
                             android:ems="15"
                             android:hint="URL del video promocional"
@@ -185,13 +185,83 @@
                             android:textColorHint="@color/white"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.511"
-                            app:layout_constraintStart_toStartOf="parent"></EditText>
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <TextView
+                            android:id="@+id/titleCreateNewFunction_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="28dp"
+                            android:text="Función 1"
+                            android:textColor="@color/white"
+                            android:textSize="28sp"
+                            tools:ignore="MissingConstraints"
+                            tools:layout_editor_absoluteX="23dp"
+                            tools:layout_editor_absoluteY="179dp" />
+
+                        <EditText
+                            android:id="@+id/Nombre_Funcion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginTop="28dp"
+                            android:backgroundTint="@color/white"
+                            android:ems="15"
+                            android:hint="Nombre de la función"
+                            android:minHeight="48dp"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.511"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <EditText
+                            android:id="@+id/Hora_Inicio_Funcion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginTop="28dp"
+                            android:backgroundTint="@color/white"
+                            android:ems="15"
+                            android:hint="Hora de inicio"
+                            android:minHeight="48dp"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.511"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <EditText
+                            android:id="@+id/Hora_Fin_Funcion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginTop="28dp"
+
+                            android:backgroundTint="@color/white"
+                            android:ems="15"
+                            android:hint="Hora de fin"
+                            android:minHeight="48dp"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.511"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <Button
+                            android:id="@+id/agregarFuncionBtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="28dp"
+                            android:layout_marginBottom="90dp"
+                            android:text="Agregar Funcion" />
 
 
                         <Spinner
                             android:id="@+id/TipoEvento"
                             android:layout_width="211dp"
-                            android:layout_height="wrap_content"></Spinner>
+                            android:layout_height="wrap_content" />
                     </LinearLayout>
                 </RelativeLayout>
             </LinearLayout>

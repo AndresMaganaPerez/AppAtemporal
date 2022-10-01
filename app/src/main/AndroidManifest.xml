@@ -149,15 +149,19 @@
         <activity
             android:name=".framework.view.DetailedMetrics"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".framework.view.CheckIfLogged"
             android:exported="true">
             <!-- Aqui estaba el Intent Filter originalmente-->
+        </activity>
+        <activity
+            android:name=".framework.view.CrearEventoOrganizador"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <meta-data
             android:name="preloaded_fonts"
