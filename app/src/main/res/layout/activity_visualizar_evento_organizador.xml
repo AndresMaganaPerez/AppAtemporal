@@ -419,7 +419,7 @@
                                         android:layout_marginStart="4dp"
                                         android:text="2"
                                         android:textColor="@color/grayBtn"
-                                        android:textSize="12sp"></TextView>
+                                        android:textSize="12sp"/>
 
                                     // Progress Bar
 
