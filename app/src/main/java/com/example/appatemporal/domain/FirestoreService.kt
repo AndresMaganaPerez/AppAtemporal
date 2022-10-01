@@ -1,12 +1,9 @@
 package com.example.appatemporal.domain
 
 import android.util.Log
-import com.example.appatemporal.domain.models.GetTicketModel
-import com.example.appatemporal.domain.models.ReportFailureModel
-import com.example.appatemporal.domain.models.UserModel
+import com.example.appatemporal.domain.models.*
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FieldPath
-import com.example.appatemporal.domain.models.TicketModel
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
@@ -395,5 +392,23 @@ class FirestoreService {
         return result
     }
 
+    suspend fun addEvent (event: CreateEventModel, funcion: CreateFunctionModel) {
+        db.collection("Evento")
+            .add(event)
+            .addOnSuccessListener {
+                Log.d("Firestore Log = ","Se agregó correctamente el evento " + event.nombre)
+            }
+            .await()
+
+        // TODO: Obtener id del nuevo evento creado
+
+        db.collection("Funcion")
+            .add(funcion)
+            .addOnSuccessListener {
+                Log.d("Firestore Log = ","Se agregó correctamente las funciones del evento " + event.nombre)
+            }
+            .await()
+
+    }
 
 }
