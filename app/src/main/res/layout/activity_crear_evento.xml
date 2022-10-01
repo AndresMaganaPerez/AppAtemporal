@@ -59,13 +59,42 @@
                             android:layout_marginTop="28dp"
                             android:backgroundTint="@color/white"
                             android:ems="15"
-                            android:hint="@string/nameCreateNewProject"
+                            android:hint="Nombre del evento"
                             android:textColor="@color/white"
                             android:textColorHint="@color/white"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.511"
                             app:layout_constraintStart_toStartOf="parent"></EditText>
 
+                        <EditText
+                            android:id="@+id/Descripcion_Evento"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginTop="28dp"
+                            android:backgroundTint="@color/white"
+                            android:ems="15"
+                            android:hint="Descripcion del evento"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.511"
+                            app:layout_constraintStart_toStartOf="parent"></EditText>
+
+                        <EditText
+                            android:id="@+id/Ubicacion_Evento"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginTop="28dp"
+                            android:backgroundTint="@color/white"
+                            android:ems="15"
+                            android:hint="Nombre del recinto"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.511"
+                            app:layout_constraintStart_toStartOf="parent"></EditText>
 
                         <EditText
                             android:id="@+id/Direccion_Evento"
@@ -75,7 +104,7 @@
                             android:layout_marginTop="28dp"
                             android:backgroundTint="@color/white"
                             android:ems="15"
-                            android:hint="Direccion del evento"
+                            android:hint="Direccion del recinto"
                             android:textColor="@color/white"
                             android:textColorHint="@color/white"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -106,22 +135,6 @@
                             android:backgroundTint="@color/white"
                             android:ems="15"
                             android:hint="Estado del evento"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/white"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.511"
-                            app:layout_constraintStart_toStartOf="parent"></EditText>
-
-
-                        <EditText
-                            android:id="@+id/Ubicacion_Evento"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginTop="28dp"
-                            android:backgroundTint="@color/white"
-                            android:ems="15"
-                            android:hint="Ubicacion del evento"
                             android:textColor="@color/white"
                             android:textColorHint="@color/white"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -164,42 +177,12 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="30dp"
                             android:layout_marginTop="28dp"
+                            android:layout_marginBottom="80dp"
                             android:backgroundTint="@color/white"
                             android:ems="15"
                             android:hint="URL del video promocional"
                             android:textColor="@color/white"
                             android:textColorHint="@color/white"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.511"
-                            app:layout_constraintStart_toStartOf="parent"></EditText>
-
-                        <EditText
-                            android:id="@+id/Descripcion_Evento"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginTop="28dp"
-                            android:backgroundTint="@color/white"
-                            android:ems="15"
-                            android:hint="Descripcion del evento"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/white"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.511"
-                            app:layout_constraintStart_toStartOf="parent"></EditText>
-
-                        <EditText
-                            android:id="@+id/Hora_Evento"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginTop="28dp"
-                            android:backgroundTint="@color/white"
-                            android:ems="15"
-                            android:hint="Hora del evento"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/white"
-                            android:layout_marginBottom="80dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.511"
                             app:layout_constraintStart_toStartOf="parent"></EditText>
