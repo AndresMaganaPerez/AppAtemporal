@@ -19,7 +19,7 @@ class BoletoPorEventoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val getTicketViewModel : GetUserTicketViewModel by viewModels()
-         val repository = Repository(this)
+        val repository = Repository(this)
         super.onCreate(savedInstanceState)
         binding = ActivityBoletoPorEventoBinding.inflate(layoutInflater)
         setContentView(binding.root)
