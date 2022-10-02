@@ -2,6 +2,7 @@ package com.example.appatemporal.framework.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,24 +13,49 @@ import java.time.LocalDate
 import java.util.*
 
 class CrearEventoOrganizador : AppCompatActivity(){
-    private lateinit var binding: ActivityCrearEventoBinding
-    var funcionFirst: FunctionModel = FunctionModel(Date(2022, 4,14),"23:00",  "03:00")
-
-    val funcionList = mutableListOf<FunctionModel>()
-
+    private lateinit var binding: com.example.appatemporal.databinding.ActivityCrearEventoBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCrearEventoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.addBtn.setOnClickListener {
-            addNewView()
+        OnClickTime()
+
+        binding.addArtistBtn.setOnClickListener {
+            addNewArtFormView()
+        }
+
+        binding.addFunctionBtn.setOnClickListener {
+            addNewFunFormView()
         }
 
     }
 
-    private fun addNewView() {
+    private fun OnClickTime() {
+        val timePickerI = findViewById<TimePicker>(R.id.timePickerInicio)
+        val timePickerF = findViewById<TimePicker>(R.id.timePickerFin)
+        timePickerI.setIs24HourView(true);
+        timePickerF.setIs24HourView(true);
+
+        timePickerI.setOnTimeChangedListener { _, hour, minute -> var hour = hour
+            val hoursI = if (hour < 10) "0" + hour else hour
+            val minI = if (minute < 10) "0" + minute else minute
+            val hora_stringI="$hoursI:$minI"
+        }
+        timePickerF.setOnTimeChangedListener { _, hour, minute -> var hour = hour
+            val hoursF = if (hour < 10) "0" + hour else hour
+            val minF = if (minute < 10) "0" + minute else minute
+            val hora_stringF="$hoursF:$minF"
+        }
+    }
+
+    private fun addNewArtFormView() {
+        val inflater = LayoutInflater.from(this).inflate(R.layout.item_artista_form, null)
+        binding.artistaFormLayout.addView(inflater, binding.funcionFormLayout.childCount)
+    }
+
+    private fun addNewFunFormView() {
         val inflater = LayoutInflater.from(this).inflate(R.layout.item_crear_funcion, null)
         binding.funcionFormLayout.addView(inflater, binding.funcionFormLayout.childCount)
     }
