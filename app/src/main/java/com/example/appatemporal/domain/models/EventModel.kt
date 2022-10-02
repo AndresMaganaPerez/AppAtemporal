@@ -2,7 +2,7 @@ package com.example.appatemporal.domain.models
 
 import java.util.*
 
-data class CreateEventModel(
+data class EventModel(
     val nombre: String,
     val desc: String,
     val cd: String,

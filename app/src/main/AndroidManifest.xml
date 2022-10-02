@@ -60,10 +60,6 @@
         <activity
             android:name=".framework.view.CreateEvent"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity
@@ -81,11 +77,6 @@
         <activity
             android:name=".framework.view.BoletoPorEventoActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
         </activity>
         <activity
             android:name=".framework.view.Favoritosespectador_activity"

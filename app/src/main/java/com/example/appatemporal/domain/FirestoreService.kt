@@ -4,7 +4,6 @@ import android.util.Log
 import com.example.appatemporal.domain.models.*
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FieldPath
-import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.getField
@@ -392,7 +391,7 @@ class FirestoreService {
         return result
     }
 
-    suspend fun addEvent (event: CreateEventModel, funcion: CreateFunctionModel) {
+    suspend fun addEvent (event: EventModel, funcion: FunctionModel) {
         db.collection("Evento")
             .add(event)
             .addOnSuccessListener {
