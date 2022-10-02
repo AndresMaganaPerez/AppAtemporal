@@ -2,6 +2,7 @@ package com.example.appatemporal.framework.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +15,7 @@ import java.util.*
 
 class CrearEventoOrganizador : AppCompatActivity(){
     private lateinit var binding: com.example.appatemporal.databinding.ActivityCrearEventoBinding
+    private var item_artista = R.layout.item_artista_form
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +24,8 @@ class CrearEventoOrganizador : AppCompatActivity(){
 
         OnClickTime()
 
+        removeArtFormView(R.layout.item_artista_form)
+
         binding.addArtistBtn.setOnClickListener {
             addNewArtFormView()
         }
@@ -29,6 +33,8 @@ class CrearEventoOrganizador : AppCompatActivity(){
         binding.addFunctionBtn.setOnClickListener {
             addNewFunFormView()
         }
+
+
 
     }
 
@@ -55,9 +61,17 @@ class CrearEventoOrganizador : AppCompatActivity(){
         binding.artistaFormLayout.addView(inflater, binding.funcionFormLayout.childCount)
     }
 
+    private fun removeArtFormView(view : View) {
+
+    }
+
     private fun addNewFunFormView() {
         val inflater = LayoutInflater.from(this).inflate(R.layout.item_crear_funcion, null)
         binding.funcionFormLayout.addView(inflater, binding.funcionFormLayout.childCount)
+    }
+
+    private fun removeFunFormView() {
+
     }
 
 }
