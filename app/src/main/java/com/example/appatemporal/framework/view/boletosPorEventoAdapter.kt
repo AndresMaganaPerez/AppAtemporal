@@ -5,8 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appatemporal.R
 import com.example.appatemporal.domain.models.GetTicketModel
+import com.example.appatemporal.framework.view.favoritosespectador.TarjetaGrande_favoritosespectador
 
-class boletosPorEventoAdapter (private val list: MutableList<GetTicketModel>) : RecyclerView.Adapter<boletosPorEventoViewHolder>(){
+class boletosPorEventoAdapter(private val list: MutableList<GetTicketModel>) : RecyclerView.Adapter<boletosPorEventoViewHolder>(){
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): boletosPorEventoViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)

@@ -10,7 +10,7 @@ import com.example.appatemporal.framework.view.favoritosespectador.TarjetaGrande
 class AdapterRVVertical(private val data: List<TarjetaGrande_favoritosespectador>): RecyclerView.Adapter<VerticalViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):VerticalViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return VerticalViewHolder(layoutInflater.inflate(R.layout.homepage_tarjetas_eventos_grande,parent,false))
+        return VerticalViewHolder(layoutInflater.inflate(R.layout.activity_card_boleto_por_evento,parent,false))
     }
 
     override fun getItemCount(): Int =  data.size
