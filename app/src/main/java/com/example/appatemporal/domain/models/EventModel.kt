@@ -13,7 +13,7 @@ data class EventModel(
     val lat: String,
     val foto: String,
     val vid: String,
-    val activo: String,
+    val activo: Boolean,
     val divisa: String,
     val fcreado: Date,
     val factualizado: Date

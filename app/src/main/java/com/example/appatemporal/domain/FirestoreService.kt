@@ -410,4 +410,17 @@ class FirestoreService {
 
     }
 
+    suspend fun addEvent2 (nombre: String,desc:String ,cd:String, est:String,ubi:String,dir:String,
+                           long:String,lat:String,foto:String, vid:String, divisa:String,fcreado:Date,
+                           factualizado:Date) {
+        val activo:Boolean = true
+        val event = EventModel(nombre,desc,cd,est,ubi,dir,long,lat,foto,vid,activo,divisa,fcreado,factualizado)
+        db.collection("Evento")
+            .add(event)
+            .addOnSuccessListener {
+                Log.d("Firestore Log = ","Se agregó correctamente el evento " + event.nombre)
+            }
+            .await()
+
+    }
 }
