@@ -1,38 +1,55 @@
 package com.example.appatemporal.framework.view
 
-import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.appatemporal.R
-import com.example.appatemporal.framework.view.favoritosespectador.TarjetaGrande_favoritosespectador
-import com.example.appatemporal.framework.view.favoritosespectador.recyclerview.AdapterRVVertical
+import com.example.appatemporal.databinding.ActivityBoletoPorEventoBinding
+import com.example.appatemporal.domain.Repository
+import com.example.appatemporal.framework.viewModel.GetUserTicketViewModel
 
 class MyEventsActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityBoletoPorEventoBinding
     override fun onCreate(savedInstanceState: Bundle?) {
+        val getTicketViewModel : GetUserTicketViewModel by viewModels()
+        val repository = Repository(this)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_mis_eventos)
-        initRecyclerView()
-    }
-    @SuppressLint("WrongViewCast")
-    private fun initRecyclerView(){
-        val dataVertical: List<TarjetaGrande_favoritosespectador> = listOf(
-            TarjetaGrande_favoritosespectador("Luis miguel","22/12/2022","Mexico"),
-            TarjetaGrande_favoritosespectador("Luis miguel","22/12/2022","Mexico"),
-            TarjetaGrande_favoritosespectador("Luis miguel","22/12/2022","Mexico"),
-            TarjetaGrande_favoritosespectador("Luis miguel","22/12/2022","Mexico"),
-            TarjetaGrande_favoritosespectador("Luis miguel","22/12/2022","Mexico"),
-            TarjetaGrande_favoritosespectador("Luis miguel","22/12/2022","Mexico"),
-            TarjetaGrande_favoritosespectador("Luis miguel","22/12/2022","Mexico"),
-            TarjetaGrande_favoritosespectador("Luis miguel","22/12/2022","Mexico"),
-            TarjetaGrande_favoritosespectador("Luis miguel","22/12/2022","Mexico")
-        )
+        binding = ActivityBoletoPorEventoBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val recyclerViewVerticalFavoritosEspectador  = findViewById<RecyclerView>(R.id.EventosRecyclerView)
-        val linearLayoutManager = LinearLayoutManager(this )
-        linearLayoutManager.orientation= LinearLayoutManager.VERTICAL
-        recyclerViewVerticalFavoritosEspectador.layoutManager = linearLayoutManager
-        recyclerViewVerticalFavoritosEspectador.adapter = AdapterRVVertical(dataVertical)
+        val userIdTemp = "pod6xLDUeRNZItm7u93DC5CYbgJ2"
+        initRecyclerView(getTicketViewModel, userIdTemp, repository)
+
+        binding.navbar.homeIcon.setOnClickListener {
+            finish()
+        }
+
+        binding.navbar.budgetIcon.setOnClickListener {
+            val intent = Intent(this, ProyectoOrganizador::class.java)
+            startActivity(intent)
+        }
+
+        binding.navbar.ticketsIcon.setOnClickListener {
+            finish()
+        }
+
+        binding.navbar.metricsIcon.setOnClickListener {
+            val intent = Intent(this, Dashboard::class.java)
+            startActivity(intent)
+        }
+
     }
+
+    private fun initRecyclerView(getTicketViewModel: GetUserTicketViewModel, userIdTemp: String, repository: Repository){
+        getTicketViewModel.getUserTicket(userIdTemp, repository)
+        Log.d("LOG Activity",getTicketViewModel.getUserTicket(userIdTemp, repository).toString())
+        getTicketViewModel.ticket.observe(this, Observer {
+            binding.boletosRecyclerView.layoutManager = LinearLayoutManager(this) // Le da el layout que usará el RV.
+            binding.boletosRecyclerView.adapter = boletosPorEventoAdapter(it)
+        })
+    }
+
 }
