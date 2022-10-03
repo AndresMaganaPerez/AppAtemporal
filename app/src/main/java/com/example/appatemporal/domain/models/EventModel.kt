@@ -13,9 +13,9 @@ data class EventModel(
     val latitud: String,
     val imagen: String,
     val video: String,
-    val activo: String,
+    val activo: Int,
     val divisa: String,
-    val fecha_creado: Date,
-    val fecha_modificado: Date
+    val fecha_creado: String,
+    val fecha_modificado: String
 )
 

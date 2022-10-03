@@ -2,16 +2,10 @@ package com.example.appatemporal.framework.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.appatemporal.R
 import com.example.appatemporal.databinding.ActivityCrearEventoBinding
-import com.example.appatemporal.domain.models.FunctionModel
-import java.time.LocalDate
-import java.util.*
 
 class CrearEventoOrganizador : AppCompatActivity(){
     private lateinit var binding: com.example.appatemporal.databinding.ActivityCrearEventoBinding
@@ -61,7 +55,7 @@ class CrearEventoOrganizador : AppCompatActivity(){
         binding.artistaFormLayout.addView(inflater, binding.funcionFormLayout.childCount)
     }
 
-    private fun removeArtFormView(view : View) {
+    private fun removeArtFormView(view: Int) {
 
     }
 

@@ -198,8 +198,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="30dp"
-                            android:layout_marginEnd="30dp"
                             android:layout_marginTop="16dp"
+                            android:layout_marginEnd="30dp"
                             android:layout_marginBottom="16dp"
                             android:backgroundTint="@color/purple_500"
                             android:text="Añadir Artista" />
@@ -344,12 +344,12 @@
                             android:id="@+id/SubmitEventBtn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:layout_marginStart="30dp"
                             android:layout_marginEnd="30dp"
                             android:layout_marginBottom="80dp"
                             android:backgroundTint="@color/purple_500"
-                            android:text="Crear Evento"
-                            android:layout_gravity="center"/>
+                            android:text="Crear Evento" />
 
                         <Spinner
                             android:id="@+id/TipoEvento"
