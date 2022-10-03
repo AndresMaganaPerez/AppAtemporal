@@ -8,9 +8,6 @@ import com.example.appatemporal.domain.Repository
 class AddNewCostoViewModel: ViewModel() {
     private val requirement = AddCostoRequirement()
     suspend fun addNewCosto(costo: Costo, repository: Repository){
-
         requirement.createCosto(costo, repository)
-
-
     }
 }

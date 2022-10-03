@@ -20,7 +20,7 @@ class FirestoreService {
             .document(uid)
             .set(user)
             .addOnSuccessListener {
-                Log.d("FirestoreLogs","Added User Correctly")
+                Log.d("FirestoreLogs", "Added User Correctly")
             }
             .await()
     }
@@ -30,7 +30,7 @@ class FirestoreService {
             .whereEqualTo("nombre_Rol", role)
             .get()
             .addOnSuccessListener {
-                Log.d("FirestoreLogs","Got Role Correctly: ${it.documents[0].id}")
+                Log.d("FirestoreLogs", "Got Role Correctly: ${it.documents[0].id}")
             }.await()
 
         val userRole = hashMapOf(
@@ -41,14 +41,14 @@ class FirestoreService {
         db.collection("Usuario_Rol")
             .add(userRole)
             .addOnSuccessListener {
-                Log.d("FirestoreLogs","Added User wih Role Correctly")
+                Log.d("FirestoreLogs", "Added User wih Role Correctly")
             }
             .addOnFailureListener {
-                Log.d("FirestoreLogs","Added user failed, exception: $it")
+                Log.d("FirestoreLogs", "Added user failed, exception: $it")
             }
     }
 
-    suspend fun verifyUser(uid: String) : Boolean {
+    suspend fun verifyUser(uid: String): Boolean {
         var userExists = false
         db.collection("Usuario")
             .document(uid)
@@ -62,16 +62,16 @@ class FirestoreService {
         return userExists
     }
 
-    suspend fun getUser(uid: String) : DocumentSnapshot {
+    suspend fun getUser(uid: String): DocumentSnapshot {
         var userData: DocumentSnapshot =
             db.collection("Usuario")
-            .document(uid)
-            .get()
-            .await()
+                .document(uid)
+                .get()
+                .await()
         return userData
     }
 
-    suspend fun getUserRole(uid: String) : DocumentSnapshot {
+    suspend fun getUserRole(uid: String): DocumentSnapshot {
         var dbRole: QuerySnapshot =
             db.collection("Usuario_Rol")
                 .whereEqualTo("id_Usuario", uid)
@@ -89,23 +89,26 @@ class FirestoreService {
     // uid: userId, eid: eventId, fid: funcionId
     // getUserTicket
 
-    suspend fun getUserTickets(uid : String) : MutableList<GetTicketModel> {
-        var result : MutableList<GetTicketModel> = arrayListOf()
-        var ticket : GetTicketModel = GetTicketModel()
-        var boletos : QuerySnapshot =
+    suspend fun getUserTickets(uid: String): MutableList<GetTicketModel> {
+        var result: MutableList<GetTicketModel> = arrayListOf()
+        var ticket: GetTicketModel = GetTicketModel()
+        var boletos: QuerySnapshot =
             db.collection("Boleto")
-                .whereEqualTo("id_Usuario",uid)
+                .whereEqualTo("id_Usuario", uid)
                 .get()
                 .await()
-        for (boleto in boletos){
-            var funciones : QuerySnapshot =
+        for (boleto in boletos) {
+            var funciones: QuerySnapshot =
                 db.collection("Funcion")
-                    .whereEqualTo(FieldPath.documentId(),boleto.data?.get("id_Funcion"))
+                    .whereEqualTo(FieldPath.documentId(), boleto.data?.get("id_Funcion"))
                     .get()
                     .await()
-            var evento : QuerySnapshot =
+            var evento: QuerySnapshot =
                 db.collection("Evento")
-                    .whereEqualTo(FieldPath.documentId(),funciones.documents[0].data?.get("id_Evento"))
+                    .whereEqualTo(
+                        FieldPath.documentId(),
+                        funciones.documents[0].data?.get("id_Evento")
+                    )
                     .get()
                     .await()
             ticket.nombre_evento = evento.documents[0].data?.get("nombre_Evento").toString()
@@ -125,8 +128,8 @@ class FirestoreService {
         return result
     }
 
-    suspend fun eventCount(uid: String) : Int {
-        var events : QuerySnapshot =
+    suspend fun eventCount(uid: String): Int {
+        var events: QuerySnapshot =
             db.collection("Usuario_Evento")
                 .whereEqualTo("id_Usuario", uid)
                 .get()
@@ -134,30 +137,30 @@ class FirestoreService {
         return events.count()
     }
 
-    suspend fun ventasCount(uid : String) : Pair<Int, Int> {
-        var ventasCount : Int = 0
-        var asistenciasCount : Int = 0
-        var ventas : QuerySnapshot =
+    suspend fun ventasCount(uid: String): Pair<Int, Int> {
+        var ventasCount: Int = 0
+        var asistenciasCount: Int = 0
+        var ventas: QuerySnapshot =
             db.collection("Usuario_Evento")
                 .whereEqualTo("id_Usuario", uid)
                 .get()
                 .await()
-        for (document in ventas){
-            var funciones : QuerySnapshot =
+        for (document in ventas) {
+            var funciones: QuerySnapshot =
                 db.collection("Funcion")
-                    .whereEqualTo("id_Evento",document.data?.get("id_Evento"))
+                    .whereEqualTo("id_Evento", document.data?.get("id_Evento"))
                     .get()
                     .await()
-            for (document in funciones){
-                var boletosAuxVentas : QuerySnapshot =
+            for (document in funciones) {
+                var boletosAuxVentas: QuerySnapshot =
                     db.collection("Boleto")
                         .whereEqualTo("id_Funcion", document.id)
                         .get()
                         .await()
                 ventasCount += boletosAuxVentas.count()
             }
-            for (document in funciones){
-                var boletosAuxAsistencias : QuerySnapshot =
+            for (document in funciones) {
+                var boletosAuxAsistencias: QuerySnapshot =
                     db.collection("Boleto")
                         .whereEqualTo("id_Funcion", document.id)
                         .whereEqualTo("activo", false)
@@ -170,30 +173,30 @@ class FirestoreService {
         return result
     }
 
-    suspend fun getRating(uid: String) : Float {
+    suspend fun getRating(uid: String): Float {
         var acumulado = 0f
         var count = 0f
-        var events : QuerySnapshot =
+        var events: QuerySnapshot =
             db.collection("Usuario_Evento")
                 .whereEqualTo("id_Usuario", uid)
                 .get()
                 .await()
-        for (document in events){
-            var feedbacks : QuerySnapshot =
+        for (document in events) {
+            var feedbacks: QuerySnapshot =
                 db.collection("Feedback")
-                .whereEqualTo("id_Evento",document.data?.get("id_Evento"))
-                .get()
-                .await()
-            for (document in feedbacks){
+                    .whereEqualTo("id_Evento", document.data?.get("id_Evento"))
+                    .get()
+                    .await()
+            for (document in feedbacks) {
                 acumulado += document.data?.get("rating").toString().toInt()
                 count += 1
             }
         }
         if (count <= 0) return 0f
-        return (acumulado/count).toFloat()
+        return (acumulado / count).toFloat()
     }
 
-    suspend fun getRevenue(uid: String) : Int {
+    suspend fun getRevenue(uid: String): Int {
         var ventaTotal = 0
         var boletos: QuerySnapshot
         var tiposBoleto: QuerySnapshot
@@ -259,8 +262,8 @@ class FirestoreService {
         return exito
     }
 
-    suspend fun getTicketDropDown(idEvent: String) : List<Triple<String, Int, String>> {
-        var dropDown : MutableList<Triple<String, Int, String>> = mutableListOf()
+    suspend fun getTicketDropDown(idEvent: String): List<Triple<String, Int, String>> {
+        var dropDown: MutableList<Triple<String, Int, String>> = mutableListOf()
         val ticketInfo = db.collection("Evento_Tipo_Boleto")
             .whereEqualTo("id_Evento", idEvent)
             .get()
@@ -277,7 +280,10 @@ class FirestoreService {
         return dropDown
     }
 
-    suspend fun currentTicketsFun(idEvent: String, idFuncion: String) : List<Triple<String, Int, Int>> {
+    suspend fun currentTicketsFun(
+        idEvent: String,
+        idFuncion: String
+    ): List<Triple<String, Int, Int>> {
         val maxCountEvent: MutableList<Triple<String, Int, Int>> = mutableListOf()
         val tipoEventoBoleto = db.collection("Evento_Tipo_Boleto")
             .whereEqualTo("id_Evento", idEvent)
@@ -289,16 +295,32 @@ class FirestoreService {
                 .whereEqualTo("id_Tipo_Boleto", document.data.get("id_Tipo_Boleto"))
                 .get()
                 .await()
-            maxCountEvent.add(Triple(document.data?.get("id_Tipo_Boleto").toString(), boletosEventoTipo.documents.size, parseInt(document.data?.get("max_Boletos").toString())))
+            maxCountEvent.add(
+                Triple(
+                    document.data?.get("id_Tipo_Boleto").toString(),
+                    boletosEventoTipo.documents.size,
+                    parseInt(document.data?.get("max_Boletos").toString())
+                )
+            )
         }
         return maxCountEvent
     }
 
-    suspend fun RegisterSale(idFuncion: String, id_Metodo_Pago: String,id_Tipo_Boleto : String){
+    suspend fun RegisterSale(idFuncion: String, id_Metodo_Pago: String, id_Tipo_Boleto: String) {
         var currentDate = Date()
         db.collection("Boleto")
             .document()
-            .set(TicketModel(true,"RegistroEnTaquilla",idFuncion, id_Metodo_Pago,id_Tipo_Boleto,currentDate,currentDate))
+            .set(
+                TicketModel(
+                    true,
+                    "RegistroEnTaquilla",
+                    idFuncion,
+                    id_Metodo_Pago,
+                    id_Tipo_Boleto,
+                    currentDate,
+                    currentDate
+                )
+            )
             .await()
     }
 
@@ -316,8 +338,8 @@ class FirestoreService {
             }.await()
     }
 
-    suspend fun getEventName(eid:String) : String {
-        var event : DocumentSnapshot =
+    suspend fun getEventName(eid: String): String {
+        var event: DocumentSnapshot =
             db.collection("Evento")
                 .document(eid)
                 .get()
@@ -325,7 +347,7 @@ class FirestoreService {
         return event.data?.get("nombre_Evento").toString()
     }
 
-    suspend fun generalProfitsEvent(eid:String) : Int {
+    suspend fun generalProfitsEvent(eid: String): Int {
 
         var ganancias = 0
         var boletos: QuerySnapshot
@@ -338,9 +360,9 @@ class FirestoreService {
         Log.d("generalProfitsEvent-Funciones", funciones.count().toString())
         for (element in funciones) {
             boletos = db.collection("Boleto")
-                    .whereEqualTo("id_Funcion", element.id)
-                    .get()
-                    .await()
+                .whereEqualTo("id_Funcion", element.id)
+                .get()
+                .await()
             Log.d("generalProfitsEvent-Boletos", boletos.count().toString())
             tiposBoleto =
                 db.collection("Evento_Tipo_Boleto")
@@ -361,27 +383,26 @@ class FirestoreService {
         return ganancias
     }
 
-    suspend fun getTicketsbyPM(eid:String): Pair<Int,Int> {
+    suspend fun getTicketsbyPM(eid: String): Pair<Int, Int> {
 
         var boletos: QuerySnapshot
-        var countTarjeta : Int = 0
-        var countEfectivo : Int = 0
+        var countTarjeta: Int = 0
+        var countEfectivo: Int = 0
 
         var funciones: QuerySnapshot = db.collection("Funcion")
             .whereEqualTo("id_Evento", eid)
             .get()
             .await()
         Log.d("getTicketsbyPM-Funciones", funciones.count().toString())
-        for(element in funciones){
+        for (element in funciones) {
             boletos = db.collection("Boleto")
                 .whereEqualTo("id_Funcion", element.id)
                 .get()
                 .await()
-            for(boleto in boletos){
-                if(boleto.data?.get("id_Metodo_Pago").toString() == "JsCPG2YuCgqYyZUypktB"){
+            for (boleto in boletos) {
+                if (boleto.data?.get("id_Metodo_Pago").toString() == "JsCPG2YuCgqYyZUypktB") {
                     countTarjeta++
-                }
-                else {
+                } else {
                     countEfectivo++
                 }
             }
@@ -391,11 +412,11 @@ class FirestoreService {
         return result
     }
 
-    suspend fun addEvent (event: EventModel, funcion: FunctionModel) {
+    suspend fun addEvent(event: EventModel, funcion: FunctionModel) {
         db.collection("Evento")
             .add(event)
             .addOnSuccessListener {
-                Log.d("Firestore Log = ","Se agregó correctamente el evento " + event.nombre)
+                Log.d("Firestore Log = ", "Se agregó correctamente el evento " + event.nombre)
             }
             .await()
 
@@ -404,23 +425,21 @@ class FirestoreService {
         db.collection("Funcion")
             .add(funcion)
             .addOnSuccessListener {
-                Log.d("Firestore Log = ","Se agregó correctamente las funciones del evento " + event.nombre)
+                Log.d(
+                    "Firestore Log = ",
+                    "Se agregó correctamente las funciones del evento " + event.nombre
+                )
             }
             .await()
 
     }
 
-    suspend fun addEvent2 (nombre: String,desc:String ,cd:String, est:String,ubi:String,dir:String,
-                           long:String,lat:String,foto:String, vid:String, divisa:String,fcreado:Date,
-                           factualizado:Date) {
-        val activo:Boolean = true
-        val event = EventModel(nombre,desc,cd,est,ubi,dir,long,lat,foto,vid,activo,divisa,fcreado,factualizado)
+    suspend fun addEvent2(event: EventModel) {
         db.collection("Evento")
             .add(event)
             .addOnSuccessListener {
-                Log.d("Firestore Log = ","Se agregó correctamente el evento " + event.nombre)
+                Log.d("Firestore Log = ", "Se agregó correctamente el evento " + event.nombre)
             }
             .await()
-
     }
 }

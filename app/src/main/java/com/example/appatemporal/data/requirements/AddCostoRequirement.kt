@@ -6,9 +6,7 @@ import com.example.appatemporal.data.localdatabase.entities.Costo
 import com.example.appatemporal.domain.Repository
 
 class AddCostoRequirement {
-
     suspend fun createCosto(costo: Costo, repository: Repository){
-
         repository.insertCosto(costo)
         repository.getAllProyectos().forEach {
             Log.d("Proyecto", it.toString())

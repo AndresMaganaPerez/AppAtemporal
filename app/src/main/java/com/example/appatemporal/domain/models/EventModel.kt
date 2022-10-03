@@ -4,17 +4,18 @@ import java.util.*
 
 data class EventModel(
     val nombre: String,
-    val desc: String,
-    val cd: String,
-    val est: String,
-    val ubi: String,
-    val dir: String,
-    val long: String,
-    val lat: String,
-    val foto: String,
-    val vid: String,
-    val activo: Boolean,
+    val descripcion: String,
+    val ciudad: String,
+    val estado: String,
+    val ubicacion: String,
+    val direccion: String,
+    val longitud: String,
+    val latitud: String,
+    val imagen: String,
+    val video: String,
+    val activo: String,
     val divisa: String,
-    val fcreado: Date,
-    val factualizado: Date
+    val fecha_creado: Date,
+    val fecha_modificado: Date
 )
+
