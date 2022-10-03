@@ -12,12 +12,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.appatemporal.R
 import com.example.appatemporal.domain.Repository
 import com.example.appatemporal.domain.models.EventModel
-import com.example.appatemporal.framework.viewModel.AddNewActivityViewModel
 import com.example.appatemporal.framework.viewModel.AddNewEventViewModel
-import kotlinx.android.synthetic.main.activity_crear_evento.*
-import java.time.LocalDateTime
 import java.time.LocalTime
-import java.time.format.DateTimeFormatter
+
+
 
 class CreateEvent :AppCompatActivity() {
     private val viewModel: AddNewEventViewModel by viewModels()
@@ -28,11 +26,11 @@ class CreateEvent :AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_crear_evento)
 
-       val spinner = findViewById<Spinner>(R.id.TipoEvento)
-        val lista = listOf("Privado","publico","De paga", "gratis")
+        val spinner = findViewById<Spinner>(R.id.TipoEvento)
+        val lista = listOf("Privado", "publico", "De paga", "gratis")
 
         val submit = findViewById<Button>(R.id.submitBtn)
-        submit.setOnClickListener{
+        submit.setOnClickListener {
             val nombre = findViewById<EditText>(R.id.Nombre_Evento)
             val descripcion = findViewById<EditText>(R.id.Descripcion_Evento)
             val ciudad = findViewById<EditText>(R.id.Ciudad_Evento)
