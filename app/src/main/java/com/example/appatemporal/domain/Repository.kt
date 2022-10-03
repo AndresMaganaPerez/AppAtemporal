@@ -4,12 +4,13 @@ import android.content.Context
 import android.util.Log
 import com.example.appatemporal.data.localdatabase.LocalDatabase
 import com.example.appatemporal.data.localdatabase.entities.*
+import com.example.appatemporal.domain.models.EventModel
 import com.example.appatemporal.domain.models.GetTicketModel
-import kotlin.math.cos
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import com.example.appatemporal.domain.models.UserModel
 import com.google.firebase.firestore.DocumentSnapshot
+import java.util.*
 
 class Repository(context: Context) {
 
@@ -81,6 +82,9 @@ class Repository(context: Context) {
         firestoreAPI.addFailure(title, description)
     }
 
+    suspend fun addEvent2(event: EventModel) {
+        firestoreAPI.addEvent2(event)
+    }
     // Local database
     val actividadDao = LocalDatabase.getInstance(context).actividadDao
     val areaDao = LocalDatabase.getInstance(context).areaDao
@@ -165,10 +169,9 @@ class Repository(context: Context) {
         return firestoreAPI.getUserTickets(uid)
     }
 
-
-
-
     suspend fun addUserLocalDB(user: Usuario) = usuarioDao.insertUserLocalDB(user)
     suspend fun getUserLocalDB(userUid: String) : Usuario = usuarioDao.getUserLocalDB(userUid)
 
 }
+
+
