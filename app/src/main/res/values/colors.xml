@@ -11,6 +11,7 @@
     <color name="gray">#302E3B</color>
     <color name="navbar_background">#1D1C23</color>
     <color name="lightGray">#E4EBF1</color>
+    <item name="lblue_400" type="color">#29b6f6</item>
 
     <color name="colorPrimary">#4CAF50</color>
     <color name="colorPrimaryDark">#388E3C</color>
