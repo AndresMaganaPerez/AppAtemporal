@@ -19,13 +19,13 @@ import java.util.*
 import kotlin.reflect.typeOf
 
 class CrearEventoOrganizador : AppCompatActivity(){
-    private lateinit var binding: ActivityCrearEventoBinding
+
     private lateinit var bindingIArt: ItemArtistaFormBinding
     private lateinit var bindingIFun: ItemCrearFuncionBinding
-
+    private lateinit var binding: ActivityCrearEventoBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        binding = ActivityCrearEventoBinding.inflate(layoutInflater)
         val nombreEvento = binding.NombreEvento
         val descripcion = binding.DescripcionEvento
         val direccion = binding.DireccionEvento
@@ -38,7 +38,7 @@ class CrearEventoOrganizador : AppCompatActivity(){
         val video = binding.URLVideoEvento
 
 
-        binding = ActivityCrearEventoBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
 
         // Time input
