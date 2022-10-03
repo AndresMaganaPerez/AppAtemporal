@@ -31,7 +31,7 @@ class CreateEvent :AppCompatActivity() {
        val spinner = findViewById<Spinner>(R.id.TipoEvento)
         val lista = listOf("Privado","publico","De paga", "gratis")
 
-        val submit = findViewById<Button>(R.id.SubmitEventBtn)
+        val submit = findViewById<Button>(R.id.submitBtn)
         submit.setOnClickListener{
             val nombre = findViewById<EditText>(R.id.Nombre_Evento)
             val descripcion = findViewById<EditText>(R.id.Descripcion_Evento)
