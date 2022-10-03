@@ -61,6 +61,11 @@ class CrearEventoOrganizador : AppCompatActivity(){
         // Eliminar Formulario de Función
         removeFunFormView()
 
+        // Submit Button
+        binding.submitBtn.setOnClickListener {
+
+        }
+
     }
 
 
