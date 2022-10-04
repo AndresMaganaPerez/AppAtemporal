@@ -14,39 +14,23 @@ import java.util.*
 
 class CreateFunction : AppCompatActivity() {
 
-    private fun OnClickTime() {
-        val timePickerI=binding.timePickerInicio
-        val timePickerF=binding.timePickerFin
-        timePickerI.setIs24HourView(true);
-        timePickerF.setIs24HourView(true);
-
-        timePickerI.setOnTimeChangedListener { _, hour, minute -> var hour = hour
-            val hoursI = if (hour < 10) "0" + hour else hour
-            val minI = if (minute < 10) "0" + minute else minute
-            val hora_stringI="$hoursI:$minI"
-        }
-        timePickerF.setOnTimeChangedListener { _, hour, minute -> var hour = hour
-            val hoursF = if (hour < 10) "0" + hour else hour
-            val minF = if (minute < 10) "0" + minute else minute
-            val hora_stringF="$hoursF:$minF"
-        }
-    }
-
     private lateinit var binding: ActivityCreateFunctionBinding
     private val viewModel: AddNewEventViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val datePicker = binding.datePicker1
+        val datePickerF = binding.datePicker1
         val horaInicio = binding.timePickerInicio
         val horaFin = binding.timePickerFin
         val btn = binding.submitBtn
         setContentView(R.layout.activity_create_function)
-        OnClickTime()
-        val today = Calendar.getInstance()
-        datePicker.init(today.get(Calendar.YEAR), today.get(Calendar.MONTH),
-            today.get(Calendar.DAY_OF_MONTH)
 
+        horaInicio.setIs24HourView(true);
+        horaFin.setIs24HourView(true);
+
+        val today = Calendar.getInstance()
+        datePickerF.init(today.get(Calendar.YEAR), today.get(Calendar.MONTH),
+            today.get(Calendar.DAY_OF_MONTH)
         ) { view, year, month, day ->
             val month = month + 1
             val msg = "You Selected: $day/$month/$year"
@@ -56,14 +40,22 @@ class CreateFunction : AppCompatActivity() {
         btn.setOnClickListener{
             val hourI = horaInicio.hour
             val minuteI = horaInicio.minute
+            val hourF = horaFin.hour
+            val minuteF = horaFin.minute
 
             val hoursI = if (hourI < 10) "0" + hourI else hourI
             val minI = if (minuteI < 10) "0" + minuteI else minuteI
             val hora_stringI="$hoursI:$minI"
 
+            val hoursF = if (hourF < 10) "0" + hourF else hourF
+            val minF = if (minuteF < 10) "0" + minuteF else minuteF
+            val hora_stringF="$hoursF:$minF"
 
-
-
+            val year = datePickerF.year
+            var month = datePickerF.month
+            val day = datePickerF.dayOfMonth
+            month = month + 1
+            val fecha="$day/$month/$year"
         }
 
     }
