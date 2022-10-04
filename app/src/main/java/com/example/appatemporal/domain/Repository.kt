@@ -4,6 +4,8 @@ import android.content.Context
 import android.util.Log
 import com.example.appatemporal.data.localdatabase.LocalDatabase
 import com.example.appatemporal.data.localdatabase.entities.*
+import com.example.appatemporal.domain.models.EventModel01
+import com.example.appatemporal.domain.models.FuncionModel
 import com.example.appatemporal.domain.models.GetTicketModel
 import kotlin.math.cos
 import kotlinx.coroutines.async
@@ -213,4 +215,12 @@ class Repository(context: Context) {
 
     suspend fun addUserLocalDB(user: Usuario) = usuarioDao.insertUserLocalDB(user)
     suspend fun getUserLocalDB(userUid: String): Usuario = usuarioDao.getUserLocalDB(userUid)
+
+    suspend fun getOrganizerEvent(uid: String): MutableList<EventModel01> {
+        return firestoreAPI.getOrganizerEvents(uid)
+    }
+
+    suspend fun getFunctionOrganizer(eid: String): MutableList<FuncionModel> {
+        return firestoreAPI.getFunctionOrganizador(eid)
+    }
 }

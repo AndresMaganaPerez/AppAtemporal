@@ -18,7 +18,7 @@ class GetUserTicketViewModel : ViewModel() {
     fun getUserTicket(uid: String, repository: Repository){
         viewModelScope.launch {
             val ticketAux = getUserTicketRequirement(uid, repository)
-            Log.d("LOG ViewModel", getUserTicketRequirement(uid, repository).toString())
+            // Log.d("LOG ViewModel", getUserTicketRequirement(uid, repository).toString())
             ticket.postValue(ticketAux)
         }
     }
