@@ -540,4 +540,44 @@ class FirestoreService {
             .await()
     }
 
+    //Ejecutar antes de addFunction
+
+    suspend fun getUserEvent(uid: String): MutableList<GetTicketModel> {
+        var result: MutableList<GetTicketModel> = arrayListOf()
+        var ticket: GetTicketModel = GetTicketModel()
+        var boletos: QuerySnapshot =
+            db.collection("Boleto")
+                .whereEqualTo("id_usuario", uid)
+                .get()
+                .await()
+        for (boleto in boletos) {
+            var funciones: QuerySnapshot =
+                db.collection("Funcion")
+                    .whereEqualTo(FieldPath.documentId(), boleto.data?.get("id_funcion"))
+                    .get()
+                    .await()
+            var evento: QuerySnapshot =
+                db.collection("Evento")
+                    .whereEqualTo(
+                        FieldPath.documentId(),
+                        funciones.documents[0].data?.get("id_evento")
+                    )
+                    .get()
+                    .await()
+            ticket.nombre_evento = evento.documents[0].data?.get("nombre").toString()
+            ticket.fecha = funciones.documents[0].data?.get("fecha_funcion").toString()
+            ticket.horario = funciones.documents[0].data?.get("hora_inicio").toString()
+            ticket.lugar = evento.documents[0].data?.get("ubicacion").toString()
+            ticket.direccion = evento.documents[0].data?.get("direccion").toString()
+            ticket.ciudad = evento.documents[0].data?.get("ciudad").toString()
+            ticket.estado = evento.documents[0].data?.get("estado").toString()
+            ticket.hash_qr = boleto.data?.get("hash_qr").toString()
+
+            result.add(ticket)
+
+            //Log.d("LOG ticket",ticket.toString())
+        }
+        //Log.d("LOG aqui",result.isEmpty().toString())
+        return result
+    }
 }
