@@ -210,7 +210,7 @@
                             android:layout_marginTop="28dp"
                             android:backgroundTint="@color/white"
                             android:ems="15"
-                            android:hint="Artista(s)"
+                            android:hint="Artista/Grupo"
                             android:textColor="@color/white"
                             android:textColorHint="@color/white"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -223,16 +223,6 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical" />
 
-                        <Button
-                            android:id="@+id/addArtistBtn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="30dp"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginEnd="30dp"
-                            android:layout_marginBottom="16dp"
-                            android:backgroundTint="@color/purple_500"
-                            android:text="Añadir Artista" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -269,11 +259,11 @@
                                 android:id="@+id/datePicker1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:datePickerMode="spinner"
-                                android:calendarViewShown="false"
                                 android:layout_gravity="center"
+                                android:calendarViewShown="false"
+                                android:datePickerMode="spinner"
                                 android:scaleX="0.9"
-                                android:scaleY="0.9"/>
+                                android:scaleY="0.9" />
 
                             <TextView
                                 android:id="@+id/TextViewHoraInicio"
@@ -336,6 +326,18 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical" />
 
+                        <TextView
+                            android:id="@+id/Aviso"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAlignment="center"
+                            android:text="Una vez presionado el botón Guardar, no se podrán hacer modificaciones al evento y será añadido para la posterior revisión por parte de Atemporal."
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            tools:ignore="MissingConstraints"
+                            tools:layout_editor_absoluteX="23dp"
+                            tools:layout_editor_absoluteY="179dp" />
 
                         <Button
                             android:id="@+id/submitBtn"

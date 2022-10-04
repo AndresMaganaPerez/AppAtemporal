@@ -5,6 +5,7 @@ import android.util.Log
 import com.example.appatemporal.data.localdatabase.LocalDatabase
 import com.example.appatemporal.data.localdatabase.entities.*
 import com.example.appatemporal.domain.models.EventModel
+import com.example.appatemporal.domain.models.FunctionModel
 import com.example.appatemporal.domain.models.GetTicketModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
@@ -82,8 +83,12 @@ class Repository(context: Context) {
         firestoreAPI.addFailure(title, description)
     }
 
-    suspend fun addEvent2(event: EventModel) {
-        firestoreAPI.addEvent2(event)
+    suspend fun addEvent2(event: EventModel, artista: String, funcion: FunctionModel) {
+        firestoreAPI.addEvent2(event, artista, funcion)
+    }
+
+    suspend fun addArtista(eid: String, nombre_artista: String){
+        firestoreAPI.addArtista(eid, nombre_artista)
     }
     // Local database
     val actividadDao = LocalDatabase.getInstance(context).actividadDao

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil.setContentView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appatemporal.R
@@ -46,11 +47,7 @@ class CrearEventoOrganizador : AppCompatActivity(){
         // Time input
         OnClickTime()
 
-        // Agregar Formulario de Artista
-        binding.addArtistBtn.setOnClickListener {
-            Log.d("Add Btn Click: ", "Se presionó el botón agregar artista")
-            addNewArtFormView()
-        }
+
 
         // Eliminar Formulario de Artista
         removeArtFormView()

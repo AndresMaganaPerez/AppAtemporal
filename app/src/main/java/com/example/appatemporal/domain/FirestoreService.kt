@@ -1,13 +1,20 @@
 package com.example.appatemporal.domain
 
 import android.util.Log
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleCoroutineScope
+import androidx.lifecycle.viewModelScope
 import com.example.appatemporal.domain.models.*
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FieldPath
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.getField
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import java.lang.Integer.parseInt
 import java.util.*
@@ -434,12 +441,143 @@ class FirestoreService {
 
     }
 
-    suspend fun addEvent2(event: EventModel) {
+    suspend fun addEvent2(event: EventModel, artista: String, funcion: FunctionModel) {
         db.collection("Evento")
             .add(event)
             .addOnSuccessListener {
-                Log.d("Firestore Log = ", "Se agregó correctamente el evento " + event.nombre)
+                Log.d("Firestore Log = ", "Se agregó correctamente el evento " + it.id)
+                    GlobalScope.launch{
+                        addArtista(it.id, artista)
+                        addFunction(it.id,funcion.fecha_fun,funcion.hora_inicio,funcion.hora_fin)}
+                }
+            }
+
+
+    suspend fun addArtista(eid: String, nombre_artista: String) {
+        var data = hashMapOf(
+            "id_evento_fk" to eid,
+            "nombre_artista" to nombre_artista
+        )
+
+        db.collection("Evento_Artista")
+            .add(data)
+            .addOnSuccessListener {
+                Log.d("Firestore Log = ", "Se agregó correctamente el artista:  " + nombre_artista)
             }
             .await()
+    }
+
+    suspend fun addEventoCategoria(eid: String, idCategoria: String) {
+        var data = hashMapOf(
+            "id_evento_fk" to eid,
+            "id_categoria_fk" to idCategoria
+        )
+        db.collection("Evento_Categoria")
+            .add(data)
+            .addOnSuccessListener {
+                Log.d(
+                    "Firestore Log = ",
+                    "Se agregó correctamente el evento por categoria:  " + idCategoria
+                )
+            }
+            .await()
+    }
+    //ejecutar antes de addEventoCategoria
+    suspend fun getCategoryId(nombre_categoria: String): String {
+        var idCategoria = db.collection("Categoria")
+            .whereEqualTo("nombre", nombre_categoria)
+            .get()
+            .await()
+
+        return idCategoria.documents[0].id
+    }
+
+    suspend fun addUsuarioEvento(eid:String, uid: String){
+        var data =  hashMapOf(
+            "id_usuario_fk" to uid,
+            "id_evento_fk" to eid
+        )
+        db.collection("Usuario_Evento")
+            .add(data)
+            .addOnSuccessListener {
+                Log.d(
+                    "Firestore Log = ",
+                    "Se agregó correctamente usuario por evento:  " + uid)
+            }
+            .await()
+    }
+
+    suspend fun addEventoTipoBoleto(eid: String,idtipoboleto:String, precio: String, max_boletos:String){
+        var data = hashMapOf(
+            "id_evento_fk" to eid,
+            "id_tipo_boleto_fk" to idtipoboleto,
+            "precio" to precio,
+            "max_boletos" to max_boletos
+        )
+        db.collection("Evento_Tipo_Boleto")
+            .add(data)
+            .addOnSuccessListener {
+                Log.d(
+                    "Firestore Log = ",
+                    "Se agregó correctamente el tipo de boleto:   " + eid)
+            }
+            .await()
+
+    }
+    //Ejecutar antes de query addEventoTipoBoleto
+    suspend fun getTipoBoletoId(nombre_tipo_boleto: String): String {
+        var idTipoBoleto = db.collection("Tipo_Boleto")
+            .whereEqualTo("nombre", nombre_tipo_boleto)
+            .get()
+            .await()
+        return idTipoBoleto.documents[0].id
+    }
+
+    suspend fun addFunction(eid: String, fechaFuncion: String, HoraInicio:String, HoraFin:String){
+        var data =  hashMapOf(
+            "id_evento_fk" to eid,
+            "fecha_funcion" to fechaFuncion,
+            "hora_incio" to HoraInicio,
+            "hora_fin" to HoraFin
+        )
+        db.collection("Funcion")
+            .add(data)
+            .addOnSuccessListener {
+                Log.d(
+                    "Firestore Log = ",
+                    "Se agregó correctamente la funcion:   " + fechaFuncion)
+            }
+            .await()
+    }
+
+    //Ejecutar antes de addFunction
+
+    suspend fun getUserEvent(uid: String): MutableList<GetEventModel> {
+        var result: MutableList<GetEventModel> = arrayListOf()
+        var ticket: GetEventModel = GetEventModel()
+        var boletos: QuerySnapshot =
+            db.collection("Usuario_Evento")
+                .whereEqualTo("id_usuario", uid)
+                .get()
+                .await()
+        for (boleto in boletos) {
+            var funciones: QuerySnapshot =
+                db.collection("Funcion")
+                    .whereEqualTo(FieldPath.documentId(), boleto.data?.get("id_funcion"))
+                    .get()
+                    .await()
+            var evento: QuerySnapshot =
+                db.collection("Evento")
+                    .whereEqualTo(
+                        FieldPath.documentId(),
+                        funciones.documents[0].data?.get("id_evento")
+                    )
+                    .get()
+                    .await()
+            result.add(ticket)
+            //Log.d("LOG ticket",ticket.toString())
+        }
+        //Log.d("LOG aqui",result.isEmpty().toString())
+        return result
     }
 }
