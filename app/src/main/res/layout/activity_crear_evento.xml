@@ -171,39 +171,6 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.511"
                             app:layout_constraintStart_toStartOf="parent" />
-
-                        <EditText
-                            android:id="@+id/Artista_Evento"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="30dp"
-                            android:layout_marginTop="28dp"
-                            android:backgroundTint="@color/white"
-                            android:ems="15"
-                            android:hint="Artista(s)"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/white"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.511"
-                            app:layout_constraintStart_toStartOf="parent" />
-
-                        <LinearLayout
-                            android:id="@+id/artistaFormLayout"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical" />
-
-                        <Button
-                            android:id="@+id/addArtistBtn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="30dp"
-                            android:layout_marginEnd="30dp"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginBottom="16dp"
-                            android:backgroundTint="@color/purple_500"
-                            android:text="Añadir Artista" />
-
                         <EditText
                             android:id="@+id/UrlImagenEvento"
                             android:layout_width="wrap_content"
@@ -234,6 +201,37 @@
                             app:layout_constraintHorizontal_bias="0.511"
                             app:layout_constraintStart_toStartOf="parent" />
 
+                        <EditText
+                            android:id="@+id/Artista_Evento"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginTop="28dp"
+                            android:backgroundTint="@color/white"
+                            android:ems="15"
+                            android:hint="Artista(s)"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.511"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <LinearLayout
+                            android:id="@+id/artistaFormLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" />
+
+                        <Button
+                            android:id="@+id/addArtistBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginBottom="16dp"
+                            android:backgroundTint="@color/purple_500"
+                            android:text="Añadir Artista" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -344,18 +342,17 @@
                             android:id="@+id/submitBtn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:layout_marginStart="30dp"
                             android:layout_marginEnd="30dp"
                             android:layout_marginBottom="100dp"
-                            android:layout_gravity="center"
                             android:backgroundTint="@color/lblue_400"
                             android:text="Guardar" />
 
                         <Spinner
                             android:id="@+id/TipoEvento"
                             android:layout_width="211dp"
-                            android:layout_height="wrap_content"
-                            />
+                            android:layout_height="wrap_content" />
                     </LinearLayout>
                 </RelativeLayout>
             </LinearLayout>

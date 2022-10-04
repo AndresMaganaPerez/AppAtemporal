@@ -42,7 +42,7 @@ class CreateEvent :AppCompatActivity() {
             val foto = findViewById<EditText>(R.id.UrlImagenEvento)
             val video = findViewById<EditText>(R.id.URL_Video_Evento)
             val activo = 1
-            val divisa = "pesos"
+            val divisa = "Pesos"
             val fecha_Creado = LocalTime.now().toString()
             val fecha_modificado = LocalTime.now().toString()
             val evento = EventModel(nombre.text.toString(), descripcion.text.toString(),ciudad.text.toString(),estado.text.toString(), ubicacion.text.toString(),direccion.text.toString(),longitud.text.toString(),latitud.text.toString(),foto.text.toString(),video.text.toString(),activo,divisa,fecha_Creado,fecha_modificado)

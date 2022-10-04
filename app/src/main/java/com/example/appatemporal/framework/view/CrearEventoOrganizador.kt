@@ -13,25 +13,34 @@ import com.example.appatemporal.databinding.ActivityCrearEventoBinding
 import com.example.appatemporal.databinding.ItemArtistaFormBinding
 import com.example.appatemporal.databinding.ItemCrearFuncionBinding
 import com.example.appatemporal.domain.models.FunctionModel
+import kotlinx.android.synthetic.main.activity_contact_info.*
 import kotlinx.android.synthetic.main.item_artista_form.view.*
 import java.time.LocalDate
 import java.util.*
 import kotlin.reflect.typeOf
 
 class CrearEventoOrganizador : AppCompatActivity(){
-    private lateinit var binding: ActivityCrearEventoBinding
+
     private lateinit var bindingIArt: ItemArtistaFormBinding
     private lateinit var bindingIFun: ItemCrearFuncionBinding
-
-    val artItems = mutableMapOf<Int, View>()
-
-    // var artItems : Array<View?> = arrayOf()
-
+    private lateinit var binding: ActivityCrearEventoBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
         binding = ActivityCrearEventoBinding.inflate(layoutInflater)
+
+        val nombreEvento = binding.NombreEvento
+        val descripcion = binding.DescripcionEvento
+        val direccion = binding.DireccionEvento
+        val ubicacion = binding.UbicacionEvento
+        val ciudad = binding.CiudadEvento
+        val estado = binding.EstadoEvento
+        val latitud = binding.LatitudEvento
+        val longitud = binding.LongitudEvento
+        val imagen = binding.UrlImagenEvento
+        val video = binding.URLVideoEvento
+
+
+
         setContentView(binding.root)
 
         // Time input
@@ -56,7 +65,7 @@ class CrearEventoOrganizador : AppCompatActivity(){
 
         // Submit Button
         binding.submitBtn.setOnClickListener {
-            saveData()
+
         }
 
     }
@@ -65,8 +74,8 @@ class CrearEventoOrganizador : AppCompatActivity(){
 
 
     private fun OnClickTime() {
-        val timePickerI = findViewById<TimePicker>(R.id.timePickerInicio)
-        val timePickerF = findViewById<TimePicker>(R.id.timePickerFin)
+        val timePickerI=binding.timePickerInicio
+        val timePickerF=binding.timePickerFin
         timePickerI.setIs24HourView(true);
         timePickerF.setIs24HourView(true);
 
@@ -82,25 +91,45 @@ class CrearEventoOrganizador : AppCompatActivity(){
         }
     }
 
-    private fun addNewArtFormView() {
-        val inflater = LayoutInflater.from(this).inflate(R.layout.item_artista_form, null)
+    private fun OnClickTimeAdded(timePickerI: TimePicker, timePickerF: TimePicker ) {
+        timePickerI.setIs24HourView(true);
+        timePickerF.setIs24HourView(true);
+
+        timePickerI.setOnTimeChangedListener { _, hour, minute -> var hour = hour
+            val hoursI = if (hour < 10) "0" + hour else hour
+            val minI = if (minute < 10) "0" + minute else minute
+            val hora_stringI="$hoursI:$minI"
+        }
+        timePickerF.setOnTimeChangedListener { _, hour, minute -> var hour = hour
+            val hoursF = if (hour < 10) "0" + hour else hour
+            val minF = if (minute < 10) "0" + minute else minute
+            val hora_stringF="$hoursF:$minF"
+        }
+    }
+
+    val funciones = mutableMapOf<Int,View>()
+    val i=0
+
+    private fun addNewFunFormView() {
+        val inflater = LayoutInflater.from(this).inflate(R.layout.item_crear_funcion, null)
+        funciones.put(i, inflater)
+        val horaI=inflater.findViewById<TimePicker>(R.id.timePickerInicio)
+        val horaF=inflater.findViewById<TimePicker>(R.id.timePickerFin)
+        OnClickTimeAdded(horaI, horaF)
         binding.artistaFormLayout.addView(inflater, binding.artistaFormLayout.childCount)
-
-        artItems.put(binding.artistaFormLayout.childCount, inflater)
-        println(artItems)
-
     }
 
     private fun removeArtFormView() {
         // Eliminar Formulario de Artista
         val count = binding.artistaFormLayout.childCount
         var item : View?
+        var artItems : Array<View?> = arrayOf()
 
         Log.d("Prueba: ", "Test01")
 
         for (i in 0 until count) {
             item = binding.artistaFormLayout.getChildAt(i)
-            //artItems.plus(item)
+            artItems.plus(item)
 
 
             item.deleteArtBtn.setOnClickListener {
@@ -111,8 +140,8 @@ class CrearEventoOrganizador : AppCompatActivity(){
         Log.d("Arreglo de items de Artist Form: ", artItems.toString())
     }
 
-    private fun addNewFunFormView() {
-        val inflater = LayoutInflater.from(this).inflate(R.layout.item_crear_funcion, null)
+    private fun addNewArtFormView() {
+        val inflater = LayoutInflater.from(this).inflate(R.layout.item_artista_form, null)
         binding.funcionFormLayout.addView(inflater, binding.funcionFormLayout.childCount)
     }
 
@@ -133,19 +162,6 @@ class CrearEventoOrganizador : AppCompatActivity(){
                 binding.funcionFormLayout.removeView(item2)
             }
         }*/
-    }
-
-    fun saveData() {
-        val nombreEvento = binding.NombreEvento
-        val descripcion = binding.DescripcionEvento
-        val direccion = binding.DireccionEvento
-        val ubicacion = binding.UbicacionEvento
-        val ciudad = binding.CiudadEvento
-        val estado = binding.EstadoEvento
-        val latitud = binding.LatitudEvento
-        val longitud = binding.LongitudEvento
-        val imagen = binding.UrlImagenEvento
-        val video = binding.URLVideoEvento
     }
 
 }
