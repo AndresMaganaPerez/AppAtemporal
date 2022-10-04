@@ -56,7 +56,7 @@ class CreateEvent :AppCompatActivity() {
         }
 
         binding.submitBtn.setOnClickListener {
-            if((nombre.text.toString().isNotEmpty())){
+            if((nombre.text.toString().isNotEmpty())&&(descripcion.text.toString().isNotEmpty())&&(ciudad.text.toString().isNotEmpty())&&(estado.text.toString().isNotEmpty())&&(ubicacion.text.toString().isNotEmpty())&&(direccion.text.toString().isNotEmpty())&&(longitud.text.toString().isNotEmpty())&&(latitud.text.toString().isNotEmpty())&&(foto.text.toString().isNotEmpty())&&(video.text.toString().isNotEmpty())){
                 Log.d("El nombre del evento es ", "Kiubo" + nombre.text.toString())
                 val activo = 1
                 val divisa = "Pesos"
