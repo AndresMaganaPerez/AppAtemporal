@@ -23,19 +23,12 @@ class CrearEventoOrganizador : AppCompatActivity(){
     private lateinit var bindingIArt: ItemArtistaFormBinding
     private lateinit var bindingIFun: ItemCrearFuncionBinding
 
+    val artItems = mutableMapOf<Int, View>()
+
+    // var artItems : Array<View?> = arrayOf()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val nombreEvento = binding.NombreEvento
-        val descripcion = binding.DescripcionEvento
-        val direccion = binding.DireccionEvento
-        val ubicacion = binding.UbicacionEvento
-        val ciudad = binding.CiudadEvento
-        val estado = binding.EstadoEvento
-        val latitud = binding.LatitudEvento
-        val longitud = binding.LongitudEvento
-        val imagen = binding.UrlImagenEvento
-        val video = binding.URLVideoEvento
 
 
         binding = ActivityCrearEventoBinding.inflate(layoutInflater)
@@ -63,7 +56,7 @@ class CrearEventoOrganizador : AppCompatActivity(){
 
         // Submit Button
         binding.submitBtn.setOnClickListener {
-
+            saveData()
         }
 
     }
@@ -93,19 +86,21 @@ class CrearEventoOrganizador : AppCompatActivity(){
         val inflater = LayoutInflater.from(this).inflate(R.layout.item_artista_form, null)
         binding.artistaFormLayout.addView(inflater, binding.artistaFormLayout.childCount)
 
+        artItems.put(binding.artistaFormLayout.childCount, inflater)
+        println(artItems)
+
     }
 
     private fun removeArtFormView() {
         // Eliminar Formulario de Artista
         val count = binding.artistaFormLayout.childCount
         var item : View?
-        var artItems : Array<View?> = arrayOf()
 
         Log.d("Prueba: ", "Test01")
 
         for (i in 0 until count) {
             item = binding.artistaFormLayout.getChildAt(i)
-            artItems.plus(item)
+            //artItems.plus(item)
 
 
             item.deleteArtBtn.setOnClickListener {
@@ -138,6 +133,19 @@ class CrearEventoOrganizador : AppCompatActivity(){
                 binding.funcionFormLayout.removeView(item2)
             }
         }*/
+    }
+
+    fun saveData() {
+        val nombreEvento = binding.NombreEvento
+        val descripcion = binding.DescripcionEvento
+        val direccion = binding.DireccionEvento
+        val ubicacion = binding.UbicacionEvento
+        val ciudad = binding.CiudadEvento
+        val estado = binding.EstadoEvento
+        val latitud = binding.LatitudEvento
+        val longitud = binding.LongitudEvento
+        val imagen = binding.UrlImagenEvento
+        val video = binding.URLVideoEvento
     }
 
 }
