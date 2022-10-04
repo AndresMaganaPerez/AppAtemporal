@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.appatemporal.R
 import com.example.appatemporal.databinding.ActivityCreateFunctionBinding
+import com.example.appatemporal.domain.Repository
 import com.example.appatemporal.framework.viewModel.AddNewEventViewModel
 import kotlinx.android.synthetic.main.activity_create_function.*
 import java.util.*
@@ -42,7 +43,7 @@ class CreateFunction : AppCompatActivity() {
             val minuteI = horaInicio.minute
             val hourF = horaFin.hour
             val minuteF = horaFin.minute
-
+            val repository = Repository(this)
             val hoursI = if (hourI < 10) "0" + hourI else hourI
             val minI = if (minuteI < 10) "0" + minuteI else minuteI
             val hora_stringI="$hoursI:$minI"
@@ -56,6 +57,8 @@ class CreateFunction : AppCompatActivity() {
             val day = datePickerF.dayOfMonth
             month = month + 1
             val fecha="$day/$month/$year"
+            val eid:String=""
+            viewModel.AddFunction(eid,repository,fecha,hora_stringI,hora_stringF)
         }
 
     }

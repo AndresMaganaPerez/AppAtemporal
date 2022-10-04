@@ -15,4 +15,10 @@ class AddNewEventViewModel:ViewModel() {
             requirement.AddEvent(event, repository, artista, funcion)
         }
     }
+    fun AddFunction(event: String, repository: Repository, fechaFuncion: String, HoraInicio:String, HoraFin:String) {
+        viewModelScope.launch {
+            requirement.AddFunction(event, repository, fechaFuncion, HoraInicio,HoraFin)
+        }
+    }
+
 }

@@ -10,4 +10,7 @@ class AddEventRequirement {
     suspend fun AddEvent(event:EventModel,repository:Repository, artista: String, funcion: FunctionModel) {
         repository.addEvent2(event, artista, funcion)
 }
+    suspend fun AddFunction(event: String, repository: Repository, fechaFuncion: String, HoraInicio:String, HoraFin:String) {
+        repository.addFunction(event, fechaFuncion, HoraInicio, HoraFin)
+    }
 }
