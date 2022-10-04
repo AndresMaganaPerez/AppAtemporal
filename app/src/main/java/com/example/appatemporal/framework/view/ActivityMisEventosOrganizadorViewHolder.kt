@@ -29,7 +29,7 @@ class ActivityMisEventosOrganizadorViewHolder(view: View) : RecyclerView.ViewHol
             var IdEvento : String = eventClass.id
 
 
-            val funcionPorEvento =  Intent(itemView.context, ConsultarBoleto::class.java)
+            val funcionPorEvento =  Intent(itemView.context, ActivityVisualizarEventoOrganizador::class.java)
 
             funcionPorEvento.putExtra("nombre", Nombre)
             funcionPorEvento.putExtra("descripcion", Descripcion)

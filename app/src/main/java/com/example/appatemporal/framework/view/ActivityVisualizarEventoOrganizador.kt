@@ -6,9 +6,12 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.appatemporal.R
 import com.example.appatemporal.databinding.ActivityVisualizarEventoOrganizadorBinding
 import com.example.appatemporal.domain.Repository
+import com.example.appatemporal.framework.viewModel.GetFunctionOrganizerViewModel
+import com.example.appatemporal.framework.viewModel.GetOrganizerEventViewModel
 import com.example.appatemporal.framework.viewModel.GraphicsEventDetailViewModel
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
@@ -18,14 +21,31 @@ class ActivityVisualizarEventoOrganizador : AppCompatActivity() {
 
     private lateinit var binding : ActivityVisualizarEventoOrganizadorBinding
     private val graphicsEventDetailViewModel : GraphicsEventDetailViewModel by viewModels()
+    private val getFunctionOrganizerViewModel : GetFunctionOrganizerViewModel by viewModels()
     private lateinit var repository: Repository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_visualizar_evento_organizador)
-
+        // setContentView(R.layout.activity_visualizar_evento_organizador)
         binding = ActivityVisualizarEventoOrganizadorBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val idUser = "pod6xLDUeRNZItm7u93DC5CYbgJ2"
+        val idEvento = intent.getStringExtra("idEvento")
+        val nombre = intent.getStringExtra("nombre")
+        val descripcion = intent.getStringExtra("descripcion")
+        val lugar = intent.getStringExtra("lugar")
+        val direccion = intent.getStringExtra("direccion")
+        val ciudad = intent.getStringExtra("ciudad")
+        val estado = intent.getStringExtra("estado")
+
+        binding.NombreArtistaVEE.text = nombre
+        binding.DescripcionEvento.text = descripcion
+        binding.LugarVEE.text = lugar
+        binding.DirecionVEE.text = direccion
+        binding.CiudadVEE.text = ciudad + ", " + estado
+
+        initRecyclerView(getFunctionOrganizerViewModel, idUser, idEvento.toString(), repository)
 
         binding.navbar.homeIcon.setOnClickListener {
             finish()
@@ -136,5 +156,16 @@ class ActivityVisualizarEventoOrganizador : AppCompatActivity() {
             }
         })*/
     }
+    private fun initRecyclerView(getFunctionOrganizerViewModel: GetFunctionOrganizerViewModel, userIdTemp: String, eventId: String, repository: Repository){
+        getFunctionOrganizerViewModel.getFunctionOrganizer(eventId, repository)
+
+        // Log.d("LOG Activity",getOrganizerEventViewModel.getOrganizerEvent(userIdTemp, repository).toString())
+        getFunctionOrganizerViewModel.funcion.observe(this, Observer {
+            binding.funcionesOrganizadorRV.layoutManager = LinearLayoutManager(this) // Le da el layout que usará el RV.
+            binding.funcionesOrganizadorRV.adapter = ActivityVisualizarEventoOrganizadorAdapter(it)
+        })
+    }
+
+
 
 }

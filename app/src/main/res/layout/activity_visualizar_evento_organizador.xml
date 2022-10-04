@@ -62,7 +62,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/FechaVEE"
+                            android:id="@+id/Descripcion_Evento"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/Nombre_ArtistaVEE"
@@ -71,7 +71,7 @@
                             android:layout_marginEnd="8dp"
                             android:layout_marginBottom="15dp"
                             android:gravity="center"
-                            android:text="Miércoles 14 de noviembre"
+                            android:text="Descripcion"
                             android:textColor="@color/grayBtn"
                             android:textSize="24sp"
                             android:textStyle="bold" />
@@ -80,7 +80,7 @@
                             android:id="@+id/LugarVEE"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/FechaVEE"
+                            android:layout_below="@id/Descripcion_Evento"
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
