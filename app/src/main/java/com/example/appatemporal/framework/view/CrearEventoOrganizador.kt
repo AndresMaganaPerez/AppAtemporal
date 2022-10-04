@@ -92,7 +92,7 @@ class CrearEventoOrganizador : AppCompatActivity(){
     private fun OnClickTimeAdded(timePickerI: TimePicker, timePickerF: TimePicker ) : FunctionModel {
         timePickerI.setIs24HourView(true);
         timePickerF.setIs24HourView(true);
-        val function=FunctionModel(Date(),"","")
+        val function=FunctionModel("","","")
 
         timePickerI.setOnTimeChangedListener { _, hour, minute -> var hour = hour
             val hoursI = if (hour < 10) "0" + hour else hour

@@ -1,9 +1,7 @@
 package com.example.appatemporal.domain.models
 
-import java.util.*
-
 data class FunctionModel(
-    var fecha_fun : Date,
+    var fecha_fun : String,
     var hora_inicio : String,
     var hora_fin : String,
 )

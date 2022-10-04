@@ -24,10 +24,9 @@ class CreateFunction : AppCompatActivity() {
         val horaFin = binding.timePickerFin
         val btn = binding.submitBtn
         setContentView(R.layout.activity_create_function)
-        val timePickerI=binding.timePickerInicio
-        val timePickerF=binding.timePickerFin
-        timePickerI.setIs24HourView(true);
-        timePickerF.setIs24HourView(true);
+
+        horaInicio.setIs24HourView(true);
+        horaFin.setIs24HourView(true);
 
         val today = Calendar.getInstance()
         datePickerF.init(today.get(Calendar.YEAR), today.get(Calendar.MONTH),
