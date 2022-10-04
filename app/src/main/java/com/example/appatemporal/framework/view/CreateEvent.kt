@@ -56,36 +56,44 @@ class CreateEvent :AppCompatActivity() {
         }
 
         binding.submitBtn.setOnClickListener {
-            Log.d("El nombre del evento es ", "Kiubo" + nombre.text.toString())
-            val activo = 1
-            val divisa = "Pesos"
-            val fecha_Creado = LocalTime.now().toString()
-            val fecha_modificado = LocalTime.now().toString()
-            val evento = EventModel(nombre.text.toString(), descripcion.text.toString(),ciudad.text.toString(),estado.text.toString(), ubicacion.text.toString(),direccion.text.toString(),longitud.text.toString(),latitud.text.toString(),foto.text.toString(),video.text.toString(),activo,divisa,fecha_Creado,fecha_modificado)
-            Log.d("El último ticket es:", evento.ciudad)
-            //val artista = findViewById<EditText>(R.id.Artista_Evento)
-            val repository = Repository(this)
+            if((nombre.text.toString().isNotEmpty())){
+                Log.d("El nombre del evento es ", "Kiubo" + nombre.text.toString())
+                val activo = 1
+                val divisa = "Pesos"
+                val fecha_Creado = LocalTime.now().toString()
+                val fecha_modificado = LocalTime.now().toString()
+                val evento = EventModel(nombre.text.toString(), descripcion.text.toString(),ciudad.text.toString(),estado.text.toString(), ubicacion.text.toString(),direccion.text.toString(),longitud.text.toString(),latitud.text.toString(),foto.text.toString(),video.text.toString(),activo,divisa,fecha_Creado,fecha_modificado)
+                Log.d("El último ticket es:", evento.ciudad)
+                //val artista = findViewById<EditText>(R.id.Artista_Evento)
+                val repository = Repository(this)
 
-            val hourI = horaInicio.hour
-            val minuteI = horaInicio.minute
-            val hourF = horaFin.hour
-            val minuteF = horaFin.minute
+                val hourI = horaInicio.hour
+                val minuteI = horaInicio.minute
+                val hourF = horaFin.hour
+                val minuteF = horaFin.minute
 
-            val hoursI = if (hourI < 10) "0" + hourI else hourI
-            val minI = if (minuteI < 10) "0" + minuteI else minuteI
-            val hora_stringI="$hoursI:$minI"
+                val hoursI = if (hourI < 10) "0" + hourI else hourI
+                val minI = if (minuteI < 10) "0" + minuteI else minuteI
+                val hora_stringI="$hoursI:$minI"
 
-            val hoursF = if (hourF < 10) "0" + hourF else hourF
-            val minF = if (minuteF < 10) "0" + minuteF else minuteF
-            val hora_stringF="$hoursF:$minF"
+                val hoursF = if (hourF < 10) "0" + hourF else hourF
+                val minF = if (minuteF < 10) "0" + minuteF else minuteF
+                val hora_stringF="$hoursF:$minF"
 
-            val year = datePickerF.year
-            var month = datePickerF.month
-            val day = datePickerF.dayOfMonth
-            month = month + 1
-            val fecha="$day/$month/$year"
-            val funcion=FunctionModel(fecha,hora_stringI,hora_stringF)
-            viewModel.AddEvent(evento, repository, artista.text.toString(),funcion)
+                val year = datePickerF.year
+                var month = datePickerF.month
+                val day = datePickerF.dayOfMonth
+                month = month + 1
+                val fecha="$day/$month/$year"
+                val funcion=FunctionModel(fecha,hora_stringI,hora_stringF)
+                viewModel.AddEvent(evento, repository, artista.text.toString(),funcion)
+            }
+            else{
+                Toast.makeText(applicationContext, "Llena todos los campos antes de continuar.", Toast.LENGTH_SHORT).show()
+            }
+
         }
+
+
     }
 }
