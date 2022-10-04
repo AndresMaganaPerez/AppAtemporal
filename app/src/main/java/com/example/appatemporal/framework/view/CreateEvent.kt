@@ -3,17 +3,11 @@ package com.example.appatemporal.framework.view
 
 import android.os.Build
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.example.appatemporal.R
-import com.example.appatemporal.data.constants.Constantes.Companion.descripcion
-import com.example.appatemporal.data.constants.Constantes.Companion.direccion
-import com.example.appatemporal.data.constants.Constantes.Companion.estado
 import com.example.appatemporal.databinding.ActivityCrearEventoBinding
 import com.example.appatemporal.domain.Repository
 import com.example.appatemporal.domain.models.EventModel
@@ -24,11 +18,13 @@ import java.util.*
 
 class CreateEvent :AppCompatActivity() {
     private val viewModel: AddNewEventViewModel by viewModels()
-
-    @RequiresApi(Build.VERSION_CODES.O)
     private lateinit var binding: ActivityCrearEventoBinding
+    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityCrearEventoBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         val nombre = binding.NombreEvento
         val descripcion = binding.DescripcionEvento
         val ciudad = binding.CiudadEvento
@@ -39,17 +35,19 @@ class CreateEvent :AppCompatActivity() {
         val latitud = binding.LatitudEvento
         val foto = binding.UrlImagenEvento
         val video = binding.URLVideoEvento
-        setContentView(R.layout.activity_crear_evento)
+
 
         val spinner = binding.TipoEvento
         val lista = listOf("Privado", "publico", "De paga", "gratis")
         val datePickerF = binding.datePicker1
         val horaInicio = binding.timePickerInicio
         val horaFin = binding.timePickerFin
+        val artista= binding.ArtistaEvento
         val submit = binding.submitBtn
+
+
         horaInicio.setIs24HourView(true);
         horaFin.setIs24HourView(true);
-
         val today = Calendar.getInstance()
         datePickerF.init(today.get(Calendar.YEAR), today.get(Calendar.MONTH),
             today.get(Calendar.DAY_OF_MONTH)
@@ -59,16 +57,17 @@ class CreateEvent :AppCompatActivity() {
             Toast.makeText(this@CreateEvent, msg, Toast.LENGTH_SHORT).show()
         }
 
-        submit.setOnClickListener {
+        binding.submitBtn.setOnClickListener {
+            Log.d("El nombre del evento es ", "Kiubo" + nombre.text.toString())
             val activo = 1
             val divisa = "Pesos"
             val fecha_Creado = LocalTime.now().toString()
             val fecha_modificado = LocalTime.now().toString()
             val evento = EventModel(nombre.text.toString(), descripcion.text.toString(),ciudad.text.toString(),estado.text.toString(), ubicacion.text.toString(),direccion.text.toString(),longitud.text.toString(),latitud.text.toString(),foto.text.toString(),video.text.toString(),activo,divisa,fecha_Creado,fecha_modificado)
+            Log.d("El último ticket es:", evento.ciudad)
             //val artista = findViewById<EditText>(R.id.Artista_Evento)
             val repository = Repository(this)
             viewModel.AddEvent(evento, repository)
-
             val hourI = horaInicio.hour
             val minuteI = horaInicio.minute
             val hourF = horaFin.hour
