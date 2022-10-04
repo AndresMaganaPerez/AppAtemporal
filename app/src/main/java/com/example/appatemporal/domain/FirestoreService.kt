@@ -94,31 +94,31 @@ class FirestoreService {
         var ticket: GetTicketModel = GetTicketModel()
         var boletos: QuerySnapshot =
             db.collection("Boleto")
-                .whereEqualTo("id_Usuario", uid)
+                .whereEqualTo("id_usuario", uid)
                 .get()
                 .await()
         for (boleto in boletos) {
             var funciones: QuerySnapshot =
                 db.collection("Funcion")
-                    .whereEqualTo(FieldPath.documentId(), boleto.data?.get("id_Funcion"))
+                    .whereEqualTo(FieldPath.documentId(), boleto.data?.get("id_funcion"))
                     .get()
                     .await()
             var evento: QuerySnapshot =
                 db.collection("Evento")
                     .whereEqualTo(
                         FieldPath.documentId(),
-                        funciones.documents[0].data?.get("id_Evento")
+                        funciones.documents[0].data?.get("id_evento")
                     )
                     .get()
                     .await()
-            ticket.nombre_evento = evento.documents[0].data?.get("nombre_Evento").toString()
-            ticket.fecha = funciones.documents[0].data?.get("fecha").toString()
-            ticket.horario = funciones.documents[0].data?.get("hora_Inicio").toString()
-            ticket.lugar = evento.documents[0].data?.get("nombre_Ubicacion").toString()
+            ticket.nombre_evento = evento.documents[0].data?.get("nombre").toString()
+            ticket.fecha = funciones.documents[0].data?.get("fecha_funcion").toString()
+            ticket.horario = funciones.documents[0].data?.get("hora_inicio").toString()
+            ticket.lugar = evento.documents[0].data?.get("ubicacion").toString()
             ticket.direccion = evento.documents[0].data?.get("direccion").toString()
             ticket.ciudad = evento.documents[0].data?.get("ciudad").toString()
             ticket.estado = evento.documents[0].data?.get("estado").toString()
-            ticket.hash_qr = boleto.data?.get("hash_QR").toString()
+            ticket.hash_qr = boleto.data?.get("hash_qr").toString()
 
             result.add(ticket)
 
@@ -442,4 +442,102 @@ class FirestoreService {
             }
             .await()
     }
+
+    suspend fun addArtista(eid: String, nombre_artista: String) {
+        var data = hashMapOf(
+            "id_evento_fk" to eid,
+            "nombre_artista" to nombre_artista
+        )
+
+        db.collection("Evento_Artista")
+            .add(data)
+            .addOnSuccessListener {
+                Log.d("Firestore Log = ", "Se agregó correctamente el artista:  " + nombre_artista)
+            }
+            .await()
+    }
+
+    suspend fun addEventoCategoria(eid: String, idCategoria: String) {
+        var data = hashMapOf(
+            "id_evento_fk" to eid,
+            "id_categoria_fk" to idCategoria
+        )
+        db.collection("Evento_Categoria")
+            .add(data)
+            .addOnSuccessListener {
+                Log.d(
+                    "Firestore Log = ",
+                    "Se agregó correctamente el evento por categoria:  " + idCategoria
+                )
+            }
+            .await()
+    }
+ //ejecutar antes de addEventoCategoria
+    suspend fun getCategoryId(nombre_categoria: String): String {
+        var idCategoria = db.collection("Categoria")
+            .whereEqualTo("nombre", nombre_categoria)
+            .get()
+            .await()
+
+        return idCategoria.documents[0].id
+    }
+
+    suspend fun addUsuarioEvento(eid:String, uid: String){
+       var data =  hashMapOf(
+                "id_usuario_fk" to uid,
+                "id_evento_fk" to eid
+        )
+        db.collection("Usuario_Evento")
+            .add(data)
+            .addOnSuccessListener {
+                Log.d(
+                    "Firestore Log = ",
+                    "Se agregó correctamente usuario por evento:  " + uid)
+            }
+            .await()
+    }
+
+    suspend fun addEventoTipoBoleto(eid: String,idtipoboleto:String, precio: String, max_boletos:String){
+        var data = hashMapOf(
+            "id_evento_fk" to eid,
+            "id_tipo_boleto_fk" to idtipoboleto,
+            "precio" to precio,
+            "max_boletos" to max_boletos
+        )
+            db.collection("Evento_Tipo_Boleto")
+                .add(data)
+                .addOnSuccessListener {
+                    Log.d(
+                        "Firestore Log = ",
+                        "Se agregó correctamente el tipo de boleto:   " + eid)
+                }
+                .await()
+
+    }
+    //Ejecutar antes de query addEventoTipoBoleto
+    suspend fun getTipoBoletoId(nombre_tipo_boleto: String): String {
+        var idTipoBoleto = db.collection("Tipo_Boleto")
+            .whereEqualTo("nombre", nombre_tipo_boleto)
+            .get()
+            .await()
+        return idTipoBoleto.documents[0].id
+    }
+
+    suspend fun addFuction(eid: String, fechaFuncion: String, HoraInicio:String, HoraFin:String){
+       var data =  hashMapOf(
+            "id_evento_fk" to eid,
+           "fecha_funcion" to fechaFuncion,
+           "hora_incio" to HoraInicio,
+           "hora_fin" to HoraFin
+        )
+        db.collection("Funcion")
+            .add(data)
+            .addOnSuccessListener {
+                Log.d(
+                    "Firestore Log = ",
+                    "Se agregó correctamente la funcion:   " + fechaFuncion)
+            }
+            .await()
+    }
+
 }
