@@ -1,8 +1,6 @@
 package com.example.appatemporal.domain
 
 import android.util.Log
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.viewModelScope
 import com.example.appatemporal.domain.models.*
 import com.google.firebase.firestore.DocumentSnapshot
@@ -485,14 +483,11 @@ class FirestoreService {
             .await()
     }
 
-    //ejecutar antes de addEventoCategoria
-    suspend fun getCategoryId(nombre_categoria: String): String {
-        var idCategoria = db.collection("Categoria")
+    suspend fun getCategory(nombre_categoria: String): QuerySnapshot {
+        return db.collection("Categoria")
             .whereEqualTo("nombre", nombre_categoria)
             .get()
             .await()
-
-        return idCategoria.documents[0].id
     }
 
     suspend fun addUsuarioEvento(eid: String, uid: String) {
