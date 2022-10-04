@@ -30,7 +30,7 @@ class ActivityVisualizarEventoOrganizador : AppCompatActivity() {
         binding = ActivityVisualizarEventoOrganizadorBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val idUser = "pod6xLDUeRNZItm7u93DC5CYbgJ2"
+        val idUser = "hakKAJSDFLK1284ALKSFnfk"
         val idEvento = intent.getStringExtra("idEvento")
         val nombre = intent.getStringExtra("nombre")
         val descripcion = intent.getStringExtra("descripcion")
@@ -44,6 +44,11 @@ class ActivityVisualizarEventoOrganizador : AppCompatActivity() {
         binding.LugarVEE.text = lugar
         binding.DirecionVEE.text = direccion
         binding.CiudadVEE.text = ciudad + ", " + estado
+
+        binding.addFunBtn.setOnClickListener{
+            /*val intent = Intent(this, ) // TODO: Agregar clase que lleva a formulario de función
+            startActivity(intent)*/
+        }
 
         initRecyclerView(getFunctionOrganizerViewModel, idUser, idEvento.toString(), repository)
 

@@ -24,8 +24,13 @@ class ActivityMisEventosOrganizador : AppCompatActivity() {
         binding = ActivityMisEventosOrganizadorBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val userIdTemp = "pod6xLDUeRNZItm7u93DC5CYbgJ2"
+        val userIdTemp = "hakKAJSDFLK1284ALKSFnfk"
         initRecyclerView(getOrganizerEventViewModel, userIdTemp, repository)
+
+        binding.addEventBtn.setOnClickListener{
+            /*val intent = Intent(this, ) // TODO: añadir la clase que llama al formulario de evento
+            startActivity(intent)*/
+        }
 
         binding.navbar.homeIcon.setOnClickListener {
             finish()
