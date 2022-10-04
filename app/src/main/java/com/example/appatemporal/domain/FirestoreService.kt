@@ -441,7 +441,7 @@ class FirestoreService {
 
     }
 
-    suspend fun addEvent2(event: EventModel, artista: String, funcion: FunctionModel) {
+    suspend fun addEvent2(event: EventModel, artista: String, funcion: FunctionModel, userUid: String) {
         db.collection("Evento")
             .add(event)
             .addOnSuccessListener {
@@ -449,6 +449,7 @@ class FirestoreService {
                 GlobalScope.launch {
                     addArtista(it.id, artista)
                     addFunction(it.id, funcion.fecha_fun, funcion.hora_inicio, funcion.hora_fin)
+                    addUsuarioEvento(it.id, userUid)
                 }
             }
     }

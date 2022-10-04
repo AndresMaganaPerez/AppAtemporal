@@ -96,6 +96,20 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.511"
                             app:layout_constraintStart_toStartOf="parent" />
+                        <EditText
+                            android:id="@+id/Categoria_Evento"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginTop="28dp"
+                            android:backgroundTint="@color/white"
+                            android:ems="15"
+                            android:hint="Categoría/Tipo de Evento"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.511"
+                            app:layout_constraintStart_toStartOf="parent" />
 
                         <EditText
                             android:id="@+id/Ubicacion_Evento"

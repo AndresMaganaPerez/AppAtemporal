@@ -1,6 +1,7 @@
 package com.example.appatemporal.framework.view
 
 
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -43,6 +44,7 @@ class CreateEvent :AppCompatActivity() {
         val horaFin = binding.timePickerFin
         val artista= binding.ArtistaEvento
         val submit = binding.submitBtn
+        val categoria = binding.CategoriaEvento
 
 
         horaInicio.setIs24HourView(true);
@@ -86,7 +88,9 @@ class CreateEvent :AppCompatActivity() {
                 month = month + 1
                 val fecha="$day/$month/$year"
                 val funcion=FunctionModel(fecha,hora_stringI,hora_stringF)
-                viewModel.AddEvent(evento, repository, artista.text.toString(),funcion)
+                val userUid = getSharedPreferences("userUid", Context.MODE_PRIVATE)
+                    .getString("userUid", "").toString()
+                viewModel.AddEvent(evento, repository, artista.text.toString(),funcion, userUid)
             }
             else{
                 Toast.makeText(applicationContext, "Llena todos los campos antes de continuar.", Toast.LENGTH_SHORT).show()
