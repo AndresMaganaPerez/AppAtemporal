@@ -171,6 +171,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.511"
                             app:layout_constraintStart_toStartOf="parent" />
+
                         <EditText
                             android:id="@+id/UrlImagenEvento"
                             android:layout_width="wrap_content"
@@ -244,7 +245,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_marginTop="24dp"
-                                android:text="Funcion"
+                                android:text="Primera Funcion"
                                 android:textColor="@color/white"
                                 android:textSize="28sp"
                                 tools:ignore="MissingConstraints"
@@ -328,15 +329,6 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical" />
 
-                        <Button
-                            android:id="@+id/addFunctionBtn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="30dp"
-                            android:layout_marginEnd="30dp"
-                            android:layout_marginBottom="24dp"
-                            android:backgroundTint="@color/purple_500"
-                            android:text="Añadir Funcion" />
 
                         <Button
                             android:id="@+id/submitBtn"
@@ -345,7 +337,7 @@
                             android:layout_gravity="center"
                             android:layout_marginStart="30dp"
                             android:layout_marginEnd="30dp"
-                            android:layout_marginBottom="100dp"
+                            android:layout_marginBottom="80dp"
                             android:backgroundTint="@color/lblue_400"
                             android:text="Guardar" />
 

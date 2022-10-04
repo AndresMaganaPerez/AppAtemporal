@@ -56,9 +56,7 @@ class CrearEventoOrganizador : AppCompatActivity(){
         removeArtFormView()
 
         // Agregar Formulario de Función
-        binding.addFunctionBtn.setOnClickListener {
-            addNewFunFormView()
-        }
+
 
         // Eliminar Formulario de Función
         removeFunFormView()
@@ -91,31 +89,35 @@ class CrearEventoOrganizador : AppCompatActivity(){
         }
     }
 
-    private fun OnClickTimeAdded(timePickerI: TimePicker, timePickerF: TimePicker ) {
+    private fun OnClickTimeAdded(timePickerI: TimePicker, timePickerF: TimePicker ) : FunctionModel {
         timePickerI.setIs24HourView(true);
         timePickerF.setIs24HourView(true);
+        val function=FunctionModel(Date(),"","")
 
         timePickerI.setOnTimeChangedListener { _, hour, minute -> var hour = hour
             val hoursI = if (hour < 10) "0" + hour else hour
             val minI = if (minute < 10) "0" + minute else minute
             val hora_stringI="$hoursI:$minI"
+            function.hora_inicio=hora_stringI
         }
         timePickerF.setOnTimeChangedListener { _, hour, minute -> var hour = hour
             val hoursF = if (hour < 10) "0" + hour else hour
             val minF = if (minute < 10) "0" + minute else minute
             val hora_stringF="$hoursF:$minF"
+            function.hora_fin=hora_stringF
         }
+        return function
     }
 
-    val funciones = mutableMapOf<Int,View>()
-    val i=0
+    val views = mutableListOf<View>()
+    val lista_funciones = mutableListOf<FunctionModel>()
 
     private fun addNewFunFormView() {
         val inflater = LayoutInflater.from(this).inflate(R.layout.item_crear_funcion, null)
-        funciones.put(i, inflater)
+        views.add(inflater)
         val horaI=inflater.findViewById<TimePicker>(R.id.timePickerInicio)
         val horaF=inflater.findViewById<TimePicker>(R.id.timePickerFin)
-        OnClickTimeAdded(horaI, horaF)
+        lista_funciones.add(OnClickTimeAdded(horaI, horaF))
         binding.artistaFormLayout.addView(inflater, binding.artistaFormLayout.childCount)
     }
 
