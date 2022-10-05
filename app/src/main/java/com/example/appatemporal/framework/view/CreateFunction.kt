@@ -14,6 +14,9 @@ import com.example.appatemporal.databinding.ActivityCreateFunctionBinding
 import com.example.appatemporal.domain.Repository
 import com.example.appatemporal.framework.viewModel.AddNewEventViewModel
 import kotlinx.android.synthetic.main.activity_create_function.*
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class CreateFunction : AppCompatActivity() {
@@ -63,9 +66,22 @@ class CreateFunction : AppCompatActivity() {
             val day = datePickerF.dayOfMonth
             month = month + 1
             val fecha="$day/$month/$year"
-            val eid:String="41RrBlaCdfqkMTDmMcT7"
+
+            val sdf = SimpleDateFormat("dd/MM/yyyy")
+            val currentI = LocalDate.now()
+            val formattedDateI: String = currentI.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+            val firstDate: Date = sdf.parse(fecha)
+            val secondDate: Date = sdf.parse(formattedDateI)
+            val eid="41RrBlaCdfqkMTDmMcT7"
+            val cmp = firstDate.compareTo(secondDate)
+
+            if(cmp > 0){
             viewModel.AddFunction(eid,repository,fecha,hora_stringI,hora_stringF)
         }
+            else{
+                Toast.makeText(applicationContext, "La fecha elegida es inválida. Inténtelo de nuevo.", Toast.LENGTH_SHORT).show()
+            }
 
     }
+}
 }
