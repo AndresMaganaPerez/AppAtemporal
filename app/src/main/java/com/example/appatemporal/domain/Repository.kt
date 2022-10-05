@@ -103,6 +103,11 @@ class Repository(context: Context) {
     suspend fun getCategoriaEventoFilter(eid:String):List<String>{
         return firestoreAPI.getEventCategoryFilter(eid)
     }
+
+    suspend fun getEventoTipoBoletoFiltered(eid:String):List<String>{
+        return firestoreAPI.getEventoTipoBoletoFiltered(eid)
+    }
+
     // Local database
     val actividadDao = LocalDatabase.getInstance(context).actividadDao
     val areaDao = LocalDatabase.getInstance(context).areaDao

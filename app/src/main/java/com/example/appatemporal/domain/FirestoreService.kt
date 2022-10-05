@@ -529,17 +529,13 @@ class FirestoreService {
         for(categoria in categorias){
             list_categoriaevento.add(categoria.getField<String>("id_categoria_fk").toString())
         }
-        Log.d("Lista de las categorias",list_categoriaevento.toString())
         return list_categoriaevento
     }
 
     suspend fun getEventCategoryFilter(eid: String): List<String> {
         var QS_categoria = getallCategories()
         var list_categoriaevento = getEventCategoryFilteredList(eid)
-        Log.d("Observemos el map",QS_categoria.toString())
-        Log.d("Observemos la lista",list_categoriaevento.toString())
         var dropdown :MutableList<String> = mutableListOf()
-        Log.d("Observemos el dropdown",dropdown.toString())
 
             for ((k, v) in QS_categoria){
                 if(k !in list_categoriaevento){
@@ -547,9 +543,41 @@ class FirestoreService {
                 }
             }
 
-        Log.d("Observemos el dropdown 2",dropdown.toString())
-        QS_categoria.clear()
-        list_categoriaevento= mutableListOf()
+        return dropdown
+    }
+
+    suspend fun getallTipoBoleto(): MutableMap<String, String> {
+        var Hashmap_tb: MutableMap<String, String> = HashMap<String, String>()
+        var tb = db.collection("Tipo_Boleto")
+            .get()
+            .await()
+        for(tbs in tb){
+            Hashmap_tb.put(tbs.id, tbs.getField<String>("nombre").toString())
+        }
+        return Hashmap_tb
+    }
+    suspend fun getEventTBFilteredList(eid: String): List<String> {
+        var list_tb_evento :MutableList<String> = mutableListOf()
+        val tb = db.collection("Evento_Tipo_Boleto")
+            .whereEqualTo("id_evento_fk", eid)
+            .get()
+            .await()
+
+        for(tbs in tb){
+            list_tb_evento.add(tbs.getField<String>("id_tipo_boleto_fk").toString())
+        }
+        return list_tb_evento
+    }
+
+    suspend fun getEventoTipoBoletoFiltered(eid: String): List<String> {
+        var QS_tipoevento = getallTipoBoleto()
+        var list_tipoevento = getEventTBFilteredList(eid)
+        var dropdown :MutableList<String> = mutableListOf()
+        for ((k, v) in QS_tipoevento){
+            if(k !in list_tipoevento){
+                dropdown.add(v)
+            }
+        }
         return dropdown
     }
 
