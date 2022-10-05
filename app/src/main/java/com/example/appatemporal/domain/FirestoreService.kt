@@ -439,7 +439,7 @@ class FirestoreService {
 
     }
 
-    suspend fun addEvent2(event: EventModel, artista: String, funcion: FunctionModel, userUid: String) {
+    suspend fun addEvent2(event: EventModel, artista: String, funcion: FunctionModel, userUid: String, boletos: EventoTipoBoletoModel) {
         db.collection("Evento")
             .add(event)
             .addOnSuccessListener {
@@ -448,6 +448,7 @@ class FirestoreService {
                     addArtista(it.id, artista)
                     addFunction(it.id, funcion.fecha_fun, funcion.hora_inicio, funcion.hora_fin)
                     addUsuarioEvento(it.id, userUid)
+                    addEventoTipoBoleto(it.id,boletos.id_Tipo_Boleto,boletos.precio,boletos.max_boleto)
                 }
             }
     }
@@ -509,8 +510,8 @@ class FirestoreService {
     suspend fun addEventoTipoBoleto(
         eid: String,
         idtipoboleto: String,
-        precio: String,
-        max_boletos: String
+        precio: Int,
+        max_boletos: Int
     ) {
         var data = hashMapOf(
             "id_evento_fk" to eid,

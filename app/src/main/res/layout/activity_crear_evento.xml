@@ -116,6 +116,39 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.511"
                             app:layout_constraintStart_toStartOf="parent" />
+                        <EditText
+                            android:id="@+id/maxBoletosNormales"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginTop="28dp"
+                            android:backgroundTint="@color/white"
+                            android:ems="15"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:hint="¿Cuántos boletos no VIP van a haber?"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.511"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <EditText
+                            android:id="@+id/precioBoletoNormal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginTop="28dp"
+                            android:backgroundTint="@color/white"
+                            android:ems="15"
+                            android:inputType="number"
+                            android:maxLength="6"
+                            android:hint="Precio en pesos de boleto común"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.511"
+                            app:layout_constraintStart_toStartOf="parent" />
 
                         <EditText
                             android:id="@+id/Ciudad_Evento"

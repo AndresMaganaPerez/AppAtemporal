@@ -4,12 +4,9 @@ import android.content.Context
 import android.util.Log
 import com.example.appatemporal.data.localdatabase.LocalDatabase
 import com.example.appatemporal.data.localdatabase.entities.*
-import com.example.appatemporal.domain.models.EventModel
-import com.example.appatemporal.domain.models.FunctionModel
-import com.example.appatemporal.domain.models.GetTicketModel
+import com.example.appatemporal.domain.models.*
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
-import com.example.appatemporal.domain.models.UserModel
 import com.example.appatemporal.framework.view.AddArtist
 import com.google.firebase.firestore.DocumentSnapshot
 import java.util.*
@@ -84,8 +81,8 @@ class Repository(context: Context) {
         firestoreAPI.addFailure(title, description)
     }
 
-    suspend fun addEvent2(event: EventModel, artista: String, funcion: FunctionModel,userUid: String) {
-        firestoreAPI.addEvent2(event, artista, funcion, userUid)
+    suspend fun addEvent2(event: EventModel, artista: String, funcion: FunctionModel,userUid: String,boletos: EventoTipoBoletoModel) {
+        firestoreAPI.addEvent2(event, artista, funcion, userUid, boletos)
     }
     suspend fun addFunction(eid: String, fechaFuncion: String, HoraInicio:String, HoraFin:String){
         firestoreAPI.addFunction(eid,fechaFuncion,HoraInicio,HoraFin)
