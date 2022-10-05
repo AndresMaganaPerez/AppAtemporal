@@ -138,7 +138,7 @@ class CreateEvent :AppCompatActivity() {
                     viewModel.AddEvent(evento, repository, artista.text.toString(),funcion, userUid, boletos, categoria.getSelectedItem().toString())
                 }
                 else{
-                    Toast.makeText(applicationContext, "La fecha elegida es anterior a la actual.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "La fecha elegida es inválida. Inténtelo de nuevo.", Toast.LENGTH_SHORT).show()
                 }
 
             }
