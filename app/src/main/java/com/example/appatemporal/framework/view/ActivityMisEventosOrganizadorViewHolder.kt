@@ -3,21 +3,18 @@ package com.example.appatemporal.framework.view
 import android.content.Intent
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.example.appatemporal.databinding.ActivityBoletoPorEventoBinding
-import com.example.appatemporal.databinding.ActivityCardBoletoPorEventoBinding
-import com.example.appatemporal.databinding.ActivityEventoDeOrganizadorBinding
-import com.example.appatemporal.databinding.ActivityMisEventosOrganizadorBinding
+import com.example.appatemporal.databinding.*
 import com.example.appatemporal.domain.models.EventModel01
 
 class ActivityMisEventosOrganizadorViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    val binding = ActivityEventoDeOrganizadorBinding.bind(view)
+    val binding = ActivityHomepageTarjetaEventosGrandeEspectadorBinding.bind(view)
 
     fun render(eventClass: EventModel01){
         binding.Nombre.text = eventClass.nombre
         binding.Lugar.text = eventClass.ubicacion
-        binding.Descripcion.text = eventClass.descripcion
+        binding.Direccion.text = eventClass.direccion
 
-        var cardBtn = binding.cardBoletoEvento
+        var cardBtn = binding.cardEvent
 
         cardBtn.setOnClickListener{
             var Nombre : String = eventClass.nombre

@@ -580,21 +580,21 @@ class FirestoreService {
 
     suspend fun getOrganizerEvents(uid : String) : MutableList<EventModel01> {
         var result : MutableList<EventModel01> = arrayListOf()
-
         // Se buscan los eventos relacionados con el usuario que llega como parámetro.
         var usuarioEventos : QuerySnapshot =
             db.collection("Usuario_Evento")
                 .whereEqualTo("id_usuario_fk",uid)
                 .get()
                 .await()
-
+        Log.d("LOG UsuarioEvento",usuarioEventos.isEmpty().toString())
         // De todos esos registros, se busca cada evento en la tabla de eventos
         for (usuarioEvento in usuarioEventos){
             var eventos : QuerySnapshot =
                 db.collection("Evento")
-                    .whereEqualTo(FieldPath.documentId(),usuarioEvento.data?.get("id_evento_fk"))
+                    .whereEqualTo(FieldPath.documentId(), usuarioEvento.data?.get("id_evento_fk"))
                     .get()
                     .await()
+            Log.d("LOG UsuarioEvento",eventos.isEmpty().toString())
             for (evento in eventos){
                 var newEvent = EventModel01(
                     evento.id,

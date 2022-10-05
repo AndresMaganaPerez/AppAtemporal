@@ -8,18 +8,20 @@
     android:layout_marginLeft="16dp">
 
     <ImageView
+        android:id="@+id/imageCard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/img_background"
+        android:background="@drawable/gradient"
         android:scaleType="centerCrop"
         >
     </ImageView>
 
     <LinearLayout
+        android:id="@+id/cardEvent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         >
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,27 +48,25 @@
                 android:layout_height="wrap_content"
                 android:text="Nombre"
                 android:textColor="@color/grayBtn"
-                android:textSize="24dp"
+                android:textSize="16dp"
                 >
             </TextView>
             <TextView
-                android:id="@+id/Fecha"
+                android:id="@+id/Lugar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/Nombre"
-                android:text="Fecha"
+                android:text="Lugar"
                 android:textColor="@color/yellow"
-                android:textSize="16dp"
+                android:textSize="10dp"
                 >
             </TextView>
             <TextView
-                android:id="@+id/Descripcion"
+                android:id="@+id/Direccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/Fecha"
-                android:text="Descripcion"
+                android:text="Direccion"
                 android:textColor="@color/grayBtn"
-                android:textSize="16dp"
+                android:textSize="10dp"
                 >
             </TextView>
 

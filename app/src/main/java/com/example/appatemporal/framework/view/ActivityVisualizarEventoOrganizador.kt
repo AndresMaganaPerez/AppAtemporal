@@ -30,14 +30,22 @@ class ActivityVisualizarEventoOrganizador : AppCompatActivity() {
         binding = ActivityVisualizarEventoOrganizadorBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val idUser = "hakKAJSDFLK1284ALKSFnfk"
+        val idUser = "qVzK32OHDYOUtK1YsQbh"
         val idEvento = intent.getStringExtra("idEvento")
         val nombre = intent.getStringExtra("nombre")
         val descripcion = intent.getStringExtra("descripcion")
-        val lugar = intent.getStringExtra("lugar")
+        val lugar = intent.getStringExtra("ubicacion")
         val direccion = intent.getStringExtra("direccion")
         val ciudad = intent.getStringExtra("ciudad")
         val estado = intent.getStringExtra("estado")
+
+        /* funcionPorEvento.putExtra("nombre", Nombre)
+            funcionPorEvento.putExtra("descripcion", Descripcion)
+            funcionPorEvento.putExtra("ubicacion", Ubicacion)
+            funcionPorEvento.putExtra("direccion", Direccion)
+            funcionPorEvento.putExtra("ciudad", Ciudad)
+            funcionPorEvento.putExtra("estado", Estado)
+            funcionPorEvento.putExtra("idEvento", IdEvento) */
 
         binding.NombreArtistaVEE.text = nombre
         binding.DescripcionEvento.text = descripcion

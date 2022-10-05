@@ -9,7 +9,7 @@ import com.example.appatemporal.domain.models.EventModel01
 class ActivityMisEventosOrganizadorAdapter(private val list: MutableList<EventModel01>) : RecyclerView.Adapter<ActivityMisEventosOrganizadorViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActivityMisEventosOrganizadorViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return ActivityMisEventosOrganizadorViewHolder(layoutInflater.inflate(R.layout.activity_card_boleto_por_evento, parent, false))
+        return ActivityMisEventosOrganizadorViewHolder(layoutInflater.inflate(R.layout.activity_homepage_tarjeta_eventos_grande_espectador, parent, false))
     }
 
     override fun onBindViewHolder(holder: ActivityMisEventosOrganizadorViewHolder, position: Int) {
