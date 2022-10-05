@@ -36,6 +36,7 @@ class CreateEvent :AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityCrearEventoBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val nombre = binding.NombreEvento
@@ -70,8 +71,6 @@ class CreateEvent :AppCompatActivity() {
             val month = month + 1
             val msg = "You Selected: $day/$month/$year"
         }
-
-
 
         viewModelCategory.dropdownList.observe(this, androidx.lifecycle.Observer {
             Log.d("dropdown list log", it.toString())

@@ -22,4 +22,5 @@ class GetEventCategoryViewModel :ViewModel(){
             dropdownList.postValue(dropdownarray)
         }
     }
+
 }

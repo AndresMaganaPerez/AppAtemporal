@@ -3,6 +3,7 @@ package com.example.appatemporal.domain
 import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.example.appatemporal.domain.models.*
+import com.example.appatemporal.framework.view.AcivityAddCategoria
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.Query
@@ -505,9 +506,13 @@ class FirestoreService {
     }
 
     suspend fun getEventCategoryFilter(eid: String): List<String> {
-        var lista: List<String> = getEventCategoryeid(eid)
         var dropdown :MutableList<String> = mutableListOf()
-        val categorias = db.collection("Categoria").whereNotIn("id", lista).get().await()
+        Log.d("categoria",eid)
+        val categoriaId = db.collection("Evento_Categoria").whereEqualTo("id", eid).get().await()
+        Log.d("categoria",categoriaId.toString())
+        val categorianombre = db.collection("Categoria").document(categoriaId.toString()).get().await()
+        Log.d("categoria",categorianombre.toString())
+        val categorias = db.collection("Categoria").whereNotEqualTo("nombre", categorianombre).get().await()
         for(categoria in categorias){
                 var nombre = categoria.getField<String>("nombre").toString()
                 dropdown.add(nombre)
@@ -515,18 +520,6 @@ class FirestoreService {
         Log.d("categoria",dropdown[0])
         return dropdown
     }
-
-    suspend fun getEventCategoryeid(nombre_categoria: String): List<String> {
-        var listcategory:MutableList<String> = mutableListOf()
-        val categorias = db.collection("Categoria").whereNotEqualTo("nombre", nombre_categoria).get().await()
-        for(categoria in categorias){
-            var idCategoria = categoria.getField<String>("id_categoria_fk").toString()
-            listcategory.add(idCategoria)
-        }
-        Log.d("categoria",listcategory[0])
-        return listcategory
-    }
-
 
     suspend fun addUsuarioEvento(eid: String, uid: String) {
         var data = hashMapOf(
