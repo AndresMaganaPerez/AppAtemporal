@@ -5,6 +5,11 @@ import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
+import android.view.View
+import android.widget.Adapter
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
@@ -14,12 +19,15 @@ import com.example.appatemporal.domain.Repository
 import com.example.appatemporal.domain.models.EventModel
 import com.example.appatemporal.domain.models.FunctionModel
 import com.example.appatemporal.framework.viewModel.AddNewEventViewModel
+import com.example.appatemporal.framework.viewModel.GetEventCategoryViewModel
+import java.text.FieldPosition
 import java.time.LocalTime
 import java.util.*
 
 
 class CreateEvent :AppCompatActivity() {
     private val viewModel: AddNewEventViewModel by viewModels()
+    private val viewModelCategory: GetEventCategoryViewModel by viewModels()
     private lateinit var binding: ActivityCrearEventoBinding
     @RequiresApi(Build.VERSION_CODES.O)
 
@@ -37,7 +45,7 @@ class CreateEvent :AppCompatActivity() {
         val latitud = binding.LatitudEvento
         val foto = binding.UrlImagenEvento
         val video = binding.URLVideoEvento
-        val spinner = binding.TipoEvento
+        val spinner = binding.SpinnerCategoria
         val lista = listOf("Privado", "publico", "De paga", "gratis")
         val datePickerF = binding.datePicker1
         val horaInicio = binding.timePickerInicio
@@ -45,6 +53,24 @@ class CreateEvent :AppCompatActivity() {
         val artista= binding.ArtistaEvento
         val submit = binding.submitBtn
         val categoria = binding.CategoriaEvento
+
+
+        val repository = Repository(this)
+        val categorias = viewModelCategory.getcategoria(repository)
+        Log.d("get", categoria.text.toString())
+
+
+        viewModelCategory.dropdownList.observe(this, androidx.lifecycle.Observer {
+            Log.d("dropdown list log", it.toString())
+            val categoryString = arrayListOf<String>()
+            for(name in it){
+                categoryString.add("${name}")
+            }
+            val myadapter = ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,categoryString)
+            myadapter.setDropDownViewResource(android.R.layout.simple_spinner_item)
+            binding.SpinnerCategoria.adapter = myadapter
+        })
+
 
 
         horaInicio.setIs24HourView(true);

@@ -93,6 +93,10 @@ class Repository(context: Context) {
     suspend fun addArtista(eid: String, nombre_artista: String){
         firestoreAPI.addArtista(eid, nombre_artista)
     }
+
+    suspend fun getCategoriaEvento():List<String>{
+       return firestoreAPI.getEventCategory()
+    }
     // Local database
     val actividadDao = LocalDatabase.getInstance(context).actividadDao
     val areaDao = LocalDatabase.getInstance(context).areaDao
