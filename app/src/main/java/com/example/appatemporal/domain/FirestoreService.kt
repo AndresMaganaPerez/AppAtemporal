@@ -504,6 +504,30 @@ class FirestoreService {
             .await()
     }
 
+    suspend fun getEventCategoryFilter(eid: String): List<String> {
+        var lista: List<String> = getEventCategoryeid(eid)
+        var dropdown :MutableList<String> = mutableListOf()
+        val categorias = db.collection("Categoria").whereNotIn("id", lista).get().await()
+        for(categoria in categorias){
+                var nombre = categoria.getField<String>("nombre").toString()
+                dropdown.add(nombre)
+        }
+        Log.d("categoria",dropdown[0])
+        return dropdown
+    }
+
+    suspend fun getEventCategoryeid(nombre_categoria: String): List<String> {
+        var listcategory:MutableList<String> = mutableListOf()
+        val categorias = db.collection("Categoria").whereNotEqualTo("nombre", nombre_categoria).get().await()
+        for(categoria in categorias){
+            var idCategoria = categoria.getField<String>("id_categoria_fk").toString()
+            listcategory.add(idCategoria)
+        }
+        Log.d("categoria",listcategory[0])
+        return listcategory
+    }
+
+
     suspend fun addUsuarioEvento(eid: String, uid: String) {
         var data = hashMapOf(
             "id_usuario_fk" to uid,
@@ -552,6 +576,8 @@ class FirestoreService {
             .await()
         return idTipoBoleto.documents[0].id
     }
+
+
 
     suspend fun addFunction(
         eid: String,
