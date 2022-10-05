@@ -49,8 +49,6 @@ class CreateEvent :AppCompatActivity() {
         val latitud = binding.LatitudEvento
         val foto = binding.UrlImagenEvento
         val video = binding.URLVideoEvento
-        val spinner = binding.TipoEvento
-        val lista = listOf("Privado", "publico", "De paga", "gratis")
         val datePickerF = binding.datePicker1
         val horaInicio = binding.timePickerInicio
         val horaFin = binding.timePickerFin

@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.appatemporal.data.requirements.GetEventCategoryFilterRequirement
 import androidx.lifecycle.viewModelScope
+import com.example.appatemporal.data.constants.Constantes.Companion.idCategoria
 import com.example.appatemporal.domain.Repository
 import kotlinx.coroutines.launch
 
@@ -22,4 +23,11 @@ class GetCategoryFilterViewModel : ViewModel(){
             dropdownList.postValue((dropdownarray))
         }
     }
+
+    fun addEventoCategoria(eid: String, idCategoria: String, repository: Repository) {
+        viewModelScope.launch {
+            getEventCategoryFilter.addEventoCategoria(eid, idCategoria, repository)
+        }
+    }
+
 }

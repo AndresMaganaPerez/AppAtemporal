@@ -2,6 +2,7 @@ package com.example.appatemporal.domain
 
 import android.util.Log
 import androidx.lifecycle.viewModelScope
+import com.example.appatemporal.data.constants.Constantes.Companion.idCategoria
 import com.example.appatemporal.domain.models.*
 import com.example.appatemporal.framework.view.AcivityAddCategoria
 import com.google.firebase.firestore.DocumentSnapshot
@@ -17,6 +18,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import java.lang.Integer.parseInt
 import java.util.*
+import kotlin.collections.HashMap
 
 class FirestoreService {
     private val db = Firebase.firestore
@@ -450,12 +452,26 @@ class FirestoreService {
                     addFunction(it.id, funcion.fecha_fun, funcion.hora_inicio, funcion.hora_fin)
                     addUsuarioEvento(it.id, userUid)
                     addEventoTipoBoleto(it.id,boletos.id_Tipo_Boleto,boletos.precio,boletos.max_boleto)
-                    val cidd = getCategory(cid)
-                    addEventoCategoria(it.id, cidd.documents[0].id)
+                    addEventoCategoria(it.id, cid)
                 }
             }
     }
-
+    suspend fun addEventoCategoria(eid: String, cn: String) {
+        val cid=getCategory(cn)
+        var data = hashMapOf(
+            "id_evento_fk" to eid,
+            "id_categoria_fk" to cid.documents[0].id
+        )
+        db.collection("Evento_Categoria")
+            .add(data)
+            .addOnSuccessListener {
+                Log.d(
+                    "Firestore Log = ",
+                    "Se agregó correctamente el evento por categoria:  " + idCategoria
+                )
+            }
+            .await()
+    }
 
     suspend fun addArtista(eid: String, nombre_artista: String) {
         var data = hashMapOf(
@@ -471,21 +487,7 @@ class FirestoreService {
             .await()
     }
 
-    suspend fun addEventoCategoria(eid: String, idCategoria: String) {
-        var data = hashMapOf(
-            "id_evento_fk" to eid,
-            "id_categoria_fk" to idCategoria
-        )
-        db.collection("Evento_Categoria")
-            .add(data)
-            .addOnSuccessListener {
-                Log.d(
-                    "Firestore Log = ",
-                    "Se agregó correctamente el evento por categoria:  " + idCategoria
-                )
-            }
-            .await()
-    }
+
 
     suspend fun getEventCategory(): List<String> {
         var dropdown :MutableList<String> = mutableListOf()
@@ -505,19 +507,49 @@ class FirestoreService {
             .await()
     }
 
-    suspend fun getEventCategoryFilter(eid: String): List<String> {
-        var dropdown :MutableList<String> = mutableListOf()
-        Log.d("categoria",eid)
-        val categoriaId = db.collection("Evento_Categoria").whereEqualTo("id", eid).get().await()
-        Log.d("categoria",categoriaId.toString())
-        val categorianombre = db.collection("Categoria").document(categoriaId.toString()).get().await()
-        Log.d("categoria",categorianombre.toString())
-        val categorias = db.collection("Categoria").whereNotEqualTo("nombre", categorianombre).get().await()
+    suspend fun getallCategories(): MutableMap<String, String> {
+        var Hashmap_category: MutableMap<String, String> = HashMap<String, String> ()
+
+        var categorias= db.collection("Categoria")
+            .get()
+            .await()
         for(categoria in categorias){
-                var nombre = categoria.getField<String>("nombre").toString()
-                dropdown.add(nombre)
+            Hashmap_category.put(categoria.id, categoria.getField<String>("nombre").toString())
         }
-        Log.d("categoria",dropdown[0])
+        return Hashmap_category
+    }
+
+    suspend fun getEventCategoryFilteredList(eid: String): List<String> {
+        var list_categoriaevento :MutableList<String> = mutableListOf()
+        val categorias = db.collection("Evento_Categoria")
+            .whereEqualTo("id_evento_fk", eid)
+            .get()
+            .await()
+
+        for(categoria in categorias){
+            list_categoriaevento.add(categoria.getField<String>("id_categoria_fk").toString())
+        }
+        Log.d("Lista de las categorias",list_categoriaevento.toString())
+        return list_categoriaevento
+    }
+
+    suspend fun getEventCategoryFilter(eid: String): List<String> {
+        var QS_categoria = getallCategories()
+        var list_categoriaevento = getEventCategoryFilteredList(eid)
+        Log.d("Observemos el map",QS_categoria.toString())
+        Log.d("Observemos la lista",list_categoriaevento.toString())
+        var dropdown :MutableList<String> = mutableListOf()
+        Log.d("Observemos el dropdown",dropdown.toString())
+
+            for ((k, v) in QS_categoria){
+                if(k !in list_categoriaevento){
+                    dropdown.add(v)
+                }
+            }
+
+        Log.d("Observemos el dropdown 2",dropdown.toString())
+        QS_categoria.clear()
+        list_categoriaevento= mutableListOf()
         return dropdown
     }
 

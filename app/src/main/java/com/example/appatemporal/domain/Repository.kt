@@ -88,6 +88,10 @@ class Repository(context: Context) {
         firestoreAPI.addFunction(eid,fechaFuncion,HoraInicio,HoraFin)
     }
 
+    suspend fun addEventoCategoria(eid: String, idCategoria: String){
+        firestoreAPI.addEventoCategoria(eid, idCategoria)
+    }
+
     suspend fun addArtista(eid: String, nombre_artista: String){
         firestoreAPI.addArtista(eid, nombre_artista)
     }
