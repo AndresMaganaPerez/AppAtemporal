@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.appatemporal.databinding.ActivityCrearEventoBinding
 import com.example.appatemporal.domain.Repository
 import com.example.appatemporal.domain.models.EventModel
+import com.example.appatemporal.domain.models.EventoTipoBoletoModel
 import com.example.appatemporal.domain.models.FunctionModel
 import com.example.appatemporal.framework.viewModel.AddNewEventViewModel
 import com.example.appatemporal.framework.viewModel.GetEventCategoryViewModel
@@ -52,7 +53,8 @@ class CreateEvent :AppCompatActivity() {
         val horaFin = binding.timePickerFin
         val artista= binding.ArtistaEvento
         val submit = binding.submitBtn
-
+        val precio=binding.precioBoletoNormal
+        val cantidad=binding.maxBoletosNormales
 
         val repository = Repository(this)
         val categorias = viewModelCategory.getcategoria(repository)
@@ -82,8 +84,8 @@ class CreateEvent :AppCompatActivity() {
             val msg = "You Selected: $day/$month/$year"
         }
 
-        binding.submitBtn.setOnClickListener {
-            if((nombre.text.toString().isNotEmpty())&&(descripcion.text.toString().isNotEmpty())&&(ciudad.text.toString().isNotEmpty())&&(estado.text.toString().isNotEmpty())&&(ubicacion.text.toString().isNotEmpty())&&(direccion.text.toString().isNotEmpty())&&(longitud.text.toString().isNotEmpty())&&(latitud.text.toString().isNotEmpty())&&(foto.text.toString().isNotEmpty())&&(video.text.toString().isNotEmpty())){
+        submit.setOnClickListener {
+            if((nombre.text.toString().isNotEmpty())&&(descripcion.text.toString().isNotEmpty())&&(ciudad.text.toString().isNotEmpty())&&(estado.text.toString().isNotEmpty())&&(ubicacion.text.toString().isNotEmpty())&&(direccion.text.toString().isNotEmpty())&&(longitud.text.toString().isNotEmpty())&&(latitud.text.toString().isNotEmpty())&&(foto.text.toString().isNotEmpty())&&(video.text.toString().isNotEmpty())&&(cantidad.text.toString().isNotEmpty())&&(precio.text.toString().isNotEmpty())){
                 Log.d("El nombre del evento es ", "Kiubo" + nombre.text.toString())
                 val activo = 1
                 val divisa = "Pesos"
@@ -113,9 +115,10 @@ class CreateEvent :AppCompatActivity() {
                 month = month + 1
                 val fecha="$day/$month/$year"
                 val funcion=FunctionModel(fecha,hora_stringI,hora_stringF)
+                val boletos=EventoTipoBoletoModel("","kslo4Sje5mdsCP3UtzCr",precio.text.toString().toInt(),cantidad.text.toString().toInt())
                 val userUid = getSharedPreferences("userUid", Context.MODE_PRIVATE)
                     .getString("userUid", "").toString()
-                viewModel.AddEvent(evento, repository, artista.text.toString(),funcion, userUid)
+                viewModel.AddEvent(evento, repository, artista.text.toString(),funcion, userUid, boletos)
             }
             else{
                 Toast.makeText(applicationContext, "Llena todos los campos antes de continuar.", Toast.LENGTH_SHORT).show()
