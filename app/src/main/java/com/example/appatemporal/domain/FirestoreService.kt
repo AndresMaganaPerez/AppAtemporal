@@ -16,12 +16,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import java.lang.Integer.parseInt
 import java.util.*
-import kotlin.String as String1
 
 class FirestoreService {
     private val db = Firebase.firestore
 
-    suspend fun addUser(uid: String1, user: UserModel) {
+    suspend fun addUser(uid: String, user: UserModel) {
         db.collection("Usuario")
             .document(uid)
             .set(user)
@@ -31,7 +30,7 @@ class FirestoreService {
             .await()
     }
 
-    suspend fun addUserRole(uid: String1, role: String1) {
+    suspend fun addUserRole(uid: String, role: String) {
         val dbRole = db.collection("Rol")
             .whereEqualTo("nombre_Rol", role)
             .get()
@@ -54,7 +53,7 @@ class FirestoreService {
             }
     }
 
-    suspend fun verifyUser(uid: String1): Boolean {
+    suspend fun verifyUser(uid: String): Boolean {
         var userExists = false
         db.collection("Usuario")
             .document(uid)
@@ -68,7 +67,7 @@ class FirestoreService {
         return userExists
     }
 
-    suspend fun getUser(uid: String1): DocumentSnapshot {
+    suspend fun getUser(uid: String): DocumentSnapshot {
         var userData: DocumentSnapshot =
             db.collection("Usuario")
                 .document(uid)
@@ -77,7 +76,7 @@ class FirestoreService {
         return userData
     }
 
-    suspend fun getUserRole(uid: String1): DocumentSnapshot {
+    suspend fun getUserRole(uid: String): DocumentSnapshot {
         var dbRole: QuerySnapshot =
             db.collection("Usuario_Rol")
                 .whereEqualTo("id_Usuario", uid)
@@ -95,7 +94,7 @@ class FirestoreService {
     // uid: userId, eid: eventId, fid: funcionId
     // getUserTicket
 
-    suspend fun getUserTickets(uid: String1): MutableList<GetTicketModel> {
+    suspend fun getUserTickets(uid: String): MutableList<GetTicketModel> {
         var result: MutableList<GetTicketModel> = arrayListOf()
         var ticket: GetTicketModel = GetTicketModel()
         var boletos: QuerySnapshot =
@@ -134,7 +133,7 @@ class FirestoreService {
         return result
     }
 
-    suspend fun eventCount(uid: String1): Int {
+    suspend fun eventCount(uid: String): Int {
         var events: QuerySnapshot =
             db.collection("Usuario_Evento")
                 .whereEqualTo("id_Usuario", uid)
@@ -143,7 +142,7 @@ class FirestoreService {
         return events.count()
     }
 
-    suspend fun ventasCount(uid: String1): Pair<Int, Int> {
+    suspend fun ventasCount(uid: String): Pair<Int, Int> {
         var ventasCount: Int = 0
         var asistenciasCount: Int = 0
         var ventas: QuerySnapshot =
@@ -179,7 +178,7 @@ class FirestoreService {
         return result
     }
 
-    suspend fun getRating(uid: String1): Float {
+    suspend fun getRating(uid: String): Float {
         var acumulado = 0f
         var count = 0f
         var events: QuerySnapshot =
@@ -202,7 +201,7 @@ class FirestoreService {
         return (acumulado / count).toFloat()
     }
 
-    suspend fun getRevenue(uid: String1): Int {
+    suspend fun getRevenue(uid: String): Int {
         var ventaTotal = 0
         var boletos: QuerySnapshot
         var tiposBoleto: QuerySnapshot
@@ -243,8 +242,8 @@ class FirestoreService {
         return ventaTotal
     }
 
-    suspend fun updateTicketValue(resulted: String1): Boolean {
-        var result: String1 = resulted
+    suspend fun updateTicketValue(resulted: String): Boolean {
+        var result: String = resulted
 
         var exito: Boolean = false
 
@@ -268,14 +267,14 @@ class FirestoreService {
         return exito
     }
 
-    suspend fun getTicketDropDown(idEvent: String1): List<Triple<String1, Int, String1>> {
-        var dropDown: MutableList<Triple<String1, Int, String1>> = mutableListOf()
+    suspend fun getTicketDropDown(idEvent: String): List<Triple<String, Int, String>> {
+        var dropDown: MutableList<Triple<String, Int, String>> = mutableListOf()
         val ticketInfo = db.collection("Evento_Tipo_Boleto")
             .whereEqualTo("id_Evento", idEvent)
             .get()
             .await()
         for (id in ticketInfo) {
-            var info = id.getField<String1>("id_Tipo_Boleto").toString()
+            var info = id.getField<String>("id_Tipo_Boleto").toString()
             var precio = id.getField<Int>("precio") as Int
             val name = db.collection("Tipo_Boleto")
                 .document(info)
@@ -287,10 +286,10 @@ class FirestoreService {
     }
 
     suspend fun currentTicketsFun(
-        idEvent: String1,
-        idFuncion: String1
-    ): List<Triple<String1, Int, Int>> {
-        val maxCountEvent: MutableList<Triple<String1, Int, Int>> = mutableListOf()
+        idEvent: String,
+        idFuncion: String
+    ): List<Triple<String, Int, Int>> {
+        val maxCountEvent: MutableList<Triple<String, Int, Int>> = mutableListOf()
         val tipoEventoBoleto = db.collection("Evento_Tipo_Boleto")
             .whereEqualTo("id_Evento", idEvent)
             .get()
@@ -312,7 +311,7 @@ class FirestoreService {
         return maxCountEvent
     }
 
-    suspend fun RegisterSale(idFuncion: String1, id_Metodo_Pago: String1, id_Tipo_Boleto: String1) {
+    suspend fun RegisterSale(idFuncion: String, id_Metodo_Pago: String, id_Tipo_Boleto: String) {
         var currentDate = Date()
         db.collection("Boleto")
             .document()
@@ -335,7 +334,7 @@ class FirestoreService {
      * @param title: String
      * @param description: String
      */
-    suspend fun addFailure(title: String1, description: String1) {
+    suspend fun addFailure(title: String, description: String) {
         val failure = ReportFailureModel(title, description)
         db.collection("ReporteFallas")
             .add(failure)
@@ -344,7 +343,7 @@ class FirestoreService {
             }.await()
     }
 
-    suspend fun getEventName(eid: String1): String1 {
+    suspend fun getEventName(eid: String): String {
         var event: DocumentSnapshot =
             db.collection("Evento")
                 .document(eid)
@@ -353,7 +352,7 @@ class FirestoreService {
         return event.data?.get("nombre_Evento").toString()
     }
 
-    suspend fun generalProfitsEvent(eid: String1): Int {
+    suspend fun generalProfitsEvent(eid: String): Int {
 
         var ganancias = 0
         var boletos: QuerySnapshot
@@ -389,7 +388,7 @@ class FirestoreService {
         return ganancias
     }
 
-    suspend fun getTicketsbyPM(eid: String1): Pair<Int, Int> {
+    suspend fun getTicketsbyPM(eid: String): Pair<Int, Int> {
 
         var boletos: QuerySnapshot
         var countTarjeta: Int = 0
@@ -440,7 +439,7 @@ class FirestoreService {
 
     }
 
-    suspend fun addEvent2(event: EventModel, artista: String1, funcion: FunctionModel, userUid: String1) {
+    suspend fun addEvent2(event: EventModel, artista: String, funcion: FunctionModel, userUid: String, boletos: EventoTipoBoletoModel, cid: String) {
         db.collection("Evento")
             .add(event)
             .addOnSuccessListener {
@@ -449,12 +448,15 @@ class FirestoreService {
                     addArtista(it.id, artista)
                     addFunction(it.id, funcion.fecha_fun, funcion.hora_inicio, funcion.hora_fin)
                     addUsuarioEvento(it.id, userUid)
+                    addEventoTipoBoleto(it.id,boletos.id_Tipo_Boleto,boletos.precio,boletos.max_boleto)
+                    val cidd = getCategory(cid)
+                    addEventoCategoria(it.id, cidd.documents[0].id)
                 }
             }
     }
 
 
-    suspend fun addArtista(eid: String1, nombre_artista: String1) {
+    suspend fun addArtista(eid: String, nombre_artista: String) {
         var data = hashMapOf(
             "id_evento_fk" to eid,
             "nombre_artista" to nombre_artista
@@ -468,7 +470,7 @@ class FirestoreService {
             .await()
     }
 
-    suspend fun addEventoCategoria(eid: String1, idCategoria: String1) {
+    suspend fun addEventoCategoria(eid: String, idCategoria: String) {
         var data = hashMapOf(
             "id_evento_fk" to eid,
             "id_categoria_fk" to idCategoria
@@ -484,16 +486,25 @@ class FirestoreService {
             .await()
     }
 
-    suspend fun getCategory(nombre_categoria: String1): QuerySnapshot {
+    suspend fun getEventCategory(): List<String> {
+        var dropdown :MutableList<String> = mutableListOf()
+        val categorias = db.collection("Categoria").get().await()
+        for(categoria in categorias){
+            var nombre = categoria.getField<String>("nombre").toString()
+            dropdown.add(nombre)
+        }
+        Log.d("categoria",dropdown[0])
+        return dropdown
+    }
+
+    suspend fun getCategory(nombre_categoria: String): QuerySnapshot {
         return db.collection("Categoria")
             .whereEqualTo("nombre", nombre_categoria)
             .get()
             .await()
     }
 
-
-
-    suspend fun addUsuarioEvento(eid: String1, uid: String1) {
+    suspend fun addUsuarioEvento(eid: String, uid: String) {
         var data = hashMapOf(
             "id_usuario_fk" to uid,
             "id_evento_fk" to eid
@@ -510,10 +521,10 @@ class FirestoreService {
     }
 
     suspend fun addEventoTipoBoleto(
-        eid: String1,
-        idtipoboleto: String1,
-        precio: String1,
-        max_boletos: String1
+        eid: String,
+        idtipoboleto: String,
+        precio: Int,
+        max_boletos: Int
     ) {
         var data = hashMapOf(
             "id_evento_fk" to eid,
@@ -533,20 +544,8 @@ class FirestoreService {
 
     }
 
-    suspend fun getEventCategory(): List<String1> {
-        var dropdown :MutableList<String1> = mutableListOf()
-        val categorias = db.collection("Categoria").get().await()
-        for(categoria in categorias){
-            var nombre = categoria.getField<String1>("nombre").toString()
-            dropdown.add(nombre)
-        }
-        Log.d("categoria",dropdown[0])
-        return dropdown
-    }
-
-
     //Ejecutar antes de query addEventoTipoBoleto
-    suspend fun getTipoBoletoId(nombre_tipo_boleto: String1): String1 {
+    suspend fun getTipoBoletoId(nombre_tipo_boleto: String): String {
         var idTipoBoleto = db.collection("Tipo_Boleto")
             .whereEqualTo("nombre", nombre_tipo_boleto)
             .get()
@@ -555,10 +554,10 @@ class FirestoreService {
     }
 
     suspend fun addFunction(
-        eid: String1,
-        fechaFuncion: String1,
-        HoraInicio: String1,
-        HoraFin: String1
+        eid: String,
+        fechaFuncion: String,
+        HoraInicio: String,
+        HoraFin: String
     ) {
         var data = hashMapOf(
             "id_evento_fk" to eid,

@@ -1,14 +1,11 @@
 package com.example.appatemporal.framework.view
 
 
+import android.R
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
-import android.view.View
-import android.widget.Adapter
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -21,14 +18,19 @@ import com.example.appatemporal.domain.models.EventoTipoBoletoModel
 import com.example.appatemporal.domain.models.FunctionModel
 import com.example.appatemporal.framework.viewModel.AddNewEventViewModel
 import com.example.appatemporal.framework.viewModel.GetEventCategoryViewModel
-import java.text.FieldPosition
+import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.LocalTime
 import java.util.*
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
+import java.text.SimpleDateFormat
 
 
 class CreateEvent :AppCompatActivity() {
     private val viewModel: AddNewEventViewModel by viewModels()
     private val viewModelCategory: GetEventCategoryViewModel by viewModels()
+
     private lateinit var binding: ActivityCrearEventoBinding
     @RequiresApi(Build.VERSION_CODES.O)
 
@@ -46,7 +48,7 @@ class CreateEvent :AppCompatActivity() {
         val latitud = binding.LatitudEvento
         val foto = binding.UrlImagenEvento
         val video = binding.URLVideoEvento
-        val spinner = binding.SpinnerCategoria
+        val spinner = binding.TipoEvento
         val lista = listOf("Privado", "publico", "De paga", "gratis")
         val datePickerF = binding.datePicker1
         val horaInicio = binding.timePickerInicio
@@ -55,24 +57,9 @@ class CreateEvent :AppCompatActivity() {
         val submit = binding.submitBtn
         val precio=binding.precioBoletoNormal
         val cantidad=binding.maxBoletosNormales
-
+        val categoria = binding.SpinnerCategoria
         val repository = Repository(this)
         val categorias = viewModelCategory.getcategoria(repository)
-        Log.d("get", categoria.text.toString())
-
-
-        viewModelCategory.dropdownList.observe(this, androidx.lifecycle.Observer {
-            Log.d("dropdown list log", it.toString())
-            val categoryString = arrayListOf<String>()
-            for(name in it){
-                categoryString.add("${name}")
-            }
-            val myadapter = ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,categoryString)
-            myadapter.setDropDownViewResource(android.R.layout.simple_spinner_item)
-            binding.SpinnerCategoria.adapter = myadapter
-        })
-
-
 
         horaInicio.setIs24HourView(true);
         horaFin.setIs24HourView(true);
@@ -84,17 +71,32 @@ class CreateEvent :AppCompatActivity() {
             val msg = "You Selected: $day/$month/$year"
         }
 
+
+
+        viewModelCategory.dropdownList.observe(this, androidx.lifecycle.Observer {
+            Log.d("dropdown list log", it.toString())
+            val categoryString = arrayListOf<String>()
+            for(name in it){
+                categoryString.add("${name}")
+            }
+            val myadapter = ArrayAdapter<String>(this, R.layout.simple_spinner_item,categoryString)
+            myadapter.setDropDownViewResource(android.R.layout.simple_spinner_item)
+            binding.SpinnerCategoria.adapter = myadapter
+        })
+
         submit.setOnClickListener {
             if((nombre.text.toString().isNotEmpty())&&(descripcion.text.toString().isNotEmpty())&&(ciudad.text.toString().isNotEmpty())&&(estado.text.toString().isNotEmpty())&&(ubicacion.text.toString().isNotEmpty())&&(direccion.text.toString().isNotEmpty())&&(longitud.text.toString().isNotEmpty())&&(latitud.text.toString().isNotEmpty())&&(foto.text.toString().isNotEmpty())&&(video.text.toString().isNotEmpty())&&(cantidad.text.toString().isNotEmpty())&&(precio.text.toString().isNotEmpty())){
                 Log.d("El nombre del evento es ", "Kiubo" + nombre.text.toString())
                 val activo = 1
                 val divisa = "Pesos"
-                val fecha_Creado = LocalTime.now().toString()
-                val fecha_modificado = LocalTime.now().toString()
+                val current = LocalDateTime.now()
+                val formattedDate: String = current.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))
+                val fecha_Creado = formattedDate
+                val fecha_modificado = formattedDate
                 val evento = EventModel(nombre.text.toString(), descripcion.text.toString(),ciudad.text.toString(),estado.text.toString(), ubicacion.text.toString(),direccion.text.toString(),longitud.text.toString(),latitud.text.toString(),foto.text.toString(),video.text.toString(),activo,divisa,fecha_Creado,fecha_modificado)
                 Log.d("El último ticket es:", evento.ciudad)
                 //val artista = findViewById<EditText>(R.id.Artista_Evento)
-                val repository = Repository(this)
+
 
                 val hourI = horaInicio.hour
                 val minuteI = horaInicio.minute
@@ -110,15 +112,35 @@ class CreateEvent :AppCompatActivity() {
                 val hora_stringF="$hoursF:$minF"
 
                 val year = datePickerF.year
-                var month = datePickerF.month
+                var monti = datePickerF.month
                 val day = datePickerF.dayOfMonth
-                month = month + 1
-                val fecha="$day/$month/$year"
+                monti = monti + 1
+
+                val monthF = if (monti < 10) "0" + monti else monti
+                val dayF = if (day < 10) "0" + day else day
+
+
+                val fecha="$dayF/$monthF/$year"
                 val funcion=FunctionModel(fecha,hora_stringI,hora_stringF)
-                val boletos=EventoTipoBoletoModel("","kslo4Sje5mdsCP3UtzCr",precio.text.toString().toInt(),cantidad.text.toString().toInt())
+                val boletos=EventoTipoBoletoModel("","poPGYEajaiBurbjohUa3",cantidad.text.toString().toInt(),precio.text.toString().toInt())
                 val userUid = getSharedPreferences("userUid", Context.MODE_PRIVATE)
                     .getString("userUid", "").toString()
-                viewModel.AddEvent(evento, repository, artista.text.toString(),funcion, userUid, boletos)
+
+                val sdf = SimpleDateFormat("dd/MM/yyyy")
+                val currentI = LocalDate.now()
+                val formattedDateI: String = currentI.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+                val firstDate: Date = sdf.parse(fecha)
+                val secondDate: Date = sdf.parse(formattedDateI)
+
+                val cmp = firstDate.compareTo(secondDate)
+
+                if(cmp > 0){
+                    viewModel.AddEvent(evento, repository, artista.text.toString(),funcion, userUid, boletos, categoria.getSelectedItem().toString())
+                }
+                else{
+                    Toast.makeText(applicationContext, "La fecha elegida es anterior a la actual.", Toast.LENGTH_SHORT).show()
+                }
+
             }
             else{
                 Toast.makeText(applicationContext, "Llena todos los campos antes de continuar.", Toast.LENGTH_SHORT).show()

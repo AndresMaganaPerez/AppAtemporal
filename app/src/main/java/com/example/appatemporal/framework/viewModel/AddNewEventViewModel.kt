@@ -12,9 +12,9 @@ import kotlinx.coroutines.launch
 
 class AddNewEventViewModel:ViewModel() {
     private val requirement = AddEventRequirement()
-    fun AddEvent(event: EventModel, repository: Repository, artista: String, funcion: FunctionModel, userUid: String,boletos: EventoTipoBoletoModel) {
+    fun AddEvent(event: EventModel, repository: Repository, artista: String, funcion: FunctionModel, userUid: String,boletos: EventoTipoBoletoModel, cid:String) {
         viewModelScope.launch {
-            requirement.AddEvent(event, repository, artista, funcion, userUid, boletos)
+            requirement.AddEvent(event, repository, artista, funcion, userUid, boletos, cid)
         }
     }
     fun AddFunction(event: String, repository: Repository, fechaFuncion: String, HoraInicio:String, HoraFin:String) {

@@ -10,8 +10,8 @@ import com.example.appatemporal.framework.view.AddArtist
 import java.util.*
 
 class AddEventRequirement {
-    suspend fun AddEvent(event:EventModel,repository:Repository, artista: String, funcion: FunctionModel, userUid: String,boletos: EventoTipoBoletoModel) {
-        repository.addEvent2(event, artista, funcion, userUid, boletos)
+    suspend fun AddEvent(event:EventModel,repository:Repository, artista: String, funcion: FunctionModel, userUid: String,boletos: EventoTipoBoletoModel, cid: String) {
+        repository.addEvent2(event, artista, funcion, userUid, boletos, cid)
 }
     suspend fun AddFunction(event: String, repository: Repository, fechaFuncion: String, HoraInicio:String, HoraFin:String) {
         repository.addFunction(event, fechaFuncion, HoraInicio, HoraFin)

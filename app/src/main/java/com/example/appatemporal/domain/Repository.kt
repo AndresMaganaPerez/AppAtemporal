@@ -81,8 +81,8 @@ class Repository(context: Context) {
         firestoreAPI.addFailure(title, description)
     }
 
-    suspend fun addEvent2(event: EventModel, artista: String, funcion: FunctionModel,userUid: String,boletos: EventoTipoBoletoModel) {
-        firestoreAPI.addEvent2(event, artista, funcion, userUid, boletos)
+    suspend fun addEvent2(event: EventModel, artista: String, funcion: FunctionModel,userUid: String,boletos: EventoTipoBoletoModel, cid: String) {
+        firestoreAPI.addEvent2(event, artista, funcion, userUid, boletos, cid)
     }
     suspend fun addFunction(eid: String, fechaFuncion: String, HoraInicio:String, HoraFin:String){
         firestoreAPI.addFunction(eid,fechaFuncion,HoraInicio,HoraFin)
