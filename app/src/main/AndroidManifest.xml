@@ -131,8 +131,10 @@
             android:name=".framework.view.OTPActivity"
             android:exported="false" />
         <activity
+
             android:name=".framework.view.RegisterActivity"
             android:exported="true" />
+
         <activity
             android:name=".framework.view.TermsCond"
             android:exported="true">
@@ -148,6 +150,11 @@
         </activity>
         <activity
             android:name=".framework.view.CreateEvent"
+            android:exported="true">
+            <!-- Aqui estaba el Intent Filter originalmente-->
+        </activity>
+        <activity
+            android:name=".framework.view.CreateFunction"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

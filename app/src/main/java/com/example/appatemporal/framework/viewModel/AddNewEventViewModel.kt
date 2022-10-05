@@ -6,6 +6,7 @@ import com.example.appatemporal.data.AddEventRequirement
 import com.example.appatemporal.domain.Repository
 import com.example.appatemporal.domain.models.EventModel
 import com.example.appatemporal.domain.models.FunctionModel
+import com.example.appatemporal.framework.view.AddArtist
 import kotlinx.coroutines.launch
 
 class AddNewEventViewModel:ViewModel() {
@@ -18,6 +19,11 @@ class AddNewEventViewModel:ViewModel() {
     fun AddFunction(event: String, repository: Repository, fechaFuncion: String, HoraInicio:String, HoraFin:String) {
         viewModelScope.launch {
             requirement.AddFunction(event, repository, fechaFuncion, HoraInicio,HoraFin)
+        }
+    }
+    fun AddArtista(eid:String, repository: Repository, artista: String) {
+        viewModelScope.launch {
+            requirement.AddArtista(eid, repository, artista)
         }
     }
 

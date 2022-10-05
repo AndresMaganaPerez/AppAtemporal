@@ -44,7 +44,6 @@ class CreateEvent :AppCompatActivity() {
         val horaFin = binding.timePickerFin
         val artista= binding.ArtistaEvento
         val submit = binding.submitBtn
-        val categoria = binding.CategoriaEvento
 
 
         horaInicio.setIs24HourView(true);

@@ -1,12 +1,15 @@
 package com.example.appatemporal.framework.view
 
 
+import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 
 import androidx.appcompat.app.AppCompatActivity
 import com.example.appatemporal.R
+import com.example.appatemporal.databinding.ActivityAddArtistaBinding
 import com.example.appatemporal.databinding.ActivityCreateFunctionBinding
 import com.example.appatemporal.domain.Repository
 import com.example.appatemporal.framework.viewModel.AddNewEventViewModel
@@ -17,14 +20,17 @@ class CreateFunction : AppCompatActivity() {
 
     private lateinit var binding: ActivityCreateFunctionBinding
     private val viewModel: AddNewEventViewModel by viewModels()
+    @RequiresApi(Build.VERSION_CODES.O)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityCreateFunctionBinding.inflate(layoutInflater)
         val datePickerF = binding.datePicker1
         val horaInicio = binding.timePickerInicio
         val horaFin = binding.timePickerFin
         val btn = binding.submitBtn
-        setContentView(R.layout.activity_create_function)
+        setContentView(binding.root)
+        val myExtras : Bundle? = intent.extras
 
         horaInicio.setIs24HourView(true);
         horaFin.setIs24HourView(true);
@@ -57,7 +63,7 @@ class CreateFunction : AppCompatActivity() {
             val day = datePickerF.dayOfMonth
             month = month + 1
             val fecha="$day/$month/$year"
-            val eid:String=""
+            val eid:String="41RrBlaCdfqkMTDmMcT7"
             viewModel.AddFunction(eid,repository,fecha,hora_stringI,hora_stringF)
         }
 
