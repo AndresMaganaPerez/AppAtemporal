@@ -612,7 +612,7 @@ class FirestoreService {
         var idtipoboleto=GetTipoBoleto(tipoboleto)
         var data = hashMapOf(
             "id_evento_fk" to eid,
-            "id_tipo_boleto_fk" to idtipoboleto,
+            "id_tipo_boleto_fk" to idtipoboleto.documents[0].id,
             "precio" to precio,
             "max_boletos" to max_boletos
         )
