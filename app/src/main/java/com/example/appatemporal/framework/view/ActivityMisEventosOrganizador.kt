@@ -24,7 +24,7 @@ class ActivityMisEventosOrganizador : AppCompatActivity() {
         binding = ActivityMisEventosOrganizadorBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val userIdTemp = "hakKAJSDFLK1284ALKSFnfk"
+        val userIdTemp = "qVzK32OHDYOUtK1YsQbh"
         initRecyclerView(getOrganizerEventViewModel, userIdTemp, repository)
 
         binding.addEventBtn.setOnClickListener{

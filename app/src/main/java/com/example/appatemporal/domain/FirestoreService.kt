@@ -584,7 +584,7 @@ class FirestoreService {
         // Se buscan los eventos relacionados con el usuario que llega como parámetro.
         var usuarioEventos : QuerySnapshot =
             db.collection("Usuario_Evento")
-                .whereEqualTo("id_usuario",uid)
+                .whereEqualTo("id_usuario_fk",uid)
                 .get()
                 .await()
 
@@ -592,7 +592,7 @@ class FirestoreService {
         for (usuarioEvento in usuarioEventos){
             var eventos : QuerySnapshot =
                 db.collection("Evento")
-                    .whereEqualTo(FieldPath.documentId(),usuarioEvento.data?.get("id_evento"))
+                    .whereEqualTo(FieldPath.documentId(),usuarioEvento.data?.get("id_evento_fk"))
                     .get()
                     .await()
             for (evento in eventos){
