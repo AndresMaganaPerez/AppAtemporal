@@ -10,6 +10,7 @@ import com.example.appatemporal.domain.models.GetTicketModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import com.example.appatemporal.domain.models.UserModel
+import com.example.appatemporal.framework.view.AddArtist
 import com.google.firebase.firestore.DocumentSnapshot
 import java.util.*
 
