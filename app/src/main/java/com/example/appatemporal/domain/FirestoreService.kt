@@ -596,13 +596,20 @@ class FirestoreService {
             }
             .await()
     }
+    suspend fun GetTipoBoleto(nombre_tb: String): QuerySnapshot {
+        return db.collection("Tipo_Boleto")
+            .whereEqualTo("nombre", nombre_tb)
+            .get()
+            .await()
+    }
 
     suspend fun addEventoTipoBoleto(
         eid: String,
-        idtipoboleto: String,
+        tipoboleto: String,
         precio: Int,
         max_boletos: Int
     ) {
+        var idtipoboleto=GetTipoBoleto(tipoboleto)
         var data = hashMapOf(
             "id_evento_fk" to eid,
             "id_tipo_boleto_fk" to idtipoboleto,
@@ -618,7 +625,6 @@ class FirestoreService {
                 )
             }
             .await()
-
     }
 
     //Ejecutar antes de query addEventoTipoBoleto

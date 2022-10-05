@@ -21,7 +21,7 @@
         android:layout_marginTop="100dp">
 
         <TextView
-            android:id="@+id/title_añadir_categoria"
+            android:id="@+id/title_añadir_tb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -51,13 +51,13 @@
 
             <Spinner
                 android:layout_gravity="left"
-                android:id="@+id/SpinnerCategoria"
+                android:id="@+id/SpinnerTB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"></Spinner>
 
         </LinearLayout>
         <EditText
-            android:id="@+id/maxBoletosNormales"
+            android:id="@+id/maxBoletos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -74,7 +74,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
-            android:id="@+id/precioBoletoNormal"
+            android:id="@+id/precioBoleto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -91,7 +91,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/btnCategoria"
+            android:id="@+id/btnTB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Añadir categoria"

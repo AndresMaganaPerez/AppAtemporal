@@ -92,6 +92,10 @@ class Repository(context: Context) {
         firestoreAPI.addEventoCategoria(eid, idCategoria)
     }
 
+    suspend fun AddEventoTipoBoleto(eid: String, tipoboleto: String, precio: Int, cantidad: Int){
+        firestoreAPI.addEventoTipoBoleto(eid, tipoboleto, precio, cantidad)
+    }
+
     suspend fun addArtista(eid: String, nombre_artista: String){
         firestoreAPI.addArtista(eid, nombre_artista)
     }

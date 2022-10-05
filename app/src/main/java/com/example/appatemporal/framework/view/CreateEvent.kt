@@ -119,7 +119,7 @@ class CreateEvent :AppCompatActivity() {
 
                 val fecha="$dayF/$monthF/$year"
                 val funcion=FunctionModel(fecha,hora_stringI,hora_stringF)
-                val boletos=EventoTipoBoletoModel("","poPGYEajaiBurbjohUa3",cantidad.text.toString().toInt(),precio.text.toString().toInt())
+                val boletos=EventoTipoBoletoModel("","General",cantidad.text.toString().toInt(),precio.text.toString().toInt())
                 val userUid = getSharedPreferences("userUid", Context.MODE_PRIVATE)
                     .getString("userUid", "").toString()
 
