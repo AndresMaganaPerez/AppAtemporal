@@ -501,7 +501,7 @@ class FirestoreService {
     }
 
     suspend fun getRatingByEvent(eid: String) : MutableList<Float> {
-        //[0]acumulado,[1]counTotal,[2]count0,[3]count1,[4]count2,
+        // [0]acumulado,[1]counTotal,[2]count0,[3]count1,[4]count2,
         // [5]count3,[6]count4, [7]count5, [8]ratingProm
         var listRatings = mutableListOf<Float>(0f,0f,0f,0f,0f,0f,0f,0f,0f)
         var emptyRatings = mutableListOf<Float>(0f,0f,0f,0f,0f,0f,0f,0f,0f)
@@ -614,9 +614,9 @@ class FirestoreService {
                 result.add(newEvent)
             }
 
-            //Log.d("LOG ticket",ticket.toString())
+            Log.d("LOG Evento",result.toString())
         }
-        //Log.d("LOG aqui",result.isEmpty().toString())
+        Log.d("LOG Empty Event",result.isEmpty().toString())
         return result
     }
 

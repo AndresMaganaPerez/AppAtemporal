@@ -50,7 +50,7 @@ class ActivityVisualizarEventoOrganizador : AppCompatActivity() {
             startActivity(intent)*/
         }
 
-        initRecyclerView(getFunctionOrganizerViewModel, idUser, idEvento.toString(), repository)
+        initRecyclerView(getFunctionOrganizerViewModel, idEvento.toString(), repository)
 
         binding.navbar.homeIcon.setOnClickListener {
             finish()
@@ -161,7 +161,7 @@ class ActivityVisualizarEventoOrganizador : AppCompatActivity() {
             }
         })*/
     }
-    private fun initRecyclerView(getFunctionOrganizerViewModel: GetFunctionOrganizerViewModel, userIdTemp: String, eventId: String, repository: Repository){
+    private fun initRecyclerView(getFunctionOrganizerViewModel: GetFunctionOrganizerViewModel, eventId: String, repository: Repository){
         getFunctionOrganizerViewModel.getFunctionOrganizer(eventId, repository)
 
         // Log.d("LOG Activity",getOrganizerEventViewModel.getOrganizerEvent(userIdTemp, repository).toString())

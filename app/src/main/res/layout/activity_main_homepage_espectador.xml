@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Eventos del Mes"
+            android:textStyle="bold"
+            android:textColor="@color/grayBtn"
+            android:textSize="24sp"
+            android:id="@+id/ORVHorizontal_1"
+            android:layout_margin="16dp">
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/RVHorizontal"
+            android:layout_below="@id/ORVHorizontal_1">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/HorizontalView">
+            </androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/RVVertical"
+            android:layout_below="@id/RVHorizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Todos los Eventos"
+                android:textStyle="bold"
+                android:textColor="@color/grayBtn"
+                android:textSize="24sp"
+                android:id="@+id/ORVVertical_1"
+                android:layout_margin="16dp">
+
+            </TextView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/VerticalView"
+                android:layout_below="@+id/ORVVertical_1">
+            </androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <include
+                layout="@layout/navbar" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>

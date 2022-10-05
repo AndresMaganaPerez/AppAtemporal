@@ -18,7 +18,7 @@ class GetOrganizerEventViewModel : ViewModel() {
     fun getOrganizerEvent(uid: String, repository: Repository){
         viewModelScope.launch {
             val eventAux = getOrganizerEventRequirement(uid, repository)
-            // Log.d("LOG ViewModel", getUserTicketRequirement(uid, repository).toString())
+            Log.d("LOG Funcion ViewModel", getOrganizerEventRequirement(uid, repository).toString())
             event.postValue(eventAux)
         }
     }
