@@ -39,8 +39,15 @@
                         android:id="@+id/Tarjeta_VEE"
                         android:layout_width="match_parent"
                         android:layout_height="700px"
-                        android:background="@drawable/djbackground"
                         android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imageCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/img_background_2">
+
+                        </ImageView>
 
                         <ImageView
                             android:layout_width="match_parent"
@@ -618,10 +625,185 @@
 
                         </androidx.cardview.widget.CardView>
 
+                        <androidx.cardview.widget.CardView
+                            xmlns:android="http://schemas.android.com/apk/res/android"
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:background="@drawable/gradent_horizontal"
+                            app:cardCornerRadius="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginLeft="16dp">
+
+                            <LinearLayout
+                                android:id="@+id/addArtBtn"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:background="@drawable/gradent_horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:id="@+id/linear_text2"
+                                    android:layout_weight="0.2">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="16dp"
+                                        android:text="Añadir Artista"
+                                        android:id="@+id/addArtBtnTitle"
+                                        android:textColor="#D2DDE5"
+                                        android:textStyle="bold"
+                                        android:textSize="16sp"
+                                        android:layout_gravity="center">
+
+                                    </TextView>
+
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.8"
+                                    android:gravity="center">
+
+                                    <ImageView
+                                        android:id="@+id/editIcon2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/add_circle_outline_white"
+                                        >
+                                    </ImageView>
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            xmlns:android="http://schemas.android.com/apk/res/android"
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:background="@drawable/gradent_horizontal"
+                            app:cardCornerRadius="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginLeft="16dp">
+
+                            <LinearLayout
+                                android:id="@+id/addCatBtn"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:background="@drawable/gradent_horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:id="@+id/linear_text3"
+                                    android:layout_weight="0.2">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="16dp"
+                                        android:text="Añadir Categoría"
+                                        android:id="@+id/addCatBtnTitle"
+                                        android:textColor="#D2DDE5"
+                                        android:textStyle="bold"
+                                        android:textSize="16sp"
+                                        android:layout_gravity="center">
+
+                                    </TextView>
+
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.8"
+                                    android:gravity="center">
+
+                                    <ImageView
+                                        android:id="@+id/editIcon3"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/add_circle_outline_white"
+                                        >
+                                    </ImageView>
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            xmlns:android="http://schemas.android.com/apk/res/android"
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:background="@drawable/gradent_horizontal"
+                            app:cardCornerRadius="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginLeft="16dp">
+
+                            <LinearLayout
+                                android:id="@+id/addTBBtn"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:background="@drawable/gradent_horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:id="@+id/linear_text4"
+                                    android:layout_weight="0.2">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="16dp"
+                                        android:text="Añadir Tipo Boleto"
+                                        android:id="@+id/addTBBtnTitle"
+                                        android:textColor="#D2DDE5"
+                                        android:textStyle="bold"
+                                        android:textSize="16sp"
+                                        android:layout_gravity="center">
+
+                                    </TextView>
+
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.8"
+                                    android:gravity="center">
+
+                                    <ImageView
+                                        android:id="@+id/editIcon4"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/add_circle_outline_white"
+                                        >
+                                    </ImageView>
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/funcionesOrganizadorRV"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="24dp"
                             android:layout_marginBottom="100dp"/>
 
                     </LinearLayout>

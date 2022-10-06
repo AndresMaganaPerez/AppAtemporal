@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.appatemporal.R
+import com.example.appatemporal.data.constants.Constantes.Companion.idEvento
 import com.example.appatemporal.databinding.ActivityVisualizarEventoOrganizadorBinding
 import com.example.appatemporal.domain.Repository
 import com.example.appatemporal.framework.viewModel.GetFunctionOrganizerViewModel
@@ -16,49 +17,20 @@ import com.example.appatemporal.framework.viewModel.GraphicsEventDetailViewModel
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import com.squareup.picasso.Picasso
 
 class ActivityVisualizarEventoOrganizador : AppCompatActivity() {
 
     private lateinit var binding : ActivityVisualizarEventoOrganizadorBinding
     private val graphicsEventDetailViewModel : GraphicsEventDetailViewModel by viewModels()
     private val getFunctionOrganizerViewModel : GetFunctionOrganizerViewModel by viewModels()
-    private lateinit var repository: Repository
+    val repository = Repository(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // setContentView(R.layout.activity_visualizar_evento_organizador)
         binding = ActivityVisualizarEventoOrganizadorBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val idUser = "qVzK32OHDYOUtK1YsQbh"
-        val idEvento = intent.getStringExtra("idEvento")
-        val nombre = intent.getStringExtra("nombre")
-        val descripcion = intent.getStringExtra("descripcion")
-        val lugar = intent.getStringExtra("ubicacion")
-        val direccion = intent.getStringExtra("direccion")
-        val ciudad = intent.getStringExtra("ciudad")
-        val estado = intent.getStringExtra("estado")
-
-        /* funcionPorEvento.putExtra("nombre", Nombre)
-            funcionPorEvento.putExtra("descripcion", Descripcion)
-            funcionPorEvento.putExtra("ubicacion", Ubicacion)
-            funcionPorEvento.putExtra("direccion", Direccion)
-            funcionPorEvento.putExtra("ciudad", Ciudad)
-            funcionPorEvento.putExtra("estado", Estado)
-            funcionPorEvento.putExtra("idEvento", IdEvento) */
-
-        binding.NombreArtistaVEE.text = nombre
-        binding.DescripcionEvento.text = descripcion
-        binding.LugarVEE.text = lugar
-        binding.DirecionVEE.text = direccion
-        binding.CiudadVEE.text = ciudad + ", " + estado
-
-        binding.addFunBtn.setOnClickListener{
-            /*val intent = Intent(this, ) // TODO: Agregar clase que lleva a formulario de función
-            startActivity(intent)*/
-        }
-
-        initRecyclerView(getFunctionOrganizerViewModel, idEvento.toString(), repository)
 
         binding.navbar.homeIcon.setOnClickListener {
             finish()
@@ -78,9 +50,34 @@ class ActivityVisualizarEventoOrganizador : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val idUser = "qVzK32OHDYOUtK1YsQbh"
+        val idEvento = intent.getStringExtra("idEvento")
+        val nombre = intent.getStringExtra("nombre")
+        val descripcion = intent.getStringExtra("descripcion")
+        val lugar = intent.getStringExtra("ubicacion")
+        val direccion = intent.getStringExtra("direccion")
+        val ciudad = intent.getStringExtra("ciudad")
+        val estado = intent.getStringExtra("estado")
+        val foto_portada = intent.getStringExtra("foto_portada")
+
+        binding.NombreArtistaVEE.text = nombre
+        binding.DescripcionEvento.text = descripcion
+        binding.LugarVEE.text = lugar
+        binding.DirecionVEE.text = direccion
+        binding.CiudadVEE.text = ciudad + ", " + estado
+        Picasso.get().load(foto_portada).into(binding.imageCard)
+
+        binding.addFunBtn.setOnClickListener{
+            /*val intent = Intent(this, ) // TODO: Agregar clase que lleva a formulario de función
+            startActivity(intent)*/
+        }
+
+        initRecyclerView(getFunctionOrganizerViewModel, idEvento.toString(), repository)
+
+
         //Creación de usuario temporal
         val tempEventId : String = "DM"
-        repository = Repository(this)
+        //repository = Repository(this)
         //Llamado a funciones
         var ventasTotal : Int = 0
         var asistenciasTotal : Int = 0
