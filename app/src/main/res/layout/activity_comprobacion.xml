@@ -41,6 +41,7 @@
         android:backgroundTint="@color/acc"
         android:text="INICIA SESIÓN / REGÍSTRATE"
         android:fontFamily="@font/abel"
+        android:textColor="@color/white"
         app:cornerRadius="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

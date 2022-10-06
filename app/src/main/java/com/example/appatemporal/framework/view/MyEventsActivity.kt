@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.appatemporal.databinding.ActivityBoletoPorEventoBinding
 import com.example.appatemporal.domain.Repository
+import com.example.appatemporal.framework.view.adapters.boletosPorEventoAdapter
 import com.example.appatemporal.framework.viewModel.GetUserTicketViewModel
 
 class MyEventsActivity : AppCompatActivity() {

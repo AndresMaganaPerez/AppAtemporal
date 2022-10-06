@@ -85,7 +85,7 @@ class RegisterSale : AppCompatActivity() {
                         binding.btnRegisterSale.isEnabled = true
                         // Hacer Lógica de boton set on click listener para registrar venta
                         binding.btnRegisterSale.setOnClickListener{
-                        registerSaleViewModel.RegisterSale(idFuncion,"JsCPG2YuCgqYyZUypktB", ticketType[p2], Repository(activityContext))
+                            registerSaleViewModel.RegisterSale(idFuncion,"JsCPG2YuCgqYyZUypktB", ticketType[p2], Repository(activityContext))
                             Toast.makeText(activityContext, "Venta registrada exitósamente", Toast.LENGTH_SHORT).show()
                             registerSaleViewModel.getTicketAvailability(ticketType[p2], idEvent, idFuncion, Repository(activityContext))
                             registerSaleViewModel.ticketAvailability.observe(activityContext, Observer {

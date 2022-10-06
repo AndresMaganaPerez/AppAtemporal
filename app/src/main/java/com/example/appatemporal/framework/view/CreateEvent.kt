@@ -1,6 +1,6 @@
 package com.example.appatemporal.framework.view
 
-
+import com.example.appatemporal.domain.models.CrearEventModel
 import android.R
 import android.content.Context
 import android.os.Build
@@ -90,7 +90,7 @@ class CreateEvent :AppCompatActivity() {
                 val formattedDate: String = current.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))
                 val fecha_Creado = formattedDate
                 val fecha_modificado = formattedDate
-                val evento = EventModel(nombre.text.toString(), descripcion.text.toString(),ciudad.text.toString(),estado.text.toString(), ubicacion.text.toString(),direccion.text.toString(),longitud.text.toString(),latitud.text.toString(),foto.text.toString(),video.text.toString(),activo,divisa,fecha_Creado,fecha_modificado)
+                val evento = CrearEventModel(nombre.text.toString(), descripcion.text.toString(),ciudad.text.toString(),estado.text.toString(), ubicacion.text.toString(),direccion.text.toString(),longitud.text.toString(),latitud.text.toString(),foto.text.toString(),video.text.toString(),activo,divisa,fecha_Creado,fecha_modificado)
                 Log.d("El último ticket es:", evento.ciudad)
                 //val artista = findViewById<EditText>(R.id.Artista_Evento)
 
@@ -144,7 +144,5 @@ class CreateEvent :AppCompatActivity() {
             }
 
         }
-
-
     }
 }

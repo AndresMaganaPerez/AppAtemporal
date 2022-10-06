@@ -67,10 +67,10 @@ class OTPActivity : AppCompatActivity() {
                     binding.otpProgressBar.visibility = View.VISIBLE
                     signInWithPhoneAuthCredential(credential)
                 }else{
-                    Toast.makeText( this, "Please enter coerrect OTP", Toast.LENGTH_SHORT).show()
+                    Toast.makeText( this, "Código incorrecto", Toast.LENGTH_SHORT).show()
                 }
             }else{
-                Toast.makeText( this, "Please enter OTP", Toast.LENGTH_SHORT).show()
+                Toast.makeText( this, "Ingresa el código envíado a tu celular", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -132,15 +132,9 @@ class OTPActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     binding.otpProgressBar.visibility = View.VISIBLE
-                    Toast.makeText(this,"Authenticate Succesfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"Autenticación exitosa", Toast.LENGTH_SHORT).show()
 
                     val uid: String = auth.currentUser?.uid.toString()
-
-                    val userUidSharedPref = getSharedPreferences("userUid", Context.MODE_PRIVATE)
-                    var sharedPrefEdit = userUidSharedPref.edit()
-                    sharedPrefEdit.putString("userUid", uid)
-                    sharedPrefEdit.putBoolean("login", true)
-                    sharedPrefEdit.apply()
 
                     val repository = Repository(this)
                     otpViewModel.verifyUser(uid, repository)
@@ -148,15 +142,23 @@ class OTPActivity : AppCompatActivity() {
                     otpViewModel.userExists.observe(this, Observer {
                         val existence = it as Boolean
                         if (existence) {
+                            val userUidSharedPref = getSharedPreferences("user", Context.MODE_PRIVATE)
+                            var userSharedPrefEdit = userUidSharedPref.edit()
+                            userSharedPrefEdit.putString("userUid", uid)
+                            userSharedPrefEdit.apply()
                             otpViewModel.getUser(uid, repository)
                             otpViewModel.userData.observe(this, Observer {
                                 val localDbUser = it
                                 otpViewModel.addUserLocalDB(localDbUser, repository)
-                                val intent = Intent(this, Main::class.java)
+                                userSharedPrefEdit.putString("rol", it.rol)
+                                userSharedPrefEdit.apply()
+                                val intent = Intent(this, SupportActivity::class.java)
                                 startActivity(intent)
+
                             })
                         } else {
                             val intent = Intent(this, RegisterActivity::class.java)
+                            intent.putExtra("userUid", uid)
                             startActivity(intent)
                         }
                     })
@@ -165,7 +167,7 @@ class OTPActivity : AppCompatActivity() {
                     Log.d("TAG","SignInWithPhoneAuthCredential: ${task.exception.toString()}")
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
                         // The verification code entered was invalid
-                         Log.d("TAG","Incorrect SMS")
+                         Log.d("TAG","SMS Incorrecto")
                     }
                     // Update UI
                 }

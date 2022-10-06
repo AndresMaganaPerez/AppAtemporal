@@ -1,184 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".framework.view.ConsultarBoleto"
-    android:background="@color/background">
+    android:background="@color/dark"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <include
+        android:id="@+id/header"
+        layout="@layout/header"
+        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        app:layout_constraintVertical_bias="0"/>
+
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="600dp"
+        app:layout_constraintBottom_toTopOf="@id/navbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintVertical_bias="0.0">
 
-
-        <include android:id="@+id/header"
-            layout="@layout/header"
-            android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0" />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="MissingConstraints">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="280dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/img_background"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.35"
-                android:background="#90000000"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:id="@+id/Nombre_Evento_Boleto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Nombre del evento"
-                    android:textAlignment="center"
-                    android:textColor="@color/yellow"
-                    android:textSize="30dp" />
-
-                <TextView
-                    android:id="@+id/Fecha_Evento"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:autoSizeTextType="uniform"
-                    android:text="Fecha del evento"
-                    android:textAlignment="center"
-                    android:textColor="@color/grayBtn"
-                    android:textSize="25dp" />
-
-
-                <TextView
-                    android:id="@+id/Lugar_Evento"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Lugar en donde estara el evento"
-                    android:textAlignment="center"
-                    android:textColor="@color/grayBtn"
-                    android:textSize="20dp" />
-
-                <TextView
-                    android:id="@+id/Direccion_evento"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Direccion del evento"
-                    android:textAlignment="center"
-                    android:textColor="@color/grayBtn"
-                    android:textSize="20dp" />
-
-                <TextView
-                    android:id="@+id/Estado_Evento"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Estado de la republica"
-                    android:textAlignment="center"
-                    android:textColor="@color/grayBtn"
-                    android:textSize="15dp" />
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="61dp"
-                        android:layout_height="61dp"
-                        android:src="@drawable/ic_baseline_share_24">
-                    </ImageView>
-
-
-                    <ImageView
-                        android:layout_width="61dp"
-                        android:layout_height="61dp"
-                        android:layout_marginLeft="250dp"
-                        android:src="@drawable/ic_baseline_comment_24"></ImageView>
-                </LinearLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <RatingBar
-            android:layout_width="235dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_gravity="center"
-            android:progressTint="@color/yellow"
-            android:secondaryProgressTint="@color/yellow">
-        </RatingBar>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:background="@color/background"
-            android:backgroundTint="@color/background"
-            tools:ignore="MissingConstraints">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/carta_boleto_background"
-                ></ImageView>
-
-            <ImageView
-                android:id="@+id/CodigoQr"
-                android:layout_width="200dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:background="@null"
-                ></ImageView>
-
-        </androidx.cardview.widget.CardView>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="15dp"
-            android:gravity="center"
-            >
+            android:orientation="vertical">
+
             <androidx.cardview.widget.CardView
-                android:layout_width="270dp"
-                android:layout_height="270dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="MissingConstraints">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="280dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/img_background" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.35"
+                    android:background="#90000000"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/Nombre_Evento_Boleto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre del evento"
+                        android:textAlignment="center"
+                        android:textColor="@color/yellow"
+                        android:textSize="30dp" />
+
+                    <TextView
+                        android:id="@+id/Fecha_Evento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:autoSizeTextType="uniform"
+                        android:text="Fecha del evento"
+                        android:textAlignment="center"
+                        android:textColor="@color/grayBtn"
+                        android:textSize="25dp" />
+
+
+                    <TextView
+                        android:id="@+id/Lugar_Evento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Lugar en donde estara el evento"
+                        android:textAlignment="center"
+                        android:textColor="@color/grayBtn"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/Direccion_evento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Direccion del evento"
+                        android:textAlignment="center"
+                        android:textColor="@color/grayBtn"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/Estado_Evento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Estado de la republica"
+                        android:textAlignment="center"
+                        android:textColor="@color/grayBtn"
+                        android:textSize="15dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivShareEvent"
+                            android:layout_width="61dp"
+                            android:layout_height="61dp"
+                            android:src="@drawable/ic_baseline_share_24"></ImageView>
+
+
+                        <!--                        <ImageView-->
+                        <!--                            android:layout_width="61dp"-->
+                        <!--                            android:layout_height="61dp"-->
+                        <!--                            android:layout_marginLeft="250dp"-->
+                        <!--                            android:src="@drawable/ic_baseline_comment_24"></ImageView>-->
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <RatingBar
+                android:id="@+id/ratingbar"
+                android:layout_width="235dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:numStars="5"
+                android:progressTint="@color/yellow"
+                android:secondaryProgressTint="@color/yellow"
+                android:stepSize="1"></RatingBar>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:background="@color/background"
                 android:backgroundTint="@color/background"
                 tools:ignore="MissingConstraints">
+
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:src="@drawable/carta_boleto_background"/>
+                    android:src="@drawable/carta_boleto_background"></ImageView>
 
+                <ImageView
+                    android:id="@+id/CodigoQr"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@null"></ImageView>
 
             </androidx.cardview.widget.CardView>
-        </LinearLayout>
-    </LinearLayout>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <include
-            android:id="@+id/navbar" layout="@layout/navbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Deja un comentario"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
+
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+                <EditText
+                    android:id="@+id/etComment"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+                <ImageButton
+                    android:id="@+id/sendIcon"
+                    android:layout_marginLeft="-60dp"
+                    style="?android:buttonBarButtonStyle"
+                    android:paddingBottom="5dp"
+                    android:src="@drawable/ic_baseline_send_24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <include
+        layout="@layout/navbar"
+        app:layout_constraintVertical_bias="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/navbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

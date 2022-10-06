@@ -10,8 +10,6 @@
     android:elevation="10dp"
     app:cardCornerRadius="10dp">
 
-
-
     <View
         android:id="@+id/viewColorTag"
         android:layout_width="match_parent"

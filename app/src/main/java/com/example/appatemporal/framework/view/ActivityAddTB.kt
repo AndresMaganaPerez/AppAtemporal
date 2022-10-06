@@ -27,7 +27,7 @@ class ActivityAddTB : AppCompatActivity() {
         val cantidad=binding.maxBoletos
         setContentView(binding.root)
 
-        val eid = "E7d0G1hSROlXm7aKQqwn"
+        val eid = "1Fm1ZppNqZfDBI5wdB2g"
         val repository = Repository(this)
         viewModel.getTBFilter(eid, repository)
 
@@ -44,13 +44,13 @@ class ActivityAddTB : AppCompatActivity() {
 
         btn.setOnClickListener {
             if((cantidad.text.toString().isNotEmpty())&&(precio.text.toString().isNotEmpty())){
-                    viewModel.AddEventoTipoBoleto(eid,tb.getSelectedItem().toString(), precio.text.toString().toInt(), cantidad.text.toString().toInt(),repository)
-                    var allAreaNames=arrayListOf<String>()
-                    allAreaNames.clear()
-                    val AreaAdapter = ArrayAdapter(this, R.layout.simple_spinner_item, allAreaNames)
-                    AreaAdapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
-                    binding.SpinnerTB.adapter = AreaAdapter
-                }
+                viewModel.AddEventoTipoBoleto(eid,tb.getSelectedItem().toString(), precio.text.toString().toInt(), cantidad.text.toString().toInt(),repository)
+                var allAreaNames=arrayListOf<String>()
+                allAreaNames.clear()
+                val AreaAdapter = ArrayAdapter(this, R.layout.simple_spinner_item, allAreaNames)
+                AreaAdapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+                binding.SpinnerTB.adapter = AreaAdapter
+            }
             else{
                 Toast.makeText(applicationContext, "Llena todos los campos antes de continuar.", Toast.LENGTH_SHORT).show()
             }

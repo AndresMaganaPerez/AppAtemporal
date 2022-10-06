@@ -24,8 +24,7 @@ class AcivityAddCategoria : AppCompatActivity() {
         val categoria=binding.SpinnerCategoria
         setContentView(binding.root)
 
-
-        val eid = "Nbb94T1aTzqT4RiXfmWm"
+        val eid = "1Fm1ZppNqZfDBI5wdB2g"
         val repository = Repository(this)
         viewModel.getCategoryFilter(eid, repository)
 

@@ -48,10 +48,10 @@ class PhoneActivity : AppCompatActivity() {
                     PhoneAuthProvider.verifyPhoneNumber(options)
 
                 }else{
-                    Toast.makeText(this,"Please enter correct number", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"Ingresa un número teléfonico válido", Toast.LENGTH_SHORT).show()
                 }
             }else{
-                Toast.makeText(this,"Please enter number", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"Ingresa un número telefónico", Toast.LENGTH_SHORT).show()
 
             }
         }

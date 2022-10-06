@@ -25,7 +25,7 @@ class AddArtist: AppCompatActivity() {
         btn.setOnClickListener{
             if(nombreArtista.text.toString().isNotEmpty()){
                 val repository = Repository(this)
-                val eid:String="T3boR1Xpror8LvHiBwNm"
+                val eid:String="1Fm1ZppNqZfDBI5wdB2g"
                 viewModel.AddArtista(eid,repository, nombreArtista.text.toString())
             }
             else{

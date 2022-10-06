@@ -20,6 +20,7 @@
     <color name="green">#388E3C</color>
     <color name="red">#D32F2F</color>
 
+    <color name="ratingBarEvent">#03dac5</color>
 
     <array name="random_color">
         <item name="red_400" type="color">#e84e40</item>

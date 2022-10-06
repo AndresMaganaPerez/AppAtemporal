@@ -28,8 +28,7 @@ class RegisterActivity : AppCompatActivity() {
         repository = Repository(this)
         val registerUserViewModel: RegisterUserViewModel by viewModels()
 
-        val userUid = getSharedPreferences("userUid", Context.MODE_PRIVATE)
-            .getString("userUid", "").toString()
+        val userUid = intent.getStringExtra("userUid").toString()
 
         val defaultRadioGenderBtn = binding.male.id
         val defaultRadioRoleBtn = binding.espectador.id
@@ -80,7 +79,14 @@ class RegisterActivity : AppCompatActivity() {
             if (!binding.editnameReg2.text.isNullOrEmpty() && !binding.editlnameReg2.text.isNullOrEmpty()
                 && !binding.editemailReg2.text.isNullOrEmpty() && !binding.editDateReg2.text.isNullOrEmpty()
             ) {
+                val userUidSharedPref = getSharedPreferences("user", Context.MODE_PRIVATE)
+                var userSharedPrefEdit = userUidSharedPref.edit()
+                userSharedPrefEdit.putString("userUid", userUid)
+                userSharedPrefEdit.putString("rol", role)
+                userSharedPrefEdit.apply()
+
                 Log.d("Role", role)
+
                 val user = UserModel(binding.editnameReg2.text.toString(), binding.editlnameReg2.text.toString(),
                     binding.editemailReg2.text.toString(), binding.editDateReg2.text.toString(), gender)
                 registerUserViewModel.addUser(userUid, user, role, repository)
@@ -90,7 +96,6 @@ class RegisterActivity : AppCompatActivity() {
                 registerUserViewModel.addUserLocalDB(localDbUser, repository)
 
                 val intent = Intent(this, Main::class.java)
-                intent.putExtra("userUid", userUid)
                 startActivity(intent)
             }
         }

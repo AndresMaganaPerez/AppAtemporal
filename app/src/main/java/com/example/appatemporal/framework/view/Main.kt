@@ -28,10 +28,15 @@ class Main : AppCompatActivity() {
 
         val mainViewModel : MainViewModel by viewModels()
 
-        val userUid = getSharedPreferences("userUid", Context.MODE_PRIVATE)
+        val userUid = getSharedPreferences("user", Context.MODE_PRIVATE)
                         .getString("userUid", "").toString()
 
+        val userRol = getSharedPreferences("user", Context.MODE_PRIVATE)
+                        .getString("rol", "").toString()
+
         Log.d("User Auth Successfully", userUid)
+
+        Log.d("User role", "Este es el rol del usuario: $userRol")
 
         mainViewModel.getUserLocalDB(userUid, repository)
 
@@ -46,7 +51,6 @@ class Main : AppCompatActivity() {
             val userUidSharedPref = getSharedPreferences("userUid", Context.MODE_PRIVATE)
             var sharedPrefEdit = userUidSharedPref.edit()
             sharedPrefEdit.remove("userUid")
-            sharedPrefEdit.remove("login")
             val intent = Intent(this, CheckIfLogged::class.java)
             startActivity(intent)
         }

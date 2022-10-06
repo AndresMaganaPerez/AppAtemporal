@@ -1,5 +1,7 @@
 package com.example.appatemporal.framework.view
 
+import com.example.appatemporal.domain.models.boletoPorEventoClass
+
 class boletosPorEventoProvider {
     companion object {
         val proyectoList = listOf<boletoPorEventoClass>(

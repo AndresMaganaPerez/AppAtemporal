@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.appatemporal.data.AddEventRequirement
 import com.example.appatemporal.domain.Repository
+import com.example.appatemporal.domain.models.CrearEventModel
 import com.example.appatemporal.domain.models.EventModel
 import com.example.appatemporal.domain.models.EventoTipoBoletoModel
 import com.example.appatemporal.domain.models.FunctionModel
@@ -12,7 +13,7 @@ import kotlinx.coroutines.launch
 
 class AddNewEventViewModel:ViewModel() {
     private val requirement = AddEventRequirement()
-    fun AddEvent(event: EventModel, repository: Repository, artista: String, funcion: FunctionModel, userUid: String,boletos: EventoTipoBoletoModel, cid:String) {
+    fun AddEvent(event: CrearEventModel, repository: Repository, artista: String, funcion: FunctionModel, userUid: String,boletos: EventoTipoBoletoModel, cid:String) {
         viewModelScope.launch {
             requirement.AddEvent(event, repository, artista, funcion, userUid, boletos, cid)
         }

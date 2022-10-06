@@ -1,5 +1,6 @@
 package com.example.appatemporal.framework.view
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,21 @@ class SupportActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySoporteBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.btnFAQ3.setOnClickListener{
+            val userRol = getSharedPreferences("user", Context.MODE_PRIVATE)
+                .getString("rol", "").toString()
+            if(userRol == "Espectador"){
+                val intent = Intent(this,FaqEspectador::class.java)
+                startActivity(intent)
+            } else if(userRol == "Organizador") {
+                val intent = Intent(this, FaqOrganizador::class.java)
+                startActivity(intent)
+            }else if(userRol =="Ayudante"){
+                val intent = Intent(this, FaqAyudante::class.java)
+                startActivity(intent)
+            }
+        }
 
         binding.btnContacto3.setOnClickListener {
             val intent = Intent(this, ContactInfo::class.java)
