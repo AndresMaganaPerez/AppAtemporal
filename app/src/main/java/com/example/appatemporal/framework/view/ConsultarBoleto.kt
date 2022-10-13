@@ -116,16 +116,19 @@ class ConsultarBoleto : AppCompatActivity() {
         val estado = intent.getStringExtra("estado")
         val hashQr = intent.getStringExtra("hashQr")
 
-        Log.d("hashQR LOG", hashQr.toString())
+        Log.d("hashQR LOG", hashQr.toString()) //Delete
 
-        Log.d("id evento seleccionado", idEvento.toString())
+        Log.d("id evento seleccionado", idEvento.toString()) //Delete
 
-        Log.d("hashqrValue Log", hashQr.toString())
+        Log.d("hashqrValue Log", hashQr.toString()) //Delete
 
+        /**
+         * Opens intent for Share Menu of Installed Apps in the Device. Sends a Default MSG with link with EventID.
+         */
         binding.ivShareEvent.setOnClickListener {
             val sendIntent = Intent()
             sendIntent.action = Intent.ACTION_SEND
-            sendIntent.putExtra(Intent.EXTRA_TEXT, "Checa este nuevo evento!! https://www.youtube.com/" + idEvento)
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Checa este nuevo evento!! https://www.youtube.com/" + idEvento) //Arreglar Link :V
             sendIntent.type = "text/plain"
             startActivity(Intent.createChooser(sendIntent, "send to "))
         }
@@ -169,18 +172,18 @@ class ConsultarBoleto : AppCompatActivity() {
         consultarBoletoViewModel.verifyRate(userUid, idEvento.toString(), repository)
         consultarBoletoViewModel.rateState.observe(this, Observer {
             if (it) {
-                Log.d("LogExistence rating", it.toString())
+                Log.d("LogExistence rating", it.toString()) //Delete
                 binding.ratingbar.visibility = android.view.View.INVISIBLE
                 binding.sendBtn.visibility = android.view.View.GONE
             } else {
                 consultarBoletoViewModel.getStateTicket(hashQr.toString(),userUid,repository)
                 consultarBoletoViewModel.ticketState.observe(this, Observer {
-                    Log.d("TicketState", it.toString())
+                    Log.d("TicketState", it.toString()) //Delete
                     if (it == false){
                         binding.ratingbar.visibility = android.view.View.VISIBLE
                         binding.sendBtn.visibility = android.view.View.VISIBLE
                         binding.sendBtn.setOnClickListener {
-                            Log.d("rating Log", binding.ratingbar.rating.toString())
+                            Log.d("rating Log", binding.ratingbar.rating.toString()) //Delete
                             consultarBoletoViewModel.addRating(userUid, idEvento.toString(), binding.ratingbar.rating, repository)
                             Toast.makeText(this, "El evento ha sido calificado", Toast.LENGTH_SHORT).show()
                             Handler(Looper.myLooper()!!).postDelayed(Runnable{

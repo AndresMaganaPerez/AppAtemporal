@@ -51,19 +51,46 @@ class Repository(context: Context) {
     suspend fun updateTicketValue(resulted: String) : Boolean {
         return firestoreAPI.updateTicketValue(resulted)
     }
-
+    /**
+     * Asks FireStore Service to get TicketTypes for view Dropdown.
+     *
+     * @param idEvento Event Id to get TicketTypes from.
+     *
+     * @return List -> List containing Triples, each containing TicketType Data. Name, Price, and ID.
+     */
     suspend fun getTicketDropdown(idEvento: String) : List<Triple<String, Int, String>> {
         return firestoreAPI.getTicketDropDown(idEvento)
     }
-
+    /**
+     * Asks FireStore Service to get all tickets registered to a given Function in the given event of a each type.
+     *
+     * @param idEvento Event Id to get TicketTypes from.
+     *
+     * @param idFuncion -> Function to take count from.
+     *
+     * @return List -> List containing Triples, each containing ticket count of each ticketType.
+     * EX: ID, TicketCountOfType, Maximum amount of Tickets specific Type can Have.
+     */
     suspend fun getCurrentTicketsFun(idEvento: String, idFuncion: String) : List<Triple<String, Int, Int>> {
         return firestoreAPI.currentTicketsFun(idEvento, idFuncion)
     }
 
+    /**
+     * Asks Firestore Service to Store a new Registry of A TicketSale.
+     * @param idFuncion -> FunctionID to Register Sale to.
+     * @param id_Metodo_Pago -> Payment Type Id.
+     *@param id_Tipo_Boleto -> Ticket Type to Register.
+     */
     suspend fun registerSale(idFuncion: String,id_Metodo_Pago: String,id_Tipo_Boleto: String){
         return firestoreAPI.RegisterSale(idFuncion,id_Metodo_Pago,id_Tipo_Boleto)
     }
-
+    /**
+     * Asks FireStore Service to get UID of PaymentType.
+     *
+     * @param metodoPago Event Id to get TicketTypes from.
+     *
+     * @return QuerySnapshot -> QuerySnapshot containing the ID of the PaymentType from name.
+     */
     suspend fun getMetodoPagoUid(metodoPago: String) : QuerySnapshot {
         return  firestoreAPI.getMetodoPagoId(metodoPago)
     }

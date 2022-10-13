@@ -291,7 +291,12 @@ class FirestoreService {
             .await()
         return exito
     }
-
+    /**
+     * Firestore query to get TicketTypes for Given event from Firestore Database.
+     * @param idEvent -> EventID to get TicketTypes of.
+     *
+     * @return List -> List containing Triples, each containing TicketType Data. Name, Price, and ID.
+     */
     suspend fun getTicketDropDown(idEvent: String) : List<Triple<String, Int, String>> {
         var dropDown : MutableList<Triple<String, Int, String>> = mutableListOf()
         val ticketInfo = db.collection("Evento_Tipo_Boleto")
@@ -309,7 +314,14 @@ class FirestoreService {
         }
         return dropDown
     }
-
+    /**
+     * Firestore query to get all tickets registered to a given Function in the given event of a each type. from Firestore Database,
+     * @param idEvent -> EventID to get ticketTypes of.
+     * @param idFuncion -> Function to take count from.
+     *
+     * @return List -> List containing Triples, each containing ticket count of each ticketType.
+     * EX: ID, TicketCountOfType, Maximum amount of Tickets specific Type can Have.
+     */
     suspend fun currentTicketsFun(idEvent: String, idFuncion: String) : List<Triple<String, Int, Int>> {
         val maxCountEvent: MutableList<Triple<String, Int, Int>> = mutableListOf()
         val tipoEventoBoleto = db.collection("Evento_Tipo_Boleto")
@@ -326,7 +338,13 @@ class FirestoreService {
         }
         return maxCountEvent
     }
-
+    /**
+     * Firestore query to store a new Ticket sale in the Firestore Database.
+     * @param idFuncion -> FunctionID to Register Sale to.
+     * @param id_Metodo_Pago -> Payment Type Id.
+     *@param id_Tipo_Boleto -> Ticket Type to Register.
+     *
+     */
     suspend fun RegisterSale(idFuncion: String, id_Metodo_Pago: String,id_Tipo_Boleto : String){
         var currentDate = Date()
         db.collection("Boleto")
@@ -335,6 +353,12 @@ class FirestoreService {
             .await()
     }
 
+    /**
+     * Firestore query to get all tickets registered to a given Function in the given event of a each type. from Firestore Database,
+     * @param metodoPago -> Payment Type string/Name.
+     *
+     * @return query: QuerySnapshot -> QuerySnapshot containing the Document matching the name provided.
+     */
     suspend fun getMetodoPagoId(metodoPago: String) : QuerySnapshot {
         val query = db.collection("Metodo_Pago")
             .whereEqualTo("metodo", metodoPago)

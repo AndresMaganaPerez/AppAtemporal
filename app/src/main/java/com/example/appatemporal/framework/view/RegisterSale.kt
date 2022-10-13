@@ -16,6 +16,11 @@ import com.example.appatemporal.databinding.ActivityRegisterSaleBinding
 import com.example.appatemporal.domain.Repository
 import com.example.appatemporal.framework.viewModel.RegisterSaleViewModel
 
+
+/**
+ * Class that inherits from AppCompactActivity, in charge of Displaying RegisterSale.
+ *
+ */
 class RegisterSale : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterSaleBinding
     private val registerSaleViewModel: RegisterSaleViewModel by viewModels()
@@ -24,6 +29,12 @@ class RegisterSale : AppCompatActivity() {
     private lateinit var idFuncion: String
     private val activityContext = this
     private lateinit var repository : Repository
+
+    /**
+     * Overrides function onCreate and starts the activity
+     *
+     * @param savedInstanceState: Bundle? -> Saved instance of the activity
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterSaleBinding.inflate(layoutInflater)
@@ -52,9 +63,12 @@ class RegisterSale : AppCompatActivity() {
 
         repository = Repository(this)
 
-        idEvent = "Nbb94T1aTzqT4RiXfmWm"
+        idEvent = "Nbb94T1aTzqT4RiXfmWm" //Hardcoded Event ID
         idFuncion = "ww0LP40KOfktWEE4fcDz"
 
+        /**
+         * Calls ViewModel to get TicketType Dropdown.
+         */
         registerSaleViewModel.getDropdownNames(idEvent, Repository(this))
         registerSaleViewModel.dropdownList.observe(this, Observer {
             val ticketTypeString = arrayListOf<String>()
@@ -75,19 +89,36 @@ class RegisterSale : AppCompatActivity() {
         mSpinner3.adapter = mArrayAdapter3
 
         binding.spinner2.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+            /**
+             * Overrides function onItemSelected, obtains spinner selection.
+             *
+             * @param p0: AdapterView<*>? -> Given Adapter where selection happened.
+             * @param p1: View? -> The spinner to take input from.
+             * @param p2: Int -> Index/Position of Selected Item.
+             * @param p3: Long -> ID of row.
+             */
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                /**
+                 * Calls Viewmodel to get count of tickets and max number for the ticket type. If ticket count is less than max, enable button, allowing registry.
+                 */
                 registerSaleViewModel.getTicketAvailability(ticketType[p2], idEvent, idFuncion, Repository(activityContext))
                 registerSaleViewModel.ticketAvailability.observe(activityContext, Observer {
                     if (it.first < it.second) {
                         binding.btnRegisterSale.setBackgroundColor(Color.BLUE)
                         binding.btnRegisterSale.isEnabled = true
-                        // Hacer Lógica de boton set on click listener para registrar venta
+
                         binding.btnRegisterSale.setOnClickListener{
+                            /**
+                             * Get Selected item of PaymentTypeSpinner and calls Firebase Query to register sale with given info, on button click.
+                             */
                             registerSaleViewModel.getMetodoPagoUid(binding.spinner3.selectedItem.toString(), Repository(activityContext)) { uid ->
                                 registerSaleViewModel.RegisterSale(idFuncion,uid, ticketType[p2], Repository(activityContext))
                                 Toast.makeText(activityContext, "Venta registrada exitósamente", Toast.LENGTH_SHORT).show()
                                 registerSaleViewModel.getTicketAvailability(ticketType[p2], idEvent, idFuncion, Repository(activityContext))
                                 registerSaleViewModel.ticketAvailability.observe(activityContext, Observer {
+                                    /**
+                                     * Checks ticket availability again, on button press.
+                                     */
                                     if (it.first < it.second) {
                                         binding.btnRegisterSale.setBackgroundColor(Color.BLUE)
                                         binding.btnRegisterSale.isEnabled = true
