@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="16dp"
+    app:cardElevation="0dp"
+    app:cardCornerRadius="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/NombreFuncion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradient02"
+            android:fontFamily="@font/inter"
+            android:padding="16dp"
+            android:text="Nombre Funcion"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textFontWeight="600"
+            android:backgroundTint="#33000000"
+            android:backgroundTintMode="src_atop"
+            />
+
+        <TextView
+            android:id="@+id/FechaFuncion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradient02"
+            android:fontFamily="@font/inter"
+            android:padding="16dp"
+            android:text="Fecha Funcion"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textFontWeight="600"
+            android:backgroundTint="#33000000"
+            android:backgroundTintMode="src_atop"
+            />
+
+        <TextView
+            android:id="@+id/HoraInicioFuncion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradient02"
+            android:fontFamily="@font/inter"
+            android:padding="16dp"
+            android:text="Hora Inicio"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:layout_below="@id/FechaFuncion"
+            android:textFontWeight="600"
+            android:backgroundTint="#33000000"
+            android:backgroundTintMode="src_atop"
+            />
+
+        <TextView
+            android:id="@+id/HoraFinFuncion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradient02"
+            android:fontFamily="@font/inter"
+            android:padding="16dp"
+            android:text="Hora Fin"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:layout_below="@id/HoraInicioFuncion"
+            android:textFontWeight="600"
+            android:backgroundTint="#33000000"
+            android:backgroundTintMode="src_atop"
+            />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

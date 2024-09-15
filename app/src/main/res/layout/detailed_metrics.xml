@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background">
+    <RelativeLayout
+        android:id="@+id/headerDash"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:layout_gravity = "center">
+
+        <include layout = "@layout/header"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/navbarDash"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true">
+
+        <include
+            layout="@layout/navbar"
+            android:id="@+id/navbar"
+            />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/scrollDash"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/navbarDash"
+        android:layout_below="@+id/headerDash"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:fillViewport="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/dashTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:text="'Nombre del evento'"
+                android:singleLine="false"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="1dp"
+                android:layout_height="16dp"
+                android:layout_weight="0.2"></Space>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card0"
+                android:layout_width="328dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:background="@color/background"
+                app:cardCornerRadius="15dp"
+                app:cardPreventCornerOverlap="false">
+
+                <LinearLayout
+                    android:id="@+id/chartLayout0"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/lightGray"
+                    android:orientation="vertical">
+                    >
+
+                    <TextView
+                        android:id="@+id/LeyendaGanancias"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="center"
+                        android:text="Ventas del evento:"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/profitsEvent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="center"
+                        android:text="$4000.00"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="36sp"
+                        android:textStyle="italic" />
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <Space
+                android:layout_width="1dp"
+                android:layout_height="16dp"
+                android:layout_weight="0.2"></Space>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card1"
+                android:layout_width="328dp"
+                android:layout_height="240dp"
+                android:layout_gravity="center"
+                app:cardCornerRadius="15dp"
+                app:cardPreventCornerOverlap="false">
+
+                <LinearLayout
+                    android:id="@+id/chartLayout1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/lightGray"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/LeyendaPMBarChart"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="center"
+                        android:text="Boletos por metodo de pago:"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/PMLinechart"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+
+                    </com.github.mikephil.charting.charts.BarChart>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <Space
+                android:layout_width="1dp"
+                android:layout_height="16dp"
+                android:layout_weight="0.2"></Space>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card2"
+                android:layout_width="328dp"
+                android:layout_height="240dp"
+                android:layout_gravity="center"
+                app:cardCornerRadius="15dp"
+                app:cardPreventCornerOverlap="false">
+
+                <LinearLayout
+                    android:id="@+id/chartLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/lightGray"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/Leyanda_TTASLinechart"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="center"
+                        android:text="Ventas y asistencias por tipos de boleto:"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/TTASLinechart"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+
+                    </com.github.mikephil.charting.charts.BarChart>
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <Space
+                android:layout_width="1dp"
+                android:layout_height="16dp"
+                android:layout_weight="0.2"></Space>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card3"
+                android:layout_width="328dp"
+                android:layout_height="240dp"
+                android:layout_gravity="center"
+                app:cardCornerRadius="15dp"
+                app:cardPreventCornerOverlap="false">
+
+                <LinearLayout
+                    android:id="@+id/chartLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/lightGray"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/Leyenda_RPMchart"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="center"
+                        android:text="Ventas por método de pago:"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/RPMHorizontalBarChart"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+                    </com.github.mikephil.charting.charts.HorizontalBarChart>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <Space
+                android:layout_width="1dp"
+                android:layout_height="32dp"
+                android:layout_weight="0.2"></Space>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,860 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".framework.view.ActivityVisualizarEventoOrganizador"
+    android:orientation="vertical"
+    android:background="#302E3B">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <include
+            layout="@layout/header"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id = "@+id/header">
+        </include>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <RelativeLayout
+                        android:id="@+id/Tarjeta_VEE"
+                        android:layout_width="match_parent"
+                        android:layout_height="700px"
+                        android:background="@drawable/djbackground"
+                        android:orientation="horizontal">
+
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/Imagen_VEE"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/djbackground">
+                            </ImageView>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#80000000"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/NombreEvento"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="8dp"
+                                    android:gravity="center"
+                                    android:text="Ludovico Einaudi"
+                                    android:textColor="@color/yellow"
+                                    android:textSize="24sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/Ubicacion"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:layout_marginBottom="15dp"
+                                    android:gravity="center"
+                                    android:text="Miércoles 14 de noviembre"
+                                    android:textColor="@color/grayBtn"
+                                    android:textSize="24sp"
+                                    android:textStyle="bold" />
+
+
+                                <TextView
+                                    android:id="@+id/DireccionVEE"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:gravity="center"
+                                    android:text="Av. 5 de Febrero #398"
+                                    android:textColor="@color/grayBtn"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/CiudadEstadoVEE"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:gravity="center"
+                                    android:text="Querétaro, Qro"
+                                    android:textColor="@color/grayBtn"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <ImageView
+                                android:id="@+id/btnComment"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/comment"
+                                android:layout_gravity="bottom"
+                                android:padding="16dp"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/btn_moregraphics"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/Tarjeta_VEE">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.3" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.3" />
+
+                        <Button
+                            android:id="@+id/btnMoreGraphics"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/material_on_background_disabled"
+                            android:text="Más gráficas"
+                            android:textColor="@color/yellow"
+                            android:textSize="12sp">
+
+                        </Button>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Graphs_Layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/btn_moregraphics"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="260dp"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="30dp"
+                            android:backgroundTint="@color/grayBtn"
+                            app:cardCornerRadius="8dp">
+
+                            <TextView
+                                android:id="@+id/LeyendaTSAPieChart"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto"
+                                android:gravity="center"
+                                android:text="Asistentes esperados vs. Asistentes reales"
+                                android:textAlignment="center"
+                                android:singleLine="false"
+                                android:textColor="@color/black"
+                                android:textSize="24dp"
+                                android:textStyle="bold" />
+
+                            <com.github.mikephil.charting.charts.PieChart
+                                android:id="@+id/tsaPieChart"
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:layout_marginTop="60dp"
+                                >
+
+                            </com.github.mikephil.charting.charts.PieChart>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="30dp"
+                            app:cardCornerRadius="8dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/fade_shape"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:id="@+id/first_ratingview"
+                                    android:layout_width="fill_parent"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <RatingBar
+                                        android:id="@+id/ratingStar"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="6dp"
+                                        android:isIndicator="true"
+                                        android:numStars="5"
+                                        android:rating="5"
+                                        android:progressTint="@color/white"
+                                        android:stepSize="0.001" />
+
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/number_ratingview"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/ratingAvg"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="12dp"
+                                        android:text="4 de 5"
+                                        android:textColor="@color/grayBtn"
+                                        android:textSize="20dp">
+
+                                    </TextView>
+
+                                    <TextView
+                                        android:id="@+id/ratingQuantity"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="4dp"
+                                        android:layout_marginStart="4dp"
+                                        android:layout_marginBottom="8dp"
+                                        android:text="en 35 calificaciones"
+                                        android:textColor="@color/grayBtn"
+                                        android:textSize="16sp">
+
+                                    </TextView>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/second_ratingview1"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:orientation="horizontal">
+
+
+                                    <ImageView
+                                        android:id="@+id/ratingstar1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/rating_star">
+
+                                    </ImageView>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="4dp"
+                                        android:text="5"
+                                        android:textColor="@color/grayBtn"
+                                        android:textSize="12sp">
+
+                                    </TextView>
+
+                                    // Progress
+
+                                    <ProgressBar
+                                        android:id="@+id/count5PB"
+                                        style="@android:style/Widget.ProgressBar.Horizontal"
+                                        android:layout_width="180dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginRight="10dp"
+                                        android:progress="25"
+                                        android:progressTint="@color/white" />
+
+                                    <TextView
+                                        android:id="@+id/count5TV"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="4dp"
+                                        android:text="15 votos"
+                                        android:textColor="@color/grayBtn"
+                                        android:textSize="12sp">
+
+                                    </TextView>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/second_ratingview3"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:layout_marginBottom="8dp"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:id="@+id/ratingstar3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/rating_star">
+
+                                    </ImageView>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="4dp"
+                                        android:text="4"
+                                        android:textColor="@color/grayBtn"
+                                        android:textSize="12sp">
+
+                                    </TextView>
+
+                                    // Progress
+
+                                    <ProgressBar
+                                        android:id="@+id/count4PB"
+                                        style="@android:style/Widget.ProgressBar.Horizontal"
+                                        android:layout_width="180dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginRight="10dp"
+                                        android:progress="25"
+                                        android:progressTint="@color/white" />
+
+                                    <TextView
+                                        android:id="@+id/count4TV"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="4dp"
+                                        android:text="14 votos"
+                                        android:textColor="@color/grayBtn"
+                                        android:textSize="12sp">
+
+                                    </TextView>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/second_ratingview2"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:layout_marginBottom="8dp"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:id="@+id/ratingstar2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/rating_star">
+
+                                    </ImageView>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="4dp"
+                                        android:text="3"
+                                        android:textColor="@color/grayBtn"
+                                        android:textSize="12sp">
+
+                                    </TextView>
+
+                                    // Progress
+
+                                    <ProgressBar
+                                        android:id="@+id/count3PB"
+                                        style="@android:style/Widget.ProgressBar.Horizontal"
+                                        android:layout_width="180dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginRight="10dp"
+                                        android:progress="25"
+                                        android:progressTint="@color/white" />
+
+                                    <TextView
+                                        android:id="@+id/count3TV"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="4dp"
+                                        android:text="13 votos"
+                                        android:textColor="@color/grayBtn"
+                                        android:textSize="12sp">
+
+                                    </TextView>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/second_ratingview4"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="8dp"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:id="@+id/ratingstar4"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/rating_star">
+
+                                    </ImageView>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="4dp"
+                                        android:text="2"
+                                        android:textColor="@color/grayBtn"
+                                        android:textSize="12sp">
+
+                                    </TextView>
+
+                                    // Progress
+
+                                    <ProgressBar
+                                        android:id="@+id/count2PB"
+                                        style="@android:style/Widget.ProgressBar.Horizontal"
+                                        android:layout_width="180dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginRight="10dp"
+                                        android:progress="25"
+                                        android:progressTint="@color/white" />
+
+                                    <TextView
+                                        android:id="@+id/count2TV"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="4dp"
+                                        android:text="12 votos"
+                                        android:textColor="@color/grayBtn"
+                                        android:textSize="12sp">
+
+                                    </TextView>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/second_ratingview5"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="8dp"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:id="@+id/ratingstar5"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/rating_star">
+
+                                    </ImageView>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="4dp"
+                                        android:text="1"
+                                        android:textColor="@color/grayBtn"
+                                        android:textSize="12sp">
+
+                                    </TextView>
+
+                                    // Progress
+
+                                    <ProgressBar
+                                        android:id="@+id/count1PB"
+                                        style="@android:style/Widget.ProgressBar.Horizontal"
+                                        android:layout_width="180dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginRight="10dp"
+                                        android:progress="25"
+                                        android:progressTint="@color/white" />
+
+                                    <TextView
+                                        android:id="@+id/count1TV"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="4dp"
+                                        android:text="11 votos"
+                                        android:textColor="@color/grayBtn"
+                                        android:textSize="12sp">
+
+                                    </TextView>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/second_ratingview0"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="16dp"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:id="@+id/ratingstar0"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/rating_star">
+
+                                    </ImageView>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="4dp"
+                                        android:text="0"
+                                        android:textColor="@color/grayBtn"
+                                        android:textSize="12sp">
+
+                                    </TextView>
+
+                                    // Progress
+
+                                    <ProgressBar
+                                        android:id="@+id/count0PB"
+                                        style="@android:style/Widget.ProgressBar.Horizontal"
+                                        android:layout_width="180dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginRight="10dp"
+                                        android:progress="25"
+                                        android:progressTint="@color/white" />
+
+                                    <TextView
+                                        android:id="@+id/count0TV"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="4dp"
+                                        android:text="10 votos"
+                                        android:textColor="@color/grayBtn"
+                                        android:textSize="12sp">
+
+                                    </TextView>
+                                </LinearLayout>
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Funciones"
+                            android:textColor="@color/grayBtn"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            android:layout_margin="16dp"
+                            android:layout_marginBottom="8dp"/>
+
+                        <androidx.cardview.widget.CardView
+                            xmlns:android="http://schemas.android.com/apk/res/android"
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:background="@drawable/gradent_horizontal"
+                            app:cardCornerRadius="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginLeft="16dp">
+
+                            <LinearLayout
+                                android:id="@+id/addFunBtn"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:background="@drawable/gradent_horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:id="@+id/linear_text"
+                                    android:layout_weight="0.2">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="16dp"
+                                        android:text="Añadir Función"
+                                        android:id="@+id/addFunBtnTitle"
+                                        android:textColor="#D2DDE5"
+                                        android:textStyle="bold"
+                                        android:textSize="16sp"
+                                        android:layout_gravity="center">
+
+                                    </TextView>
+
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.8"
+                                    android:gravity="center">
+
+                                    <ImageView
+                                        android:id="@+id/editIcon"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/add_circle_outline_white"
+                                        >
+                                    </ImageView>
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            xmlns:android="http://schemas.android.com/apk/res/android"
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:background="@drawable/gradent_horizontal"
+                            app:cardCornerRadius="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginLeft="16dp">
+
+                            <LinearLayout
+                                android:id="@+id/addArtBtn"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:background="@drawable/gradent_horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:id="@+id/linear_text2"
+                                    android:layout_weight="0.2">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="16dp"
+                                        android:text="Añadir Artista"
+                                        android:id="@+id/addArtBtnTitle"
+                                        android:textColor="#D2DDE5"
+                                        android:textStyle="bold"
+                                        android:textSize="16sp"
+                                        android:layout_gravity="center">
+
+                                    </TextView>
+
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.8"
+                                    android:gravity="center">
+
+                                    <ImageView
+                                        android:id="@+id/editIcon2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/add_circle_outline_white"
+                                        >
+                                    </ImageView>
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            xmlns:android="http://schemas.android.com/apk/res/android"
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:background="@drawable/gradent_horizontal"
+                            app:cardCornerRadius="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginLeft="16dp">
+
+                            <LinearLayout
+                                android:id="@+id/addCatBtn"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:background="@drawable/gradent_horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:id="@+id/linear_text3"
+                                    android:layout_weight="0.2">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="16dp"
+                                        android:text="Añadir Categoría"
+                                        android:id="@+id/addCatBtnTitle"
+                                        android:textColor="#D2DDE5"
+                                        android:textStyle="bold"
+                                        android:textSize="16sp"
+                                        android:layout_gravity="center">
+
+                                    </TextView>
+
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.8"
+                                    android:gravity="center">
+
+                                    <ImageView
+                                        android:id="@+id/editIcon3"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/add_circle_outline_white"
+                                        >
+                                    </ImageView>
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            xmlns:android="http://schemas.android.com/apk/res/android"
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:background="@drawable/gradent_horizontal"
+                            app:cardCornerRadius="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginLeft="16dp">
+
+                            <LinearLayout
+                                android:id="@+id/addTBBtn"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:background="@drawable/gradent_horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:id="@+id/linear_text4"
+                                    android:layout_weight="0.2">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="16dp"
+                                        android:text="Añadir Tipo Boleto"
+                                        android:id="@+id/addTBBtnTitle"
+                                        android:textColor="#D2DDE5"
+                                        android:textStyle="bold"
+                                        android:textSize="16sp"
+                                        android:layout_gravity="center">
+
+                                    </TextView>
+
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.8"
+                                    android:gravity="center">
+
+                                    <ImageView
+                                        android:id="@+id/editIcon4"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/add_circle_outline_white"
+                                        >
+                                    </ImageView>
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/funcionesOrganizadorRV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginBottom="100dp"/>
+
+                        <LinearLayout
+                            android:id="@+id/btn_regresar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/navbar"
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
+
+                            <Space
+                                android:layout_width="0dp"
+                                android:layout_height="10dp"
+                                android:layout_weight="0.2"></Space>
+
+
+                            <Space
+                                android:layout_width="0dp"
+                                android:layout_height="90dp"
+                                android:layout_weight="0.2"></Space>
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
+    <include
+        layout="@layout/navbar"
+        android:id="@+id/navbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_gravity="bottom"
+        />
+
+</FrameLayout>

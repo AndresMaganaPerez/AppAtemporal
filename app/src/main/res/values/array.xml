@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="eventTypeList">
+        <item>@string/eventType1</item>
+        <item>@string/eventType2</item>
+        <item>@string/eventType3</item>
+        <item>@string/eventType4</item>
+    </string-array>
+    <string-array name="areaList">
+        <item>@string/areaType1</item>
+        <item>@string/areaType2</item>
+        <item>@string/areaType3</item>
+        <item>@string/areaType4</item>
+    </string-array>
+    <string-array name="estatusList">
+        <item>@string/estatusType1</item>
+        <item>@string/estatusType2</item>
+        <item>@string/estatusType3</item>
+    </string-array>
+    <string-array name="prioridadList">
+        <item>@string/prioridadType1</item>
+        <item>@string/prioridadType2</item>
+        <item>@string/prioridadType3</item>
+    </string-array>
+    <string-array name="filterList">
+        <item>@string/filterType1</item>
+        <item>@string/filterType2</item>
+        <item>@string/filterType3</item>
+    </string-array>
+</resources>

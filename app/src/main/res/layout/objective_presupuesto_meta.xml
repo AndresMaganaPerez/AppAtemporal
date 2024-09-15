@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    android:id="@+id/proyectosOrganizador"
+    >
+    <include
+        layout="@layout/header"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id = "@+id/header"
+        />
+
+    <include
+        layout="@layout/navbar"
+        android:id="@+id/navbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+    <TextView
+        android:id="@+id/titlePresupuesto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Define tu presupuesto"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toTopOf="@+id/navbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header"
+        app:layout_constraintVertical_bias="0.02" />
+
+    <TextView
+        android:id="@+id/tvNewPresupuesto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradent_horizontal"
+        android:backgroundTint="#33000000"
+        android:backgroundTintMode="src_atop"
+        android:ems="22"
+        app:layout_constraintVertical_bias="0.15"
+        android:fontFamily="@font/inter"
+        android:padding="16dp"
+        android:text="Presupuesto: 1000"
+        android:textColor="@color/white"
+        android:textFontWeight="600"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/ivPresupuestoImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/edit_white"
+        app:layout_constraintBottom_toBottomOf="@+id/tvNewPresupuesto"
+        app:layout_constraintRight_toRightOf="@+id/tvNewPresupuesto"
+        app:layout_constraintTop_toTopOf="@+id/tvNewPresupuesto"
+        app:layout_constraintLeft_toLeftOf="@+id/tvNewPresupuesto"
+        app:layout_constraintHorizontal_bias="0.95"
+        />
+
+    <TextView
+        android:id="@+id/tvDeletePresupuesto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradent_horizontal"
+        android:backgroundTint="#33000000"
+        android:backgroundTintMode="src_atop"
+        android:ems="22"
+        app:layout_constraintVertical_bias="0.05"
+        android:fontFamily="@font/inter"
+        android:padding="16dp"
+        android:text="Elimininar"
+        android:textColor="@color/white"
+        android:textFontWeight="600"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNewPresupuesto" />
+
+    <ImageView
+        android:id="@+id/ivPresupuestoImageDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/delete_button"
+        app:layout_constraintBottom_toBottomOf="@+id/tvDeletePresupuesto"
+        app:layout_constraintRight_toRightOf="@+id/tvDeletePresupuesto"
+        app:layout_constraintTop_toTopOf="@+id/tvDeletePresupuesto"
+        app:layout_constraintLeft_toLeftOf="@+id/tvDeletePresupuesto"
+        app:layout_constraintHorizontal_bias="0.95"
+        />
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="275dp"
+        app:layout_constraintTop_toBottomOf="@id/tvDeletePresupuesto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/navbar"
+        app:layout_constraintVertical_bias="1"
+        android:text="Meta Esperada:"
+        android:textSize="24sp"
+        android:background="@drawable/img_meta"
+        android:backgroundTint="#AA000000"
+        android:backgroundTintMode="src_atop"
+        android:textColor="@color/white"
+        android:fontFamily="@font/inter"
+        android:textFontWeight="500"
+        android:gravity="center_horizontal"
+        android:id="@+id/titleMetaOrganizador"
+        />
+
+    <TextView
+        android:id="@+id/MetaValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="22"
+        app:layout_constraintVertical_bias="0.3"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:fontFamily="@font/inter"
+        android:padding="16dp"
+        android:text="10000"
+        android:textColor="@color/white"
+        android:textFontWeight="600"
+        app:layout_constraintBottom_toBottomOf="@id/navbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDeletePresupuesto" />
+
+    <TextView
+        android:id="@+id/tvMetaName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradent_horizontal"
+        android:backgroundTint="#33000000"
+        android:backgroundTintMode="src_atop"
+        android:fontFamily="@font/inter"
+        android:padding="16dp"
+        android:text="Meta actual: 10000"
+        android:ems="22"
+        android:textColor="@color/white"
+        android:textFontWeight="600"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MetaValue"
+        app:layout_constraintVertical_bias="0.15"/>
+
+    <ImageView
+        android:id="@+id/ivEditMeta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/edit_white"
+        app:layout_constraintBottom_toBottomOf="@+id/tvMetaName"
+        app:layout_constraintRight_toRightOf="@+id/tvMetaName"
+        app:layout_constraintTop_toTopOf="@+id/tvMetaName"
+        android:layout_marginRight="20dp"
+
+        />
+
+    <ImageView
+        android:id="@+id/deleteMetaButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/delete_button"
+        app:layout_constraintBottom_toBottomOf="@+id/tvMetaName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintRight_toRightOf="@+id/tvMetaName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvMetaName" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

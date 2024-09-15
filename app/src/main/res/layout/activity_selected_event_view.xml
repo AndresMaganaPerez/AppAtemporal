@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".framework.view.SelectedEventView"
+    android:background="@color/base"
+    >
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/header"
+        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0"/>
+
+
+    <ImageView
+        android:id="@+id/eventImage_2"
+        android:layout_width="0dp"
+        android:layout_height="220dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintVertical_bias="0"
+        tools:srcCompat="@drawable/conciertos_1_1" />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="220dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintVertical_bias="0"
+        android:background="#80000000"
+        />
+
+    <ImageButton
+        android:id="@+id/likeBtn_2"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_thumb_up"
+        app:layout_constraintBottom_toBottomOf="@id/eventImage_2"
+        app:layout_constraintEnd_toEndOf="@id/eventImage_2"
+        app:layout_constraintHorizontal_bias="0.886"
+        app:layout_constraintStart_toStartOf="@id/eventImage_2"
+        app:layout_constraintTop_toTopOf="@id/eventImage_2"
+        app:layout_constraintVertical_bias="0.97"
+        app:tint="@color/grayBtn"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/dislikeBtn_2"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:background="@android:color/transparent"
+        app:tint="@color/grayBtn"
+        android:src="@drawable/ic_thumb_down"
+        app:layout_constraintTop_toTopOf="@id/eventImage_2"
+        app:layout_constraintBottom_toBottomOf="@id/eventImage_2"
+        app:layout_constraintStart_toStartOf="@id/eventImage_2"
+        app:layout_constraintEnd_toEndOf="@id/eventImage_2"
+        app:layout_constraintVertical_bias="0.97"
+        app:layout_constraintHorizontal_bias="0.967"
+        android:scaleType="fitXY"
+        />
+
+    <ImageButton
+        android:id="@+id/commentBtn_2"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_comment"
+        app:layout_constraintBottom_toBottomOf="@id/eventImage_2"
+        app:layout_constraintEnd_toEndOf="@id/eventImage_2"
+        app:layout_constraintHorizontal_bias="0.035"
+        app:layout_constraintStart_toStartOf="@id/eventImage_2"
+        app:layout_constraintTop_toTopOf="@id/eventImage_2"
+        app:layout_constraintVertical_bias="0.97"
+        app:tint="@color/grayBtn"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/favBtn_2"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_cards_heart_outline"
+        app:layout_constraintBottom_toBottomOf="@id/eventImage_2"
+        app:layout_constraintEnd_toEndOf="@id/eventImage_2"
+        app:layout_constraintHorizontal_bias="0.035"
+        app:layout_constraintStart_toStartOf="@id/eventImage_2"
+        app:layout_constraintTop_toTopOf="@id/eventImage_2"
+        app:layout_constraintVertical_bias="0.02"
+        app:tint="@color/grayBtn"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/tv_eventTitle_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/eventImage_2"
+        app:layout_constraintBottom_toBottomOf="@id/eventImage_2"
+        app:layout_constraintStart_toStartOf="@id/eventImage_2"
+        app:layout_constraintEnd_toEndOf="@id/eventImage_2"
+        app:layout_constraintVertical_bias="0.05"
+        android:text="Titulo evento"
+        android:fontFamily="@font/inter"
+        android:textSize="30sp"
+        android:textFontWeight="400"
+        android:textColor="@color/yellow"
+        android:textAlignment="center"
+        />
+
+    <TextView
+        android:id="@+id/tv_eventDate_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_eventTitle_2"
+        app:layout_constraintBottom_toTopOf="@id/tv_eventPlace_2"
+        app:layout_constraintStart_toStartOf="@id/eventImage_2"
+        app:layout_constraintEnd_toEndOf="@id/eventImage_2"
+        android:text="Fecha evento"
+        android:fontFamily="@font/inter"
+        android:textSize="30sp"
+        android:textFontWeight="380"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        />
+
+    <TextView
+        android:id="@+id/tv_eventPlace_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_eventDate_2"
+        app:layout_constraintBottom_toTopOf="@id/tv_eventAddress_2"
+        app:layout_constraintStart_toStartOf="@id/eventImage_2"
+        app:layout_constraintEnd_toEndOf="@id/eventImage_2"
+        android:text="Lugar evento"
+        android:fontFamily="@font/inter"
+        android:textSize="20sp"
+        android:textFontWeight="380"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        />
+
+    <TextView
+        android:id="@+id/tv_eventAddress_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_eventPlace_2"
+        app:layout_constraintBottom_toTopOf="@id/tv_eventCountry_2"
+        app:layout_constraintStart_toStartOf="@id/eventImage_2"
+        app:layout_constraintEnd_toEndOf="@id/eventImage_2"
+        android:text="Direccion del evento"
+        android:fontFamily="@font/inter"
+        android:textSize="20sp"
+        android:textFontWeight="380"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        />
+
+    <TextView
+        android:id="@+id/tv_eventCountry_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter"
+        android:text="Direccion del evento"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textFontWeight="380"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/eventImage_2"
+        app:layout_constraintEnd_toEndOf="@id/eventImage_2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/eventImage_2"
+        app:layout_constraintTop_toBottomOf="@id/tv_eventAddress_2"/>
+
+    <android.widget.Button
+        android:id="@+id/buyTicketBtn_2"
+        android:layout_width="350dp"
+        android:layout_height="290dp"
+        app:layout_constraintTop_toBottomOf="@id/eventImage_2"
+        app:layout_constraintBottom_toTopOf="@id/navbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/gradient"
+        android:fontFamily="@font/inter"
+        android:text="COMPRA TU BOLETO AQUÍ"
+        android:drawableLeft="@drawable/ic_link"
+        android:drawableTint="@color/yellow"
+        android:paddingStart="45dp"
+        android:paddingEnd="45dp"
+        android:textSize="18sp"
+        android:textColor="@color/yellow"
+        />
+
+    <include
+        layout="@layout/navbar"
+        app:layout_constraintVertical_bias="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/navbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

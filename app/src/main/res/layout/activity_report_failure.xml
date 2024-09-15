@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/dark">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/header"
+        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0"/>
+
+    <TextView
+        android:id="@+id/tvFallas_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reportar fallas"
+        android:textColor="@color/white"
+        android:fontFamily="@font/abel"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.15"
+        app:layout_constraintHorizontal_bias="0.14" />
+
+    <TextView
+        android:id="@+id/tvColors_3"
+        android:layout_width="0dp"
+        android:layout_height="400dp"
+        android:layout_margin="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvFallas_3"
+        app:layout_constraintVertical_bias="0"
+        android:background="@drawable/fade_shape"
+        />
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_margin="30dp"
+        android:background="@drawable/grey_shape"
+        android:hint="Describe el asunto"
+        android:textColor="@color/dark_grey"
+        android:textColorHint="@color/litherGray"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/tvColors_3"
+        app:layout_constraintEnd_toEndOf="@id/tvColors_3"
+        app:layout_constraintStart_toStartOf="@id/tvColors_3"
+        app:layout_constraintTop_toTopOf="@id/tvColors_3"
+        app:layout_constraintVertical_bias="0"/>
+
+    <EditText
+        android:id="@+id/description"
+        android:layout_width="0dp"
+        android:layout_height="240dp"
+        android:layout_margin="30dp"
+        android:background="@drawable/grey_shape"
+        android:hint="Describe la falla"
+        android:inputType="textMultiLine"
+        android:textColor="@color/dark_grey"
+        android:textColorHint="@color/litherGray"
+        android:gravity="top"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/tvColors_3"
+        app:layout_constraintEnd_toEndOf="@id/tvColors_3"
+        app:layout_constraintStart_toStartOf="@id/tvColors_3"
+        app:layout_constraintTop_toTopOf="@id/tvColors_3"
+        app:layout_constraintVertical_bias="1"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enviar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvColors_3"
+        app:layout_constraintBottom_toTopOf="@id/navbar"
+        android:backgroundTint="@color/atemporal_purple"
+        android:textColor="@color/white"/>
+
+    <include
+        layout="@layout/navbar"
+        app:layout_constraintVertical_bias="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/navbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

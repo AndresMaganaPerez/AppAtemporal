@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="328dp"
+    android:layout_height="80dp"
+    android:padding="10dp"
+    android:background="#302E3B"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="10dp"
+    android:elevation="10dp"
+    app:cardCornerRadius="10dp">
+
+    <View
+        android:id="@+id/viewColorTag"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#302E3B" />
+
+    <RelativeLayout
+        android:layout_width="328dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/gradent_horizontal"
+        android:paddingBottom="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:padding="5dp"
+            android:focusable="true">
+
+
+            <TextView
+                android:id="@+id/txtShowTitle"
+                android:layout_width="206dp"
+                android:layout_height="38dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginEnd="5dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="Task Title" />
+
+
+            <ImageView
+                android:id="@+id/deleteCostoButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="69dp"
+                android:ellipsize="end"
+                android:maxWidth="80dp"
+                android:maxLines="1"
+                android:src="@drawable/delete_button" />
+
+            <ImageView
+                android:id="@+id/ivEditIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/edit_white" />
+
+
+
+<!--            <TextView-->
+<!--                android:id="@+id/txtShowArea"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@+id/txtShowTitle"-->
+<!--                android:layout_alignParentStart="true"-->
+<!--                android:layout_marginStart="210dp"-->
+<!--                android:layout_marginTop="41dp"-->
+<!--                android:ellipsize="end"-->
+<!--                android:maxLines="1"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="16dp"-->
+<!--                tools:text="Task Subtitle" />-->
+
+            <TextView
+                android:id="@+id/txtShowMonto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtShowTitle"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="0dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                tools:text="Task Subtitle" />
+
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

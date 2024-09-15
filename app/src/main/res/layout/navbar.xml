@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navbar"
+    android:layout_gravity="bottom"
+    >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/navbar_background"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/buttons">
+        <ImageView
+            app:layout_constraintVertical_bias="0.3"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/home_icon"
+            app:layout_constraintStart_toStartOf="@id/buttons"
+            app:layout_constraintTop_toTopOf="@id/buttons"
+            app:layout_constraintBottom_toBottomOf="@id/buttons"
+            app:layout_constraintEnd_toStartOf="@id/budget_icon"
+            android:id="@+id/home_icon"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/budget_icon"
+            app:layout_constraintTop_toTopOf="@id/home_icon"
+            app:layout_constraintStart_toEndOf="@+id/home_icon"
+            app:layout_constraintEnd_toStartOf="@id/events_icon"
+            android:id = "@+id/budget_icon"
+            />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/events_icon"
+            app:layout_constraintTop_toTopOf="@id/home_icon"
+            app:layout_constraintStart_toEndOf="@+id/budget_icon"
+            app:layout_constraintEnd_toStartOf="@id/tickets_icon"
+            android:id = "@+id/events_icon"
+            />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/tickets_icon"
+            app:layout_constraintTop_toTopOf="@id/home_icon"
+            app:layout_constraintStart_toEndOf="@+id/events_icon"
+            app:layout_constraintEnd_toStartOf="@id/metrics_icon"
+            android:id = "@+id/tickets_icon"
+            />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/metrics_icon"
+            app:layout_constraintTop_toTopOf="@id/home_icon"
+            app:layout_constraintStart_toEndOf="@+id/tickets_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id = "@+id/metrics_icon"
+            />
+
+        <TextView
+            app:layout_constraintVertical_bias="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_semibold"
+            android:text="Home"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/home_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/buttons"
+            app:layout_constraintStart_toStartOf="@+id/home_icon"
+            app:layout_constraintEnd_toEndOf="@id/home_icon"
+            android:id="@+id/home_text"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            />
+
+        <TextView
+            app:layout_constraintVertical_bias="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_semibold"
+            android:text="Budget"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@+id/budget_icon"
+            app:layout_constraintStart_toStartOf="@+id/budget_icon"
+            app:layout_constraintBottom_toBottomOf="@id/buttons"
+            app:layout_constraintEnd_toEndOf="@id/budget_icon"
+            android:id="@+id/budget_text"
+            />
+
+        <TextView
+            app:layout_constraintVertical_bias="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_semibold"
+            android:text="Events"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/buttons"
+            app:layout_constraintStart_toStartOf="@+id/events_icon"
+            app:layout_constraintTop_toBottomOf="@id/events_icon"
+            app:layout_constraintEnd_toEndOf="@id/events_icon"
+            android:id="@+id/events_text"
+            />
+
+        <TextView
+            app:layout_constraintVertical_bias="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_semibold"
+            android:text="Tickets"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/buttons"
+            app:layout_constraintStart_toStartOf="@+id/tickets_icon"
+            app:layout_constraintTop_toBottomOf="@id/tickets_icon"
+            app:layout_constraintEnd_toEndOf="@id/tickets_icon"
+            android:id="@+id/tickets_text"
+            />
+
+        <TextView
+            app:layout_constraintVertical_bias="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_semibold"
+            android:text="Metrics"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/metrics_icon"
+            app:layout_constraintEnd_toEndOf="@id/metrics_icon"
+            app:layout_constraintTop_toBottomOf="@id/metrics_icon"
+            android:id="@+id/metrics_text"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

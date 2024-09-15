@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "216309373002",
+    "project_id": "atemporal-203bd",
+    "storage_bucket": "atemporal-203bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:216309373002:android:f914af87a490b3b63f2eb3",
+        "android_client_info": {
+          "package_name": "com.example.appatemporal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "216309373002-59ojosc10l7vf4b1t5f4ma29brujfn7m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.appatemporal",
+            "certificate_hash": "6a8ec415457a84988eefc04fb086bf1b30e5ad99"
+          }
+        },
+        {
+          "client_id": "216309373002-e0pqh2gb264p26fsbutt3fcir3rtbt77.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6kBUzpFhddfJJgkq_0cXi0lGYcehtEGg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "216309373002-e0pqh2gb264p26fsbutt3fcir3rtbt77.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

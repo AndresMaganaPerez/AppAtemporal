@@ -1,0 +1,51 @@
+<resources>
+    <string name="titleCreateNewProject">Crear un nuevo Proyecto</string>
+    <string name="nameCreateNewProject">Nombre del Evento</string>
+    <string name="dateCreateNewProject">Fecha (dd/mm/aaaa)</string>
+
+    <string name="eventType">Tipo de Evento</string>
+    <string name="eventType1">Alta</string>
+    <string name="eventType2">Media</string>
+    <string name="eventType3">Baja</string>
+    <string name="eventType4">Muy Baja</string>
+
+    <string name="titleCreateNewTask">Crear una nueva Tarea</string>
+    <string name="nameCreateNewTask">Nombre de la Tarea: </string>
+    <string name="dateCreateNewTask">Fecha (dd/mm/aaaa)</string>
+    <string name="directionCreateNewProject">Direccion</string>
+    <string name="locationCreateNewProject">Ubicación (Link)</string>
+    <string name="timeCreateNewProject">Hora </string>
+    <string name="artistCreateNewProject">Artista(s) </string>
+
+    <string name="titleModifyProject">Modificar Evento</string>
+    <string name="nameModifyProject">Nombre</string>
+    <string name="dateModifyProject">Fecha</string>
+    <string name="directionModifyProject">Direccion</string>
+    <string name="locationModifyProject">Ubicación</string>
+    <string name="timeModifyProject">Hora</string>
+    <string name="artistModifyProject">Artista(s)</string>
+    <string name="typeModifyProject">Tipo</string>
+
+    <string name="areaType">Area</string>
+    <string name="areaType1">Negocios</string>
+    <string name="areaType2">Personales</string>
+    <string name="areaType3">Compras</string>
+    <string name="areaType4">Mercancias</string>
+    <string name="areaType5">Seguridad</string>
+
+    <string name="estatusType">Estatus</string>
+
+    <string name="estatusType1">En Proceso</string>
+    <string name="estatusType2">No Completado</string>
+    <string name="estatusType3">Completado </string>
+
+    <string name="prioridadType">Prioridad</string>
+    <string name="prioridadType1">Baja</string>
+    <string name="prioridadType2">Media</string>
+    <string name="prioridadType3">Alta </string>
+
+    <string name="filterType1">Estatus</string>
+    <string name="filterType2">Area</string>
+    <string name="filterType3">Prioridad</string>
+
+</resources>
